@@ -1,0 +1,5 @@
+.idea/
+.sass-cache/
+#Damit jeder immer compass verwendet - kein main.css im Repo - mindert auch die Changehistory da es AutoGen ist
+css/main.css
+docker-compose.yml
