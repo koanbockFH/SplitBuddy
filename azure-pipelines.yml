@@ -11,6 +11,8 @@ pool:
 
 variables:
   imageName: 'splitbuddy:$(build.buildId)'
+  dockerId: 'splitbuddy'
+  pswd: rWT6K4+DmhghaSsfdAi0W8dAHPuWViJN
 
 steps:
 - script: docker build -f Dockerfile -t $(imageName) .
