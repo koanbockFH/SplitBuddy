@@ -23,7 +23,7 @@ steps:
     imageName: 'antonienko/compass-watch:latest'
     volumes: |
       $(Build.SourcesDirectory):/src
-    containerCommand: 'compile ./ --output-style compressed --force && chmod -R a+rwx ./css'
+    containerCommand: '/bin/bash -c "compile ./ --output-style compressed --force"'
     detached: false
 - script: docker build -f Dockerfile -t $(imageName) .
   displayName: 'docker build'
