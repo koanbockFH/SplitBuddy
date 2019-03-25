@@ -17,7 +17,7 @@ variables:
 steps:
 - script: docker run -v $(Build.SourcesDirectory):/src antonienko/compass-watch:latest compile ./ --output-style compressed --force
   displayName: 'docker run Compass'
-- script: chmod -v a+rwx $(Build.SourcesDirectory)/*
+- script: chmod -R a+rwx $(Build.SourcesDirectory)/*
   displayName: 'change rights'
 - script: docker build -f Dockerfile -t $(imageName) .
   displayName: 'docker build'
