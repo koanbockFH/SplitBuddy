@@ -15,10 +15,16 @@ variables:
   pswd: rWT6K4+DmhghaSsfdAi0W8dAHPuWViJN
 
 steps:
-- script: docker run -v $(Build.SourcesDirectory):/src antonienko/compass-watch:latest compile ./ --output-style compressed --force
-  displayName: 'docker run Compass'
-- script: chmod -R a+rwx $(Build.SourcesDirectory)/*
-  displayName: 'change rights'
+- task: Docker@0
+  displayName: 'Run Compass'
+  inputs:
+    containerRegistryType: 'Container Registry'
+    action: 'Run an image'
+    imageName: 'antonienko/compass-watch:latest'
+    volumes: |
+      $(Build.SourcesDirectory):/src
+    containerCommand: 'compile ./ --output-style compressed --force'
+    detached: false
 - script: docker build -f Dockerfile -t $(imageName) .
   displayName: 'docker build'
 - script: |
