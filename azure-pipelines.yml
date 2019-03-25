@@ -11,8 +11,6 @@ pool:
 
 variables:
   imageName: 'splitbuddy:$(build.buildId)'
-  dockerId: 'splitbuddy'
-  pswd: rWT6K4+DmhghaSsfdAi0W8dAHPuWViJN
 
 steps:
 - script: docker run -v $(Build.SourcesDirectory):/src antonienko/compass-watch:latest compile ./ --output-style compressed --force
