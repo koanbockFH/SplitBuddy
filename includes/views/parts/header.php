@@ -27,26 +27,25 @@
 <body>
 <header>
     <!-- Navbar - transparent wenn Homepage/Index-->
-    <nav class="navbar navbar-expand-lg navbar-dark <?php if($this->current != "index"): ?>bg-dark<?php endif ?>">
+    <nav class="navbar navbar-expand-lg navbar-dark sb-navbar <?php if($this->current == "index"): ?>sb-navbar-transparent<?php endif ?>">
         <!-- Kein Logo wenn Home/Index -->
-        <?php if($this->current != "index"): ?>
-        <a class="navbar-brand" href="/">
-            <i class="fas fa-2x fa-robot d-inline-block align-baseline"></i>
+        <a class="navbar-brand <?php if($this->current == "index"): ?>sb-nav-brand<?php endif ?>" href="/">
+            <i class="fas fa-lg fa-robot d-inline-block align-baseline d-lg-none"></i>
+            <i class="fas fa-2x fa-robot d-none align-top d-lg-inline-block"></i>
             <h1 class="align-baseline ml-1 d-inline">SplitBuddy</h1>
         </a>
-        <?php endif ?>
         <!-- START Toogler oder Anmeldungslink -->
         <!-- Falls nicht angemeldet, Link zur Anmeldung, in Mobiler Version statt Toggler-->
         <?php if($this->loggedIn != true): ?>
         <ul class="navbar-nav ml-auto d-lg-none">
             <li class="nav-item">
-                <a class="nav-link" href="/?loggedIn">Anmelden/Registrieren</a>
+                <a class="nav-link" href="/?loggedIn" id="mobile-login"><i class="fas fa-sign-in-alt"></i></a>
             </li>
         </ul>
         <?php else: ?>
         <!-- Mobile Menu Toggler nur benötigt wenn wir eingeloggt sind -->
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-2x fa-user-circle"></i>
+            <i class="fas fa-lg fa-user-circle"></i>
         </button>
         <?php endif ?>
         <!-- END Toogler oder Anmeldungslink -->

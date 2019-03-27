@@ -11,6 +11,44 @@
   right: 0;
 }
 
+.sb-navbar
+{
+  background-color: #343a40!important;
+
+  @include breakpoint_Max($desktop)
+  {
+    h1
+    {
+      font-size: 130%;
+    }
+  }
+}
+
+.sb-nav-brand
+{
+  display: inherit;
+
+  @include breakpoint_Min($desktop)
+  {
+    display:none !important;
+  }
+}
+
+.sb-navbar-transparent
+{
+  @include breakpoint_Min($desktop)
+  {
+    background-color: transparent !important;
+  }
+}
+
+/*
+ Mobile Ansicht hat ein eigenes LogIn Icon, Padding wird an Menu angepasst, dass eingeloggt dann angezeigt wird (hüpft dann nicht rum)
+ */
+#mobile-login{
+  padding: 7px 12px 7px 0px;
+}
+
 .navbar-toggler
 {
   //kein Rand benoetigt da Profile-Icon reicht
