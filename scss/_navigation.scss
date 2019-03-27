@@ -1,0 +1,18 @@
+/*
+ Anpassungen fuer die Navigation
+ */
+
+/*
+ Anpassung fuer Dropdown mit Profil-Icon
+*/
+.sb-profile-dropdown-menu
+{
+  left: auto;
+  right: 0;
+}
+
+.navbar-toggler
+{
+  //kein Rand benoetigt da Profile-Icon reicht
+  border: none;
+}

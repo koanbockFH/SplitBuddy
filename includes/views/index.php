@@ -4,9 +4,6 @@ echo $this->header;
 
 ?>
 
-<div>
-    SplitBuddy
-</div>
 
 <?php
 

@@ -1,0 +1,33 @@
+/*
+ - Alle Imports die von allen anderen Styles benoetigt werden
+ - Body, Footer, Header/Navigation, Styles die in allen Seiten benoetigt
+ */
+
+@import "compass/css3";
+@import "colors";
+@import "common";
+@import "navigation";
+
+
+body
+{
+  background-color: $main-color;
+  font-family: $font-family;
+}
+
+/*
+ Footer Style
+ */
+.sb-footer
+{
+  padding: .5rem 1rem;
+  background-color: $second-color;
+}
+
+/*
+ Links die im Dokument im Hintergrund stehen - z.B. Impressum
+ */
+.sb-link-muted
+{
+  color: $link-muted-text-color !important;
+}
