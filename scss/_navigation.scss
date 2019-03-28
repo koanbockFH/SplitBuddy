@@ -2,6 +2,9 @@
  Anpassungen fuer die Navigation
  */
 
+$navbar-dropdown-padding: .25em 3.5em .25em 2.0em;
+$navbar-mobile-login-padding: 7px 12px 7px 0px;
+
 /*
  Anpassung fuer Dropdown mit Profil-Icon
 */
@@ -9,16 +12,27 @@
 {
   left: auto;
   right: 0;
+  background-color: $navbar-dropdown-background-color;
+
+  .dropdown-item
+  {
+    &:hover{
+      background-color: $navbar-dropdown-hover-color;
+    }
+    color: $navbar-dropdown-font-color;
+    padding: $navbar-dropdown-padding;
+  }
 }
 
 .sb-navbar
 {
-  background-color: #343a40!important;
+  background-color: $navbar-background-color!important;
 
   @include breakpoint_Max($desktop)
   {
     h1
     {
+      //h1 ist für Smartphones zu groß
       font-size: 130%;
     }
   }
@@ -43,10 +57,10 @@
 }
 
 /*
- Mobile Ansicht hat ein eigenes LogIn Icon, Padding wird an Menu angepasst, dass eingeloggt dann angezeigt wird (hüpft dann nicht rum)
+ Mobile Ansicht hat ein eigenes LogIn Icon, Padding wird an Menu angepasst, dass eingeloggt dann angezeigt wird (huepft dann nicht rum)
  */
 #mobile-login{
-  padding: 7px 12px 7px 0px;
+  padding: $navbar-mobile-login-padding;
 }
 
 .navbar-toggler
