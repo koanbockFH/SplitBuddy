@@ -6,8 +6,8 @@
 @import "compass/css3";
 @import "colors";
 @import "common";
+@import "mixIns";
 @import "navigation";
-
 
 body
 {
@@ -22,6 +22,7 @@ body
 {
   padding: .5rem 1rem;
   background-color: $second-color;
+  color: $footer-text-color !important;
 }
 
 /*
