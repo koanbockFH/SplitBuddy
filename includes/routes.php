@@ -7,4 +7,3 @@ $route['/index.html'] = array('controller' => 'IndexController', 'uniqueName' =>
 
 $route['/login'] = array('controller' => 'LoginController', 'uniqueName' => 'login');
 $route['/login.html'] = array('controller' => 'LoginController', 'uniqueName' => 'login');
-

@@ -12,7 +12,13 @@
 
     <!-- Internal Stylesheets -->
     <link href="css/main.css" rel="stylesheet">
+
+    <?php if($this->current == "login"): ?>
     <link href="css/login.css" rel="stylesheet">
+    <?php endif ?>
+    <?php if($this->current == "index"): ?>
+        <link href="css/index.css" rel="stylesheet">
+    <?php endif ?>
 
     <!-- START NavBar Test -->
     <?php
