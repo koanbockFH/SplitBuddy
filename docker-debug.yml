@@ -10,6 +10,9 @@ services:
       - 80:80
     volumes:
       - ./:/var/www/html
+    command: |
+      sh -c 'a2enmod rewrite \
+          && apache2-foreground'
     environment:
       XDEBUG_CONFIG: remote_host=host.docker.internal
   mysql:
@@ -33,8 +36,3 @@ services:
     command: watch --poll ./
     volumes:
       - ./:/src
-
-#networks:
- # backend:
-    # use the bridge driver, but enable IPv6
-  #  driver: host

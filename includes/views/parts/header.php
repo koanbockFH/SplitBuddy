@@ -12,7 +12,7 @@
 
     <!-- Internal Stylesheets -->
     <link href="css/main.css" rel="stylesheet">
-    <link href="../../../scss/login.scss" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
 
     <!-- START NavBar Test -->
     <?php
@@ -40,7 +40,7 @@
         <?php if($this->loggedIn != true): ?>
         <ul class="navbar-nav ml-auto d-lg-none">
             <li class="nav-item">
-                <a class="nav-link" href="/?loggedIn" id="mobile-login"><i class="fas fa-sign-in-alt"></i></a>
+                <a class="nav-link" href="login" id="mobile-login"><i class="fas fa-sign-in-alt"></i></a>
             </li>
         </ul>
         <?php else: ?>
@@ -54,7 +54,7 @@
             <ul class="navbar-nav ml-auto">
                 <?php if($this->loggedIn != true): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/?loggedIn">Anmelden/Registrieren</a>
+                    <a class="nav-link" href="login">Anmelden/Registrieren</a>
                 </li>
                 <?php else: ?>
                 <!-- START Mobile Menu; kein Dropdown -->
