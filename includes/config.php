@@ -6,3 +6,4 @@ define('INDEX_URL', 'index');
 
 define('LOGIN_URL', 'login');
 
+define('REGISTER_URL', 'register');

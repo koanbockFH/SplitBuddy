@@ -4,45 +4,25 @@ echo $this->header;
 
 ?>
 
-    <div class="registerfeld">
+    <div class="regForm">
         <h1>Registrieren</h1>
 
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="vorname">Vorname</label>
-                <input type="text" class="form-control" id="vorname" placeholder="Vorname eingeben" name="vorname">
-            </div>
+        <div>
+            <label for="user">Benutzername oder E-Mail</label>
+            <input type="text" class="form-control" id="user"  name="user">
+            <label id="userFeedback"></label>
+        </div>
 
+        <div>
+            <label for="password">Passwort</label>
+            <input type="password" class="form-control" id="password" name="password">
+            <label id="passwordFeedback"></label>
+        </div>
 
-            <div class="form-group">
-                <label for="nachname">Nachname</label>
-                <input type="text" class="form-control" id="nachname" placeholder="nachname eingeben" name="nachname">
-            </div>
+        <p>Noch kein Konto? Jetzt <a href="register">HIER</a> registrieren</p>
 
-
-
-        </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <button type="submit" class="btn" id="submitPassword" value="Absenden">Anmelden</button>
+    </div>
 
         <form>
 
