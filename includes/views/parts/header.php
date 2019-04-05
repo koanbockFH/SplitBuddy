@@ -20,6 +20,10 @@
         <link href="css/index.css" rel="stylesheet">
     <?php endif ?>
 
+    <?php if($this->current == "register"): ?>
+        <link href="css/register.css" rel="stylesheet">
+    <?php endif ?>
+
     <!-- START NavBar Test -->
     <?php
     if (isset($_GET['loggedIn'])) {

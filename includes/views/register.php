@@ -4,44 +4,56 @@ echo $this->header;
 
 ?>
 
-    <div class="regForm">
+    <div class="loginForm">
         <h1>Registrieren</h1>
 
-        <div>
-            <label for="user">Benutzername oder E-Mail</label>
-            <input type="text" class="form-control" id="user"  name="user">
-            <label id="userFeedback"></label>
+        <div class="small">
+            <label for="user">Vorname*</label><br>
+            <input type="text"  id="reg-firstname"  name="vorname">
+            <label id="feedbackFirstname" class="feedback"></label>
         </div>
 
-        <div>
-            <label for="password">Passwort</label>
-            <input type="password" class="form-control" id="password" name="password">
-            <label id="passwordFeedback"></label>
+        <div class="small">
+            <label for="user">Nachname*</label><br>
+            <input type="text" id="reg-lastname" name="nachname">
+            <label id="feedbackLastname" class="feedback"></label>
         </div>
 
-        <p>Noch kein Konto? Jetzt <a href="register">HIER</a> registrieren</p>
+        <div class="small">
+            <label for="user">Benutzername*</label><br>
+            <input type="text" id="reg-user"  name="user">
+            <label id="feedbackRegUser" class="feedback"></label>
+        </div>
 
-        <button type="submit" class="btn" id="submitPassword" value="Absenden">Anmelden</button>
+        <div class="small">
+            <label for="user">E-Mail*</label><br>
+            <input type="text"  id="reg-mail" name="mail">
+            <label id="feedbackMail" class="feedback"></label>
+        </div>
+
+        <div class="small">
+            <label for="password">Passwort</label><br>
+            <input type="password"  id="reg-password" name="password">
+            <label id="feedbackRegPassword" class="feedback"></label>
+        </div>
+
+        <div class="passwordStrength small">
+
+            <label>Passwortstärke</label>
+            <div class="placeholder"></div>
+
+        </div>
+
+        <div class="big">
+            <label for="password">Passwort überprüfen</label><br>
+            <input type="password"  id="reg-password" name="password">
+            <label id="feedbackRegPasswordControl" class="feedback"></label>
+        </div>
+
+
+        <button type="submit" class="btn" id="submitPassword" value="Absenden">Jetzt Registrieren</button>
     </div>
 
-        <form>
-
-
-            <div class="form-group">
-                <label for="pwd">Passwort</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Passwort eingeben" name="pwd">
-            </div>
-
-            <div class="form-group">
-                <label for="pwd-control">Passwort überprüfe </label>
-                <input type="password" class="form-control" id="pwd-control" placeholder="Passwort eingeben" name="pwd">
-            </div>
-
-            <p>Noch kein Konto? Jetzt <a href="register">HIER</a> registrieren</p>
-
-            <button type="submit" class="btn btn-default">Anmelden</button>
-        </form>
-    </div>
 
 
 <?php
