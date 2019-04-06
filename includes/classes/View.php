@@ -5,7 +5,7 @@ class View
 	private $viewName = "";
 	private $arrData = array();
 	private $strBuffer = "";
-
+    public $test = "";
 
 	public function __construct($viewName, $currentPage = null)
 	{
