@@ -1,6 +1,12 @@
 @import "base";
 
-body
+body {
+  background-image: url("../images/team_hell.jpg");
+}
+
+div.sb-beschreibung
 {
-  background-image: url("../images/team_hell.jpg") !important;
+  background-color: black;
+  width: 200px;
+  display: block;
 }

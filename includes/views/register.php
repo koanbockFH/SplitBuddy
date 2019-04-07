@@ -37,19 +37,20 @@ echo $this->header;
             <label id="feedbackPassword" class="feedback"></label>
         </div>
 
-        <div class="passwordStrength small" id="passwordWrapper">
-            <div class="placeholder"></div>
-            <div class="weak feedback">schwaches Passwort</div>
-            <div class="moderate feedback">mittleres Passwort</div>
-            <div class="strong feedback">starkes Passwort</div>
-
-
-        </div>
-        <div class="big">
+        <div class="small">
             <label for="password">Passwort überprüfen</label><br>
             <input type="password"  id="regPasswordControl" name="password">
             <label id="feedbackPasswordControl" class="feedback"></label>
         </div>
+
+        <div class="passwordStrength big" id="passwordWrapper">
+            <div class="strengthIndicator"></div>
+            <div class="weak pwFeedback">schwaches Passwort</div>
+            <div class="moderate pwFeedback">mittleres Passwort</div>
+            <div class="strong pwFeedback">starkes Passwort</div>
+
+        </div>
+
 
 
         <button type="submit" class="btn" id="submitPassword" value="Absenden">Jetzt Registrieren</button>

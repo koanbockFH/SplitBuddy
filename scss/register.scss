@@ -5,7 +5,11 @@ div.small {
   float: left;
   padding: 5px;
 
+}
 
+div:after
+{
+  clear:both;
 }
 
 div.big {
@@ -15,12 +19,7 @@ div.big {
 
 }
 
-div.placeholder
-{
-  background: white;
-  height: 40px;
 
-}
 
 
 
