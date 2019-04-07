@@ -49,3 +49,17 @@ label.feedback
   color: red;
 
 }
+
+.passwordStrength
+{
+  &.weak
+  {
+    .weak{
+      display: inherit;
+    }
+    .strong, .moderate
+    {
+      display: none;
+    }
+  }
+}

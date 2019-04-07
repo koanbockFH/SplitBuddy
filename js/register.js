@@ -1,81 +1,140 @@
-function PasswordChecker() { //ich benötige ID von:  PasswortFeld, PasswortFeldUeberprüfung, SubmitButton
-    this.minLength = 8;
+/*function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID, userID, fbUserID, mailID, fbMailID, submitPasswordID) {
 
-    //vorname
-    //nachname
-    //username
-    //email
-    //password
-    //password confirmation
+    //attributes which are set with constructor
+    this.regFirstname = document.getElementById(firstnameID);
+    this.feedbackFirstname = document.getElementById(fbfirstnameID);
+    this.regLastname = document.getElementById(lastnameID);
+    this.feedbackLastname = document.getElementById(fblastnameID);
+    this.regUser = document.getElementById(userID);
+    this.feedbackUser = document.getElementById(fbUserID);
+    this.regMail = document.getElementById(mailID);
+    this.feedbackMail = document.getElementById(fbMailID);
+    this.submitPassword = document.getElementById(submitPasswordID);
 
-    //fehle
+    if (!this.submitPassword) {
+        return;
+    }
 
+    //Constants
+    this.maxLength = 254;
 
-    this.passwortSubmitButton.onclick = function () {
-        validate();
+    var that = this;
+    var initalCheck = false;
 
-        if(passwortFeld.value == "") { //und alle anderen Felder
-            //Code: roter Rand + Fehlercode
-            return false;
-        }
-
+    this.submitPassword.onclick = function () {
+        that.checkAndSendRequest();
+        initalCheck = true;
     };
 
-    this.validate = function (){
+    this.regFirstname.onkeyup = function () {
+        this.confirmCheck();
+    };
 
-        if(passwortFeld) //blablaba
+    this.regLastname.onkeyup = function () {
+        this.confirmCheck();
+    };
 
-            var pwMatches = this.checkForConfirmation();
-            var longEnough = this.checkForLength();
-            var
+    this.regUser.onkeyup = function () {
+        this.confirmCheck();
+    };
 
+    this.regMail.onkeyup = function () {
+        this.confirmCheck();
+    };
+
+    this.regPassword.onkeyup = function () {
+        this.confirmCheck();
+    };
+
+    this.regPasswordControl.onkeyup = function (e) {
+        if (initalCheck || e.keyCode === 13) {
+            if (e.keyCode === 13) {
+                that.checkAndSendRequest();
+            } else {
+                that.check();
+            }
+            initalCheck = true;
+        }
+    };
+
+    this.confirmCheck = function () {
+        if (initalCheck) {
+            that.check();
+        }
+    };
+
+    this.check = function () {
+        var result = true;
+        if (!this.regFirstname.value) {
+            this.addError(this.regFirstname, this.feedbackFirstname, "Vorname fehlt");
+            result = false;
+        } else {
+            this.removeError(this.regFirstname, this.feedbackFirstname);
+        }
+        if (!this.regLastname.value) {
+            this.addError(this.regLastname, this.feedbackLastname, "Nachname fehlt");
+            result = false;
+        } else {
+            this.removeError(this.regLastname, this.feedbackLastname);
+        }
+        if (!this.regUser.value) {
+            this.addError(this.regUser, this.feedbackUser, "Username fehlt");
+            result = false;
+        } else {
+            this.removeError(this.regUser, this.feedbackUser);
+        }
+        if (!this.regMail.value) {
+            this.addError(this.regMail, this.feedbackMail, "E-Mail fehlt");
+            result = false;
+        } else {
+            this.removeError(this.regMail, this.feedbackMail);
+        }
+        
+        return result;
+    };
+
+    this.addError = function (element, textElement, text) {
+        element.classList.add("sb-failed-validation");
+        textElement.textContent = text;
+    };
+
+    this.removeError = function (element, textElement) {
+        element.classList.remove("sb-failed-validation");
+        textElement.textContent = null;
+    };
+
+    this.checkAndSendRequest = function () {
+        var result = that.check;
+        if (result) {
+            this.success();
+        }
+    };
+
+    this.success = function () {
+        console.info("Erfolgreich Validiert und eingeloggt")
+    };
+
+    this.checkForBlanks = function () {
+        var reg = /[\s]/;
+        return reg.test(this.regPassword);
+    }
+
+    this.checkForMaxLength = function () {
+        return this.regPassword.value.length <= this.maxLength;
+    };
+
+    this.checkForSpecialCharacters = function () {
+        var reg = /[!§$_.:,;]/;
+        return reg.test(this.regPassword.value);
+    };
+
+    this.checksCorrectMail = function () {
+        var reg = /[@]/;
+        return reg.test(this.regMail)
     }
 
 
-    //beiden Passworteingaben überprüfen
 
-    this.checkForConfirmation = function () {
-        return passwortFeld.value == PasswortFeldUeberprüfung.value;
-    };
 
-    //Mindestlänge überprüfen
-    this.checkForLength = function () {
-        return this.passwortFeld.value.length >= this.minLength;
-    };
-
-    //Sonderzeichen
-    this.checkForCharacters = function () {
-        var regex = /[!§$_.:,;]/;
-        return regex.test(this.passwortFeld.value);
-    };
-
-    //Kleinbuchsatben
-    this.checkForLowercaseLetter = function () {
-        var regex = /[a-z];
-        return regex.test(this.passwortFeld.value)
-    };
-
-    //Großbuchstaben
-    this.checkForUppercaseLetter = function () {
-        var regex = /[A-Z];
-        return regex.test(this.passwortFeld.value)
-    };
-
-    //Darf nicht Vor-Nachname, Username oder E-Mail enthalten
-    this.checkForInvalidStrings = function () {
-        if (vorname.test(this.passwortFeld.value)){
-            return false;
-        }
-        else if  (nachname.test(this.passwortFeld.value)){
-            return false;
-        }
-        else if (username.test(this.passwortFeld.value)){
-            return false;
-        }
-        else if (email.test(this.passwortFeld.value)){
-            return false;
-        }
-        else return true;
-    }
-
-};
+}
+*/

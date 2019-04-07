@@ -24,6 +24,7 @@
         <link href="css/register.css" rel="stylesheet">
     <?php endif ?>
 
+
     <!-- START NavBar Test -->
     <?php
     if (isset($_GET['loggedIn'])) {

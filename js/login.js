@@ -1,4 +1,4 @@
-function validate (userId, passwordId, submitPasswordId, userFeedbackId, passwordFeedbackId){
+function validateLogin (userId, passwordId, submitPasswordId, userFeedbackId, passwordFeedbackId){
 
     //attributes which are set with constructor
     this.user = document.getElementById(userId);
@@ -7,6 +7,7 @@ function validate (userId, passwordId, submitPasswordId, userFeedbackId, passwor
     this.userFeedback = document.getElementById(userFeedbackId);
     this.passwordFeedback = document.getElementById(passwordFeedbackId);
 
+    //As a precaution, if this JavaScript isn't loaded in the login page
     if(!this.submitPassword)
     {
         return;
@@ -30,10 +31,8 @@ function validate (userId, passwordId, submitPasswordId, userFeedbackId, passwor
         }
     };
 
-    //event will be fired when user field is entered
-    //only needed after first failed login or pressed enter key
     this.password.onkeyup = function (e) {
-        if(initialCheck || e.keyCode === 13) //Enter
+        if(initialCheck || e.keyCode === 13) //additionally needed when enter key is pressed
         {
             if(e.keyCode === 13)
             {
