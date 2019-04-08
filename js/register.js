@@ -12,7 +12,7 @@ function PasswordChecker() { //ich benötige ID von:  PasswortFeld, PasswortFeld
 
 
     this.passwortSubmitButton.onclick = function () {
-        validate();
+        validateLogin();
 
         if(passwortFeld.value == "") { //und alle anderen Felder
             //Code: roter Rand + Fehlercode

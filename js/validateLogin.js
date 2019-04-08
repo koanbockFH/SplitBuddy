@@ -1,4 +1,4 @@
-function validate (userId, passwordId, submitPasswordId, userFeedbackId, passwordFeedbackId){
+function validateLogin (userId, passwordId, submitPasswordId, userFeedbackId, passwordFeedbackId){
 
     //attributes which are set with constructor
     this.user = document.getElementById(userId);
@@ -30,11 +30,11 @@ function validate (userId, passwordId, submitPasswordId, userFeedbackId, passwor
         }
     };
 
-    //event will be fired when user field is entered
-    //only needed after first failed login or pressed enter key
+
+    //event will be fired when password field is entered
+    //only needed after first failed attempt or when pressed on enter key
     this.password.onkeyup = function (e) {
-        if(initialCheck || e.keyCode === 13) //Enter
-        {
+        if(initialCheck || e.keyCode === 13)
             if(e.keyCode === 13)
             {
                 that.checkAndSendRequest();
@@ -44,10 +44,12 @@ function validate (userId, passwordId, submitPasswordId, userFeedbackId, passwor
                 that.check();
             }
             initialCheck = true;
-        }
+
     };
 
     //this method returns true if user and password fields are not empty
+    //if the checked field isn't empty an error will be added
+    //if the checked field is filled in after an failed attempt the error will be removed
     this.check = function ()
     {
         var result = true;
