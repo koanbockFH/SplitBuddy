@@ -7,6 +7,7 @@ function validateLogin (userId, passwordId, submitPasswordId, userFeedbackId, pa
     this.userFeedback = document.getElementById(userFeedbackId);
     this.passwordFeedback = document.getElementById(passwordFeedbackId);
 
+    //As a precaution, if this JavaScript isn't loaded in the login page
     if(!this.submitPassword)
     {
         return;
@@ -29,20 +30,19 @@ function validateLogin (userId, passwordId, submitPasswordId, userFeedbackId, pa
             that.check();
         }
     };
-    
+
     //event will be fired when user puts in value
     //only needed after first failed attempt or when pressed on enter key
     this.password.onkeyup = function (e) {
-        if(initialCheck || e.keyCode === 13)
-            if(e.keyCode === 13)
-            {
+        if(initialCheck || e.keyCode === 13) //(e.keyCode === 13) means enter key
+        {
+            if (e.keyCode === 13) {
                 that.checkAndSendRequest();
-            }
-            else
-            {
+            } else {
                 that.check();
             }
             initialCheck = true;
+        }
 
     };
 
