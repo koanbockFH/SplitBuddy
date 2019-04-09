@@ -21,7 +21,7 @@ function validateLogin (userId, passwordId, submitPasswordId, userFeedbackId, pa
         initialCheck = true; //boolean changes to true after first click on submit button
     };
 
-    //event will be fired when user field is entered
+    //event will be fired when user puts in value
     //only needed after first failed login
     this.user.onkeyup = function () {
         if(initialCheck)
@@ -29,9 +29,8 @@ function validateLogin (userId, passwordId, submitPasswordId, userFeedbackId, pa
             that.check();
         }
     };
-
-
-    //event will be fired when password field is entered
+    
+    //event will be fired when user puts in value
     //only needed after first failed attempt or when pressed on enter key
     this.password.onkeyup = function (e) {
         if(initialCheck || e.keyCode === 13)
@@ -87,7 +86,6 @@ function validateLogin (userId, passwordId, submitPasswordId, userFeedbackId, pa
 
     //this method checks for non empty fields and if so sends a request to backend
     this.checkAndSendRequest = function () {
-
         var result = that.check();
         if(result){
             this.success();
