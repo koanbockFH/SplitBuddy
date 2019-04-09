@@ -7,8 +7,7 @@ function PasswordChecker(passwordWrapperID, passwordID, fbpasswordID, submitPass
     this.minLength = 8;
     this.maxLength = 100;
 
-    //this attributes are set with our constructor
-
+    //this attributes are set with the constructor
     this.passwordWrapper = document.getElementById(passwordWrapperID);
     this.regPassword = document.getElementById(passwordID);
     this.feedbackPassword = document.getElementById(fbpasswordID);
@@ -20,29 +19,41 @@ function PasswordChecker(passwordWrapperID, passwordID, fbpasswordID, submitPass
     this.regPasswordControl = document.getElementById(passwordControlID);
     this.feedbackPasswordControl = document.getElementById(fbPasswordControlID);
 
-
     var that = this;
     var initalCheck = false;
 
-    //if we are in the password field and enter text - JavaScript Method "onkeyup" or "onkeup" - again in our case the field this.passwordField
+    //event will be fired when the password field is entered
     this.regPassword.onkeyup = function () {
         that.checkStrength();
-        that.checkContent();
-        initalCheck = true;
+
+        //only needed when initalCheck is true (after first failed try) to remove errors
+        if(initalCheck) {
+            that.checkContent();
+        }
     };
 
-    this.regPasswordControl.onkeyup = function () {
-        if(initialCheck || e.keyCode === 13) //additionally needed when enter key is pressed
+    //event will be fired when the passwordControl field is entered
+    this.regPasswordControl.onkeyup = function (e) {
+        //needed when initalCheck is true to remove errors or when enter key is pressed
+        if(initalCheck || e.keyCode === 13)
         {
-            if(that.checkContent())
+            if (e.keyCode ===13) {//checkValidation method will be executed if checkContent is true
+                if (that.checkContent())
+                {
+                    that.checkValidation();
+                }
+            }
+            else
             {
-                that.checkValidation();
+                that.checkContent();
             }
         }
     };
 
-    //if we try to click the submit button - JavaScript Method "onclick" - in our case this.passwordSubmitButton
+    //event will be fired when submit button is clicked
     this.passwordSubmitButton.onclick = function () {
+
+        //checkValidation method will  be executed if checkContent is true
         if(that.checkContent())
         {
             that.checkValidation();
@@ -50,6 +61,9 @@ function PasswordChecker(passwordWrapperID, passwordID, fbpasswordID, submitPass
         initalCheck = true;
     };
 
+    //this method returns true if password and passwordControl are entered
+    //if a field is not filled in there will be an error added to the field
+    //if the field is filled in after an failed attempt the error will be removed from the field
     this.checkContent = function () {
         var result = true;
         if(!this.regPassword.value){
@@ -74,10 +88,11 @@ function PasswordChecker(passwordWrapperID, passwordID, fbpasswordID, submitPass
 
     };
 
-
+    //this method returns true if all password criteria are met
+    //if a criteria is not met, there will be an error added to the field
+    //if all the criteria will are met after a failed attempt the error will be removed from the field
     this.checkValidation = function () {
         var result = true;
-
 
         that.removeError(this.regPassword, this.feedbackPassword);
 
@@ -114,6 +129,7 @@ function PasswordChecker(passwordWrapperID, passwordID, fbpasswordID, submitPass
         return result;
     };
 
+
     this.addError = function (element, textElement, text) {
         element.classList.add("sb-failed-validation");
         textElement.textContent = text;
@@ -124,7 +140,10 @@ function PasswordChecker(passwordWrapperID, passwordID, fbpasswordID, submitPass
         textElement.textContent = null;
     };
 
+    //this method shows the strength of the password
     this.checkStrength = function () {
+        //we can only check if every field with given Id exists
+        //one of them would be null if one Id wouldn't exist therefore following statement would fail
         if(this.passwordWrapper && this.regPassword && this.passwordSubmitButton) {
 
             var hasLowerAndUpperCaseLetter = this.checkForLowerAndUpperCaseLetter();
@@ -134,14 +153,17 @@ function PasswordChecker(passwordWrapperID, passwordID, fbpasswordID, submitPass
             this.passwordWrapper.classList.remove(this.moderateClass);
             this.passwordWrapper.classList.remove(this.strongClass );
 
+            //the password is strong if the password has lower AND uppercase letters and at least one Special Char
             if (hasLowerAndUpperCaseLetter && hasSpecialChars)
             {
                 this.passwordWrapper.classList.add(this.strongClass);
             }
+            //the password is moderate if the password has lower and uppercase letters OR at least one Special Char
             else if (hasLowerAndUpperCaseLetter || hasSpecialChars)
             {
                 this.passwordWrapper.classList.add(this.moderateClass);
             }
+            //the password is weak if it has none of the two criteria
             else
             {
                 this.passwordWrapper.classList.add(this.weakClass);
@@ -149,17 +171,19 @@ function PasswordChecker(passwordWrapperID, passwordID, fbpasswordID, submitPass
         }
         else
         {
-            console.error("A ID given to PasswordChecker doesn't exist!");
+            //if a field is null (we weren't able to find it)
+            console.error("An ID given to PasswordChecker doesn't exist!");
         }
     };
 
-    //This method returns true if a special Character "!§$_.:,;" is found in this.password - otherwise false
+
+    //This method returns true if a special Character "!§$_.:,;" is found in password
     this.checkForSpecialCharacters = function () {
         var reg = /[!§$_.:,;]/;
         return reg.test(this.regPassword.value);
     };
 
-    //This method returns true if there is at least one lowercase and one uppercase character.
+    //This method returns true if there is at least one lowercase and one uppercase character in password
     this.checkForLowerAndUpperCaseLetter = function () {
         var reg = /(?=.*[a-z])(?=.*[A-Z])/;
         return reg.test(this.regPassword.value);
@@ -182,37 +206,40 @@ function PasswordChecker(passwordWrapperID, passwordID, fbpasswordID, submitPass
 
     //this method returns true if there are no Strings equal to firstname, lastname, username and mail
     this.checkForInvalidStrings = function () {
+        if(this.regFirstname && this.regLastname && this.regUser && this.regMail) {
 
-        var result = true;
-        var array = this.regMail.value.split("@");
+            var result = true;
+            var array = this.regMail.value.split("@");
 
-        var patt = new RegExp(this.regFirstname.value);
-        if(patt.test(this.regPassword.value))
-        {
-            result = false;
+            var patt = new RegExp(this.regFirstname.value);
+            if (patt.test(this.regPassword.value)) {
+                result = false;
+            }
+            patt = new RegExp(this.regLastname.value);
+            if (patt.test(this.regPassword.value)) {
+                result = false;
+            }
+            patt = new RegExp(this.regUser.value);
+            if (patt.test(this.regPassword.value)) {
+                result = false;
+            }
+            patt = new RegExp(array[0]);
+            if (patt.test(this.regPassword.value)) {
+                result = false;
+            }
+            return result;
         }
-        patt = new RegExp(this.regLastname.value);
-        if(patt.test(this.regPassword.value))
+        else
         {
-            result = false;
+            console.log("hallo");
         }
-        patt = new RegExp(this.regUser.value);
-        if(patt.test(this.regPassword.value))
-        {
-            result = false;
-        }
-        patt = new RegExp(array[0]);
-        if (patt.test(this.regPassword.value))
-        {
-            result = false;
-        }
-        return result;
+
     };
 
     //this method returns true if there are no blanks in the password
     this.checkForBlanks = function () {
         var reg = /[\s]/;
-        return !reg.test(this.regPassword);
+        return reg.test(this.regPassword);
     }
 
 }

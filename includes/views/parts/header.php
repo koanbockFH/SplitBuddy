@@ -24,6 +24,10 @@
         <link href="css/register.css" rel="stylesheet">
     <?php endif ?>
 
+    <?php if($this->current == "basisInformation"): ?>
+        <link href="css/basisinformation.css" rel="stylesheet">
+    <?php endif ?>
+
 
     <!-- START NavBar Test -->
     <?php
