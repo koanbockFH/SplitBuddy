@@ -4,7 +4,7 @@ echo $this->header;
 
 ?>
 
-<a href="addProject">NEU</a>
+UMPALUMPA LAND
 
 <?php
 
