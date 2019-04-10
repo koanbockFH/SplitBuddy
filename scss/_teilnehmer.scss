@@ -1,20 +1,3 @@
-.sb-teilnehmer-titel,
-.sb-teilnehmer-vorname,
-.sb-teilnehmer-nachname
-{
-  margin-bottom: .5em;
-  display: inline-block;
-}
-
-
-.sb-no-style-button
-{
-  color: inherit;
-  padding: 0;
-  margin-bottom: .5em;
-
-  &:hover
-  {
-   color: inherit;
-  }
+.sb-teilnehmer-btn{
+  width: 44px;
 }
