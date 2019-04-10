@@ -39,7 +39,7 @@
         <?php if($this->loggedIn != true): ?>
         <ul class="navbar-nav ml-auto d-lg-none">
             <li class="nav-item">
-                <a class="nav-link" href="/?loggedIn" id="mobile-login"><i class="fas fa-sign-in-alt"></i></a>
+                <a class="nav-link" href="/?loggedIn" id="mobile-login"><i class="fas fa-lg fa-sign-in-alt"></i></a>
             </li>
         </ul>
         <?php else: ?>
