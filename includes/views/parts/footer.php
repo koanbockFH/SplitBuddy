@@ -9,7 +9,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <?php if($this->current == "login"): ?>
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/validateLogin.js"></script>
     <script> type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             var validation = new validateLogin("user", "password", "submitPassword", "userFeedback", "passwordFeedback")
@@ -18,17 +18,12 @@
 <?php endif ?>
 
 <?php if($this->current == "register"): ?>
-    <script type="text/javascript" src="js/register.js"></script>
-    <script type="text/javascript" src="js/PasswordChecker.js"></script>
+    <script type="text/javascript" src="js/validateRegister.js"></script>
     <script> type="text/javascript">
-            /*document.addEventListener("DOMContentLoaded", function () {
-
-                var validation = new validateRegister("regFirstname", "feedbackFirstname", "regLastname", "feedbackLastname", "regUser", "feedbackUser", "regMail", "feedbackMail", "submitPassword");
-            });
-            */
         document.addEventListener("DOMContentLoaded", function () {
-            var myPasswordChecker = new PasswordChecker("passwordWrapper", "regPassword", "feedbackPassword", "submitPassword", 'regFirstname', 'regLastname', 'regUser', 'regMail', 'regPasswordControl', 'feedbackPasswordControl');
-        })
+            var validation = new validateRegister("regFirstname", "feedbackFirstname", "regLastname", "feedbackLastname", "regUser", "feedbackUser", "regMail", "feedbackMail", "regPassword", "feedbackPassword", 'regPasswordControl', 'feedbackPasswordControl', "submitPassword", "passwordWrapper");
+        });
+
     </script>
 <?php endif ?>
 

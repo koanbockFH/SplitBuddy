@@ -1,4 +1,4 @@
-function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID, userID, fbUserID, mailID, fbMailID, submitPasswordID) {
+function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID, userID, fbUserID, mailID, fbMailID, pwdID, fbPwdID, pwControlID, fbPwdControlID, submitPasswordID, passwordWrapperID) {
 
     //attributes which are set with constructor
     this.regFirstname = document.getElementById(firstnameID);
@@ -9,61 +9,128 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     this.feedbackUser = document.getElementById(fbUserID);
     this.regMail = document.getElementById(mailID);
     this.feedbackMail = document.getElementById(fbMailID);
+    this.regPassword = document.getElementById(pwdID);
+    this.feedbackPassword = document.getElementById(fbPwdID);
+    this.regPasswordControl = document.getElementById(pwControlID);
+    this.feedbackPasswordControl = document.getElementById(fbPwdControlID);
     this.submitPassword = document.getElementById(submitPasswordID);
+    this.passwordWrapper = document.getElementById(passwordWrapperID);
 
-    //Constants
+    //constants
+    this.minLength = 8;
     this.maxLength = 254;
+    this.maxLengthPwd = 100;
 
-    //As a precaution, if this JavaScript isn't loaded in the register page
+    this.strongClass = "strong";
+    this.moderateClass = "moderate";
+    this.weakClass = "weak";
+    this.errorClass = "error";
+
+    var that = this;
+    var initialCheck = false;
+    var initialMailCheck = false;
+
+    //As a precaution, if this JavaScript isn't loaded in the login page
     if(!this.submitPassword)
     {
         return;
     }
 
-    var that = this;
-    var initialCheck = false;
-
-    this.submitPassword.onclick = function () {
-        if(that.checkContent())
-        {
-            that.success();
-        };
+    //event will be fired when submit button is clicked
+    this.submitPassword.onclick = function ()
+    {
+        that.removeErrorContent();
+        that.checkAndSendRequest();
         initialCheck = true;
     };
 
-    this.regFirstname.onkeyup = function () {
+    //event will be fired when user puts in value
+    this.regFirstname.onkeyup = function ()
+    {
+        that.removeErrorContent();
         if(initialCheck)
         {
             that.checkContent();
         }
     };
 
-    this.regLastname.onkeyup = function () {
+    //event will be fired when user puts in value
+    this.regLastname.onkeyup = function ()
+    {
+        that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent();
+            that.checkContent()
         }
     };
 
-    this.regUser.onkeyup = function () {
+    //event will be fired when user puts in value
+    this.regUser.onkeyup = function ()
+    {
+        that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent();
+            that.checkContent()
         }
     };
 
-    this.regMail.onkeyup = function () {
+    //event will be fired when user puts in value
+    this.regMail.onkeyup = function ()
+    {
+        that.removeErrorContent();
         if(initialCheck)
         {
-            that.check();
+            that.checkContent()
+        }
+        if(initialMailCheck)
+        {
+            that.validateMail()
         }
     };
 
-    this.regMail.onblur = function () {
-        that.checkValidationMail();
+    //event will be fired when the focus of the field is left
+    this.regMail.onblur = function ()
+    {
+        that.removeErrorContent();
+        that.validateMail();
+        initialMailCheck = true;
     };
 
+    //event will be fired when user puts in value
+    this.regPassword.onkeyup = function ()
+    {
+        that.removeErrorContent();
+        if(initialCheck)
+        {
+            that.checkContent()
+        }
+        that.validatePassword();
+        that.checkStrength();
+    };
 
+    //event will be fired when user puts in value
+    this.regPasswordControl.onkeyup = function (e)
+    {
+        that.removeErrorContent();
+
+        if(initialCheck || e.keyCode === 13)
+        {
+            if(e.keyCode === 13)
+            {
+                that.checkAndSendRequest();
+            }
+            else
+            {
+                that.check();
+            }
+            initialCheck = true;
+        }
+
+    };
+
+    //this method returns true if password and passwordControl are filled
+    //if a field is not filled in there will be an error added to the field
+    //if the field is filled in after an failed attempt the error will be removed from the field
     this.checkContent = function ()
     {
         var result = true;
@@ -72,19 +139,11 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
             this.addError(this.regFirstname, this.feedbackFirstname, "Vorname fehlt");
             result = false;
         }
-        else
-        {
-            this.removeError(this.regFirstname, this.feedbackFirstname);
-        }
 
         if (!this.regLastname.value)
         {
             this.addError(this.regLastname, this.feedbackLastname, "Nachname fehlt");
             result = false;
-        }
-        else
-        {
-            this.removeError(this.regLastname, this.feedbackLastname);
         }
 
         if (!this.regUser.value)
@@ -92,97 +151,269 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
             this.addError(this.regUser, this.feedbackUser, "Username fehlt");
             result = false;
         }
-        else
-        {
-            this.removeError(this.regUser, this.feedbackUser);
-        }
 
         if (!this.regMail.value)
         {
             this.addError(this.regMail, this.feedbackMail, "E-Mail fehlt");
             result = false;
         }
-        else
-        {
-            this.removeError(this.regMail, this.feedbackMail);
+
+        if(!this.regPassword.value){
+            this.addError(this.regPassword, this.feedbackPassword, "Passwort fehlt");
+            result = false;
         }
-        
+
+        if(!this.regPasswordControl.value)
+        {
+            this.addError(this.regPasswordControl, this.feedbackPasswordControl, "Passwort fehlt");
+            result = false;
+        }
         return result;
     };
 
-    this.checkValidation = function (element, feedbackElement) {
+    this.removeErrorContent = function () {
+        this.removeError(this.regFirstname, this.feedbackFirstname);
+        this.removeError(this.regLastname, this.feedbackLastname);
+        this.removeError(this.regUser, this.feedbackUser);
+        this.removeError(this.regMail, this.feedbackMail);
+        this.removeError(this.regPassword, this.feedbackPassword);
+        this.removeError(this.regPasswordControl, this.feedbackPasswordControl);
+    };
+
+    //this method returns true if all the criteria are met
+    //if an criteria is not met there will be an error added to the field
+    //if the criteria is met after an failed attempt the error will be removed from the field
+    this.validateUserInformation = function (element, feedbackElement)
+    {
         var result = true;
 
-        that.removeError(element, feedbackElement);
-
-        if(!this.checkForBlanks())
+        if(this.checkForBlanks(element))
         {
             that.addError(element, feedbackElement, "keine Leerzeichen erlaubt");
             result = false;
         }
-        if(!this.checkForMaxLength())
+        if(!this.checkForMaxLength(this.maxLength))
         {
             that.addError(element, feedbackElement, "max. 254 Zeichen erlaubt");
             result = false;
         }
-        if(!this.checkForSpecialCharacters())
+        if(this.checkForSpecialCharacters(element))
         {
             that.addError(element, feedbackElement, "keine Sonderzeichen erlaubt");
             result = false;
         }
+        return result;
+    };
+
+    //this method returns true if it is a valid e-mail
+    this.validateMail = function ()
+    {
+        var result = true;
+
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.regMail.value))
+        {
+            that.addError(this.regMail, this.feedbackMail, "Keine korrekte E-Mail Adresse");
+            result = false;
+        }
+        return result;
+    };
+
+    //this method returns true if password and passwordControl are the sam
+    //if not there will be an error added to the field
+    //if the criteria is met after an failed attempt the error will be removed from the field
+    this.checkPasswordConfirmation = function ()
+    {
+        var result = true;
+
+        if (!this.checkForConfirmation())
+        {
+            that.addError(this.regPasswordControl, this.feedbackPasswordControl, "Das Passwort stimmt nicht überein");
+            result = false;
+        }
 
         return result;
-
     };
 
-    this.checkValidationMail = function ()
+    //this method returns true if all the password validation criteria are met
+    //if an criteria is not met there will be an error added to the field
+    //if the criteria is met after an failed attempt the error will be removed from the field
+    this.validatePassword = function ()
     {
-      var result = true;
-      that.removeError(this.regMail, this.feedbackMail)
+        var result = true;
 
-      if(!this.checksCorrectMail())
-      {
-          that.addError(this.regMail, this.feedbackMail, "Keine korrekte E-Mail Adresse")
-          result = false;
-      }
-      return result;
+        if (!this.checkForMinLength())
+        {
+            that.addError(this.regPassword, this.feedbackPassword, "Das Passwort muss mindestens 8 Zeichen enthalten");
+            result = false;
+        }
+
+        if (!this.checkForMaxLength(this.maxLengthPwd))
+        {
+            that.addError(this.regPassword, this.feedbackPassword, "Das Passwort darf maximal 100 Zeichen enthalten");
+            result = false;
+        }
+
+        if (!this.checkForInvalidStrings())
+        {
+            that.addError(this.regPassword, this.feedbackPassword, "Das Passwort enthält ungültige Zeichenkette (Vorname, Nachname, Username oder Mail)");
+            result = false;
+        }
+
+        if (this.checkForBlanks(this.regPassword))
+        {
+            that.addError(this.regPassword, this.feedbackPassword, "Das Passwort darf keine Leerzeichen beinhalten");
+            result = false;
+        }
+
+        return result;
     };
 
+    //this method indicates the strength of the password
+    this.checkStrength = function ()
+    {
+        //we can only check if every field with given Id exists
+        //one of them would be null if one Id wouldn't exist therefore following statement would fail
+        if(this.passwordWrapper && this.regPassword) {
 
-    this.addError = function (element, textElement, text) {
+            var hasError = !this.validatePassword();
+            var hasLowerAndUpperCaseLetter = this.checkForLowerAndUpperCaseLetter();
+            var hasSpecialChars = this.checkForSpecialCharacters(this.regPassword);
+
+            this.passwordWrapper.classList.remove(this.errorClass); //error class
+            this.passwordWrapper.classList.remove(this.weakClass);
+            this.passwordWrapper.classList.remove(this.moderateClass);
+            this.passwordWrapper.classList.remove(this.strongClass);
+
+            //the password is strong if the password has lower AND uppercase letters and at least one Special Char
+            if (!hasError && hasLowerAndUpperCaseLetter && hasSpecialChars)
+            {
+                this.passwordWrapper.classList.add(this.strongClass);
+            }
+            //the password is moderate if the password has lower and uppercase letters OR at least one Special Char
+            else if (!hasError && (hasLowerAndUpperCaseLetter || hasSpecialChars))
+            {
+                this.passwordWrapper.classList.add(this.moderateClass);
+            }
+            //the password is weak if it has none of the two criteria
+            else if(!hasError && !hasSpecialChars && !hasLowerAndUpperCaseLetter)
+            {
+                this.passwordWrapper.classList.add(this.weakClass);
+            }
+            //the password has an error if it doesn't pass validation criteria
+            else
+            {
+                this.passwordWrapper.classList.add(this.errorClass);
+            }
+        }
+        else
+        {
+            //if a field is null (we weren't able to find it)
+            console.error("An ID given to PasswordChecker doesn't exist!");
+        }
+    };
+
+    //this method adds error message to input field
+    this.addError = function (element, textElement, text)
+    {
         element.classList.add("sb-failed-validation");
         textElement.textContent = text;
     };
 
-    this.removeError = function (element, textElement) {
+    //this method removes error message from input field
+    this.removeError = function (element, textElement)
+    {
         element.classList.remove("sb-failed-validation");
         textElement.textContent = null;
     };
 
-    this.success = function () {
+    this.check = function () {
+        that.validateUserInformation(that.regFirstname, that.feedbackFirstname);
+        that.validateUserInformation(that.regLastname, that.feedbackLastname);
+        that.validateUserInformation(that.regUser, that.feedbackUser);
+        that.validateMail()
+
+        that.checkContent();
+        that.checkPasswordConfirmation();
+    };
+
+    //this method checks for non empty fields and if so sends a request to backend
+    this.success = function ()
+    {
         console.info("Erfolgreich Validiert und eingeloggt")
     };
 
-    this.checkForBlanks = function () {
-        var reg = /[\s]/;
-        return reg.test(this.regPassword);
-    }
-
-    this.checkForMaxLength = function () {
-        return this.regPassword.value.length <= this.maxLength;
+    this.checkAndSendRequest = function() {
+      var result = that.check();
+      if(result){
+          this.success();
+      }
     };
 
-    this.checkForSpecialCharacters = function () {
-        var reg = /[!§$_.:,;]/;
+    //This method returns true if a special Character is found in password
+    this.checkForSpecialCharacters = function (e)
+    {
+        var reg = /[(){}?!$%&=*+~,.;:<>§_]/;
+        return reg.test(e.value);
+    };
+
+    //This method returns true if there is at least one lowercase and one uppercase character in password
+    this.checkForLowerAndUpperCaseLetter = function ()
+    {
+        var reg = /(?=.*[a-z])(?=.*[A-Z])/;
         return reg.test(this.regPassword.value);
     };
 
-    this.checksCorrectMail = function () {
-        var reg = /[@]/;
-        return reg.test(this.regMail)
-    }
+    //this method returns true if the two passwords are equal
+    this.checkForConfirmation = function ()
+    {
+        return this.regPassword.value === this.regPasswordControl.value;
+    };
 
+    //this method returns true if the password is longer as the acquired minimum length
+    this.checkForMinLength = function ()
+    {
+        return this.regPassword.value.length >= this.minLength;
+    };
 
+    //this method returns true if the password doesn't exceed the maximum length
+    this.checkForMaxLength = function (max)
+    {
+        return this.regPassword.value.length <= max;
+    };
 
+    //this method returns true if there are no Strings equal to firstname, lastname, username and mail
+    this.checkForInvalidStrings = function ()
+    {
+        var result = true;
 
+        if(this.regFirstname.value && this.regLastname.value && this.regUser.value && this.regMail.value)
+        {
+            var array = this.regMail.value.split("@");
+
+            var patt = new RegExp(this.regFirstname.value);
+            if (patt.test(this.regPassword.value)) {
+                result = false;
+            }
+            patt = new RegExp(this.regLastname.value);
+            if (patt.test(this.regPassword.value)) {
+                result = false;
+            }
+            patt = new RegExp(this.regUser.value);
+            if (patt.test(this.regPassword.value)) {
+                result = false;
+            }
+            patt = new RegExp(array[0]);
+            if (patt.test(this.regPassword.value)) {
+                result = false;
+            }
+        }
+        return result;
+    };
+
+    //this method returns true if there is a blank in the password
+    this.checkForBlanks = function (e)
+    {
+        var reg = /[\s]/;
+        return reg.test(e.value);
+    };
 }
