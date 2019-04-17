@@ -18,28 +18,20 @@ echo $this->gruppe;
 
 ?>
 
-<div class="group">
-    <h3>Gruppe 1 </h3>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Column 1</h3>
+            <p>Lorem ipsum dolor..</p>
+            <p>Ut enim ad..</p>
+        </div>
+        <div class="col-sm-6">
+            <h3>Column 2</h3>
+            <p>Lorem ipsum dolor..</p>
+            <p>Ut enim ad..</p>
+        </div>
 
-    <ul>
-        <li> Teilnehmer </li>
-        <li> Teilnehmer </li>
-        <li> Teilnehmer </li>
-        <li> Teilnehmer </li>
-    </ul>
-
-</div>
-
-<div class="group">
-    <h3>Gruppe 2 </h3>
-
-    <ul>
-        <li> Teilnehmer </li>
-        <li> Teilnehmer </li>
-        <li> Teilnehmer </li>
-        <li> Teilnehmer </li>
-    </ul>
-
+    </div>
 </div>
 
 
