@@ -18,7 +18,7 @@ echo $this->header;
             <div class="col-5 col-md-4 mb-3">
                 <label for="regLastname" class="d-none d-md-block">Nachname*</label>
                 <input type="text" class="form-control" id="regLastname" placeholder="Nachname" required>
-                <label id="feedbackFirstname" class="feedback"></label>
+                <label id="feedbackLastname" class="feedback"></label>
             </div>
 
         </div>
@@ -27,13 +27,13 @@ echo $this->header;
 
             <div class="col-5 col-md-4 mb-3 ">
                 <label for="regUser" class="d-none d-md-block">Benutzername*</label>
-                <input type="text" class="form-control" id="regFirstname" placeholder="Benutzername" required>
+                <input type="text" class="form-control" id="regUser" placeholder="Benutzername" required>
                 <label id="feedbackUser" class="feedback"></label>
             </div>
 
             <div class="col-5 col-md-4 mb-3">
                 <label for="regMail" class="d-none d-md-block">E-Mail*</label>
-                <input type="text" class="form-control" id="regMail" placeholder="E-Mail" required>
+                <input type="email" class="form-control" id="regMail" placeholder="E-Mail" required>
                 <label id="feedbackMail" class="feedback"></label>
             </div>
 
@@ -44,13 +44,13 @@ echo $this->header;
             <div class="col-5 col-md-4 mb-3 ">
                 <label for="regPassword" class="d-none d-md-block">Passwort*</label>
                 <input type="password" class="form-control" id="regPassword" placeholder="Passwort" required>
-                <label id="feedbackPassword" class="feedback"></label>
 
-                <div class="passwordStrength" id="passwordWrapper">
+
+                <div class="passwordStrength error" id="passwordWrapper">
 
                     <div class="strengthIndicator"></div>
 
-                    <div class="error feedback"></div>
+                    <div id="feedbackPassword" class="error feedback"></div>
                     <div class="weak feedback">schwaches Passwort</div>
                     <div class="moderate feedback">mittleres Passwort</div>
                     <div class="strong feedback">starkes Passwort</div>
@@ -60,7 +60,7 @@ echo $this->header;
             </div>
 
             <div class="col-5 col-md-4 mb-3">
-                <label for="regPasswordControl" class="d-none d-md-block">E-Mail*</label>
+                <label for="regPasswordControl" class="d-none d-md-block">Passwort überprüfen</label>
                 <input type="password" class="form-control" id="regPasswordControl" placeholder="Passwort überprüfen" required>
                 <label id="feedbackPasswordControl" class="feedback"></label>
             </div>

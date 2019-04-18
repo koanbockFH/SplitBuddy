@@ -1,4 +1,5 @@
 @import "login_reg";
+@import "colors";
 
 /*div.small {
   width: 50%;
@@ -78,24 +79,24 @@ div.placeholder
   font-weight:600;
 
   &.error {
-    color:red;
+    color: $error;
   }
 
   &.weak {
-    color:orange;
+    color:$weak;
   }
 
   &.moderate {
-    color:yellow;
+    color:$moderate;
   }
 
   &.strong {
-    color:green;
+    color:$strong;
   }
 }
 
 .strengthIndicator {
-  margin:10px;
+  margin: -5px;
   width: 200px;
   padding:5px;
   height: 20px;
@@ -118,28 +119,28 @@ div.placeholder
 .error .strengthIndicator {
   &::before {
     width: 10%;
-    background-color: red;
+    background-color: $error;
   }
 }
 
 .weak .strengthIndicator {
   &::before {
     width: 30%;
-    background-color: orange;
+    background-color: $weak;
   }
 }
 
 .moderate .strengthIndicator {
   &::before {
     width: 60%;
-    background-color: yellow;
+    background-color: $moderate;
   }
 }
 
 .strong .strengthIndicator {
   &::before {
     width: 100%;
-    background-color: green;
+    background-color: $strong;
   }
 }
 
@@ -149,18 +150,24 @@ div.placeholder
 
 .error .pwFeedback.error {
   display: block;
+  color: $error;
 }
 
 .weak .pwFeedback.weak {
   display: block;
+  color: $weak;
 }
 
 .moderate .pwFeedback.moderate {
   display: block;
+  color: $moderate;
 }
 
 .strong .pwFeedback.strong {
   display: block;
+  color: $strong;
 }
+
+
 
 
