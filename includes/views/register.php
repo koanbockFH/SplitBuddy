@@ -43,7 +43,7 @@ echo $this->header;
 
             <div class="col-5 col-md-4 mb-3 ">
                 <label for="regPassword" class="d-none d-md-block">Passwort*</label>
-                <input type="text" class="form-control" id="regPassword" placeholder="Passwort" required>
+                <input type="password" class="form-control" id="regPassword" placeholder="Passwort" required>
                 <label id="feedbackPassword" class="feedback"></label>
 
                 <div class="passwordStrength" id="passwordWrapper">
@@ -61,7 +61,7 @@ echo $this->header;
 
             <div class="col-5 col-md-4 mb-3">
                 <label for="regPasswordControl" class="d-none d-md-block">E-Mail*</label>
-                <input type="text" class="form-control" id="regPasswordControl" placeholder="Passwort überprüfen" required>
+                <input type="password" class="form-control" id="regPasswordControl" placeholder="Passwort überprüfen" required>
                 <label id="feedbackPasswordControl" class="feedback"></label>
             </div>
 
