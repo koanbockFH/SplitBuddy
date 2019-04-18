@@ -48,6 +48,8 @@ echo $this->header;
 
                 <div class="passwordStrength" id="passwordWrapper">
 
+                    <div class="strengthIndicator"></div>
+
                     <div class="error feedback"></div>
                     <div class="weak feedback">schwaches Passwort</div>
                     <div class="moderate feedback">mittleres Passwort</div>

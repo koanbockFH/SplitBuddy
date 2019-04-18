@@ -1,6 +1,6 @@
 @import "login_reg";
 
-div.small {
+/*div.small {
   width: 50%;
   float: left;
   padding: 5px;
@@ -20,8 +20,147 @@ div.placeholder
   background: white;
   height: 40px;
 
+}*/
+
+
+
+.passwordStrength
+{
+  &.error
+  {
+    .error{
+      display: inherit;
+    }
+    .strong, .moderate, .weak
+    {
+      display: none;
+    }
+  }
+
+  &.weak
+  {
+    .weak{
+      display: inherit;
+    }
+    .strong, .moderate, .error
+    {
+      display: none;
+    }
+  }
+
+  &.moderate
+  {
+    .moderate{
+      display: inherit;
+    }
+    .strong, .weak, .error
+    {
+      display: none;
+    }
+  }
+
+  &.strong
+  {
+    .strong{
+      display: inherit;
+    }
+    .weak, .moderate, .error
+    {
+      display: none;
+    }
+  }
 }
 
 
+.pwFeedback {
+  margin:10px;
+  font-size:11px;
+  font-weight:600;
+
+  &.error {
+    color:red;
+  }
+
+  &.weak {
+    color:orange;
+  }
+
+  &.moderate {
+    color:yellow;
+  }
+
+  &.strong {
+    color:green;
+  }
+}
+
+.strengthIndicator {
+  margin:10px;
+  width: 200px;
+  padding:5px;
+  height: 20px;
+
+
+  &::before {
+    content: "";
+    display: block;
+    height: 100%;
+  }
+}
+
+#passwordWrapper::after {
+  content: "";
+  display: block;
+  clear: both;
+  float: none;
+}
+
+.error .strengthIndicator {
+  &::before {
+    width: 10%;
+    background-color: red;
+  }
+}
+
+.weak .strengthIndicator {
+  &::before {
+    width: 30%;
+    background-color: orange;
+  }
+}
+
+.moderate .strengthIndicator {
+  &::before {
+    width: 60%;
+    background-color: yellow;
+  }
+}
+
+.strong .strengthIndicator {
+  &::before {
+    width: 100%;
+    background-color: green;
+  }
+}
+
+.pwFeedback.error, .pwFeedback.weak, .pwFeedback.moderate, pwFeedback.strong {
+  display: none;
+}
+
+.error .pwFeedback.error {
+  display: block;
+}
+
+.weak .pwFeedback.weak {
+  display: block;
+}
+
+.moderate .pwFeedback.moderate {
+  display: block;
+}
+
+.strong .pwFeedback.strong {
+  display: block;
+}
 
 
