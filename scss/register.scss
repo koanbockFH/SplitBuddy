@@ -150,24 +150,34 @@ div.placeholder
 
 .error .pwFeedback.error {
   display: block;
-  color: $error;
+
 }
 
 .weak .pwFeedback.weak {
   display: block;
-  color: $weak;
+
 }
 
 .moderate .pwFeedback.moderate {
   display: block;
-  color: $moderate;
+
 }
 
 .strong .pwFeedback.strong {
   display: block;
-  color: $strong;
+
 }
 
+#schwach {
+  color: $weak;
+}
 
+#mittel {
+  color: $moderate;
+}
+
+#stark {
+  color: $strong;
+}
 
 

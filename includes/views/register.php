@@ -51,9 +51,9 @@ echo $this->header;
                     <div class="strengthIndicator"></div>
 
                     <div id="feedbackPassword" class="error feedback"></div>
-                    <div class="weak feedback">schwaches Passwort</div>
-                    <div class="moderate feedback">mittleres Passwort</div>
-                    <div class="strong feedback">starkes Passwort</div>
+                    <div id="schwach" class="weak feedback">schwaches Passwort</div>
+                    <div id="mittel"class="moderate feedback">mittleres Passwort</div>
+                    <div id="stark"class="strong feedback">starkes Passwort</div>
 
 
                 </div>
