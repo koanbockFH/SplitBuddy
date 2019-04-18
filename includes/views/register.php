@@ -4,7 +4,25 @@ echo $this->header;
 
 ?>
 
-    <div class="loginForm">
+    <h1>Registrieren</h1>
+    <form class="needs-validation" novalidate id="login-form">
+        <div class="form-row justify-content-center">
+            <div class="col-5 col-md-4 mb-3 ">
+                <label for="regFirstname" class="d-none d-md-block">Vorname*</label>
+                <input type="text" class="form-control" id="regFirstname" placeholder="Vorname" required>
+                <label id="feedbackFirstname" class="feedback"></label>
+            </div>
+            <div class="col-5 col-md-4 mb-3">
+                <label for="regLastname" class="d-none d-md-block">Nachname*</label>
+                <input type="text" class="form-control" id="regLastname" placeholder="Nachname" required>
+                <label id="feedbackFirstname" class="feedback"></label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn" id="submitPassword" value="Absenden">Jetzt Registrieren</button>
+    </form>
+
+   <!-- <div class="loginForm">
         <h1>Registrieren</h1>
 
         <div class="small">
@@ -35,17 +53,20 @@ echo $this->header;
             <label for="password">Passwort</label><br>
             <input type="password"  id="regPassword" name="password">
             <label id="feedbackPassword" class="feedback"></label>
+
+            <div class="passwordStrength" id="passwordWrapper">
+
+                <div class="error feedback"></div>
+                <div class="weak feedback">schwaches Passwort</div>
+                <div class="moderate feedback">mittleres Passwort</div>
+                <div class="strong feedback">starkes Passwort</div>
+
+
+            </div>
+
         </div>
 
-        <div class="passwordStrength small" id="passwordWrapper">
-            <div class="placeholder"></div>
-            <div class="error feedback"></div>
-            <div class="weak feedback">schwaches Passwort</div>
-            <div class="moderate feedback">mittleres Passwort</div>
-            <div class="strong feedback">starkes Passwort</div>
 
-
-        </div>
         <div class="big">
             <label for="password">Passwort überprüfen</label><br>
             <input type="password"  id="regPasswordControl" name="password">
@@ -54,10 +75,32 @@ echo $this->header;
 
 
         <button type="submit" class="btn" id="submitPassword" value="Absenden">Jetzt Registrieren</button>
-    </div>
+    </div>-->
 
 
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
 
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 <?php
 
 echo $this->footer;
