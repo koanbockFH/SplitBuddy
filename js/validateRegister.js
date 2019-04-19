@@ -37,8 +37,11 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     }
 
     //event will be fired when submit button is clicked
-    this.submitPassword.onclick = function ()
+    this.submitPassword.onclick = function (event)
     {
+        event.preventDefault();
+        event.stopPropagation();
+
         that.removeErrorContent();
         that.checkAndSendRequest();
         initialCheck = true;
@@ -51,6 +54,7 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         if(initialCheck)
         {
             that.checkContent();
+            that.validateUserInformation(that.regFirstname, that.feedbackFirstname);
         }
     };
 
@@ -60,7 +64,8 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent()
+            that.checkContent();
+            that.validateUserInformation(that.regLastname, that.feedbackLastname);
         }
     };
 
@@ -70,7 +75,8 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent()
+            that.checkContent();
+            that.validateUserInformation(that.regUser, that.feedbackUser);
         }
     };
 
@@ -80,7 +86,8 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent()
+            that.checkContent();
+            that.validateUserInformation(that.regMail, that.feedbackMail);
         }
         if(initialMailCheck)
         {
@@ -102,7 +109,7 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent()
+            that.checkContent();
         }
         that.validatePassword();
         that.checkStrength();
@@ -125,11 +132,10 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
             }
             initialCheck = true;
         }
-
     };
 
     //this method returns true if password and passwordControl are filled
-    //if a field is not filled in there will be an error added to the field
+    //if a field is not filled in, there will be an error added to the field
     //if the field is filled in after an failed attempt the error will be removed from the field
     this.checkContent = function ()
     {
@@ -171,7 +177,8 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         return result;
     };
 
-    this.removeErrorContent = function () {
+    this.removeErrorContent = function ()
+    {
         this.removeError(this.regFirstname, this.feedbackFirstname);
         this.removeError(this.regLastname, this.feedbackLastname);
         this.removeError(this.regUser, this.feedbackUser);
@@ -218,7 +225,7 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         return result;
     };
 
-    //this method returns true if password and passwordControl are the sam
+    //this method returns true if password and passwordControl are equal
     //if not there will be an error added to the field
     //if the criteria is met after an failed attempt the error will be removed from the field
     this.checkPasswordConfirmation = function ()
@@ -315,25 +322,65 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     //this method adds error message to input field
     this.addError = function (element, textElement, text)
     {
-        element.classList.add("sb-failed-validation");
+        element.classList.add("is-invalid");
+        element.classList.remove("is-valid");
         textElement.textContent = text;
     };
 
     //this method removes error message from input field
     this.removeError = function (element, textElement)
     {
-        element.classList.remove("sb-failed-validation");
+        element.classList.remove("is-invalid");
+        if(initialCheck === true)
+        {
+            element.classList.add("is-valid");
+        }
         textElement.textContent = null;
     };
 
-    this.check = function () {
-        that.validateUserInformation(that.regFirstname, that.feedbackFirstname);
-        that.validateUserInformation(that.regLastname, that.feedbackLastname);
-        that.validateUserInformation(that.regUser, that.feedbackUser);
-        that.validateMail()
+    this.check = function ()
+    {
+        var result = true;
 
-        that.checkContent();
-        that.checkPasswordConfirmation();
+        if(!that.validateUserInformation(that.regFirstname, that.feedbackFirstname))
+        {
+            result = false;
+        }
+
+        if(!that.validateUserInformation(that.regLastname, that.feedbackLastname))
+        {
+            result = false;
+        }
+
+        if(!that.validateUserInformation(that.regUser, that.feedbackUser))
+        {
+            result = false;
+        }
+
+        if(!that.validateMail())
+        {
+            result = false;
+        }
+
+        if(!that.checkContent())
+        {
+            result = false;
+        }
+
+        if(!that.checkPasswordConfirmation())
+        {
+            result = false;
+        }
+
+        return result;
+    };
+
+    //this method calls success method if check is true
+    this.checkAndSendRequest = function() {
+        var result = that.check();
+        if(result){
+            this.success();
+        }
     };
 
     //this method checks for non empty fields and if so sends a request to backend
@@ -342,14 +389,7 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         console.info("Erfolgreich Validiert und eingeloggt")
     };
 
-    this.checkAndSendRequest = function() {
-      var result = that.check();
-      if(result){
-          this.success();
-      }
-    };
-
-    //This method returns true if a special Character is found in password
+    //This method returns true if a special character is found in password
     this.checkForSpecialCharacters = function (e)
     {
         var reg = /[(){}?!$%&=*+~,.;:<>§_]/;
