@@ -4,41 +4,37 @@ echo $this->header;
 
 ?>
 
+    <h1>Anmelden</h1>
+    <form class="needs-validation" novalidate id="login-form">
 
-    <form class="needs-validation" novalidate>
+        <div class="form-row justify-content-center">
 
-        <!-- loginfelder -->
-        <div class="row">
-            <div class="col-sm-2"></div>
-
-            <div class="col-sm-8">
-                <div class="loginForm">
-                    <h1>Anmelden</h1>
-
-                    <div>
-                        <label for="user">Benutzername oder E-Mail</label>
-                        <input type="text" class="form-control" id="user"  name="user" required>
-                        <div class="invalid-feedback">Bitte geben Sie einen Usernamen ein</div>
-                    </div>
-
-                    <div>
-                        <label for="password">Passwort</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                        <div class="invalid-feedback">Bitte geben Sie ein Passwort ein</div>
-                    </div>
-
-                    <p>Noch kein Konto? Jetzt <a href="register">HIER</a> registrieren</p>
-
-                    <button type="submit" class="btn" id="submitPassword" value="Absenden">Anmelden</button>
-                </div>
+            <div class="col-5 col-md-4 mb-3 ">
+                <label for="user" class="d-none d-md-block">Benutzername oder E-Mail</label>
+                <input type="text" class="form-control" id="user" placeholder="Username oder E-Mail" required>
+                <div class="invalid-feedback">Bitte geben Sie einen Usernamen ein</div>
             </div>
 
-
-            <div class="col-sm-2">
-
+            <div class="col-5 col-md-4 mb-3">
+                <label for="password" class="d-none d-md-block">Passwort</label>
+                <input type="password" class="form-control" id="password" placeholder="Nachname" required>
+                <div class="invalid-feedback">Bitte geben Sie ein Passwort ein</div>
             </div>
+
         </div>
+
+
+        <div class="form-row justify-content-center">
+            <p>Noch kein Konto? Jetzt <a href="register">HIER</a> registrieren</p>
+        </div>
+
+        <div class="form-row justify-content-center">
+            <button type="submit" class="btn" id="submitPassword" value="Absenden">Anmelden</button>
+        </div>
+
     </form>
+
+
 
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -55,11 +51,15 @@ echo $this->header;
                             event.stopPropagation();
                         }
                         form.classList.add('was-validated');
+
+                        event.preventDefault();
+                        event.stopPropagation();
                     }, false);
                 });
             }, false);
         })();
     </script>
+
 
 
 
