@@ -34,7 +34,7 @@
         <!-- END NavBar Test -->
     </head>
     <body>
-        <header>
+        <header class="sb-header">
     <!-- Navbar - transparent wenn Homepage/Index-->
     <nav class="navbar navbar-expand-lg navbar-dark sb-navbar <?php if($this->current == "index"): ?>sb-navbar-transparent<?php endif ?>">
         <!-- Kein Logo wenn Home/Index -->
