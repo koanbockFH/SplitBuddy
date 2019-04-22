@@ -6,27 +6,24 @@ let teilnehmerDaten = [];
     'use strict';
     window.addEventListener('load', function () {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementById('teilnehmer-form');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === true) {
-                    if($("#change").hasClass("d-none"))
-                    {
-                        addTeilnehmer("vorname", "nachname", "geburtstag", "geschlecht", "email");
-                    }
-                    else{
-                        editTeilnehmer($("#change").attr("data-id"),"vorname", "nachname", "geburtstag", "geschlecht", "email");
-                    }
-                    form.reset();
-                    form.classList.remove('was-validated');
-                } else {
-                    form.classList.add('was-validated');
+        let form = document.getElementById('teilnehmer-form');
+        form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === true) {
+                if($("#change").hasClass("d-none"))
+                {
+                    addTeilnehmer("vorname", "nachname", "geburtstag", "geschlecht", "email");
                 }
-                event.preventDefault();
-                event.stopPropagation();
-            }, false);
-        });
+                else{
+                    editTeilnehmer($("#change").attr("data-id"),"vorname", "nachname", "geburtstag", "geschlecht", "email");
+                }
+                form.reset();
+                form.classList.remove('was-validated');
+            } else {
+                form.classList.add('was-validated');
+            }
+            event.preventDefault();
+            event.stopPropagation();
+        }, false);
     }, false);
 })();
 
