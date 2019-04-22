@@ -3,7 +3,6 @@
  - Body, Footer, Header/Navigation, Styles die in allen Seiten benoetigt
  */
 
-//@import "compass/css3";
 @import "colors";
 @import "common";
 @import "mixIns";
@@ -15,11 +14,19 @@ body
   font-family: $font-family;
 }
 
+#content-wrap {
+  padding-bottom: 2.5rem;    /* Footer height */
+}
+
 /*
  Footer Style
  */
 .sb-footer
 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;            /* Footer height */
   padding: .5rem 1rem;
   background-color: $second-color;
   color: $footer-text-color !important;
@@ -31,4 +38,8 @@ body
 .sb-link-muted
 {
   color: $link-muted-text-color !important;
+}
+
+.form-row{
+  margin: 0; //reset Form-row Margin - no -5px
 }
