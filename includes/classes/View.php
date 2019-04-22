@@ -184,4 +184,19 @@ class View
 			flush();
 		}
 	}
+
+    public function readPartialView($viewName)
+    {
+        if(file_exists(VIEW_DIRECTORY.'/'.$viewName.'.php')) {
+            ob_start();
+
+            include(VIEW_DIRECTORY . '/'.$viewName.'.php');
+
+            $strBuffer = ob_get_contents();
+
+            ob_end_clean();
+            return $strBuffer;
+        }
+        return null;
+    }
 }

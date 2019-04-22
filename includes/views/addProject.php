@@ -4,7 +4,9 @@ echo $this->header;
 
 ?>
 
-UMPALUMPA LAND
+    <div class="container">
+        <?php echo $this->readPartialView('teilnehmer'); ?>
+    </div>
 
 <?php
 

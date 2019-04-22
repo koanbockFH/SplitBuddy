@@ -13,6 +13,10 @@
     <!-- Internal Stylesheets -->
     <link href="css/main.css" rel="stylesheet">
 
+    <?php if($this->current == "addProject"): ?>
+        <link href="css/addProject.css" rel="stylesheet">
+    <?php endif ?>
+
     <!-- START NavBar Test -->
     <?php
     if (isset($_GET['loggedIn'])) {

@@ -1,3 +1,5 @@
+<h2 class="text-center mb-4">Teilnehmer</h2>
+
 <div class=" table-responsive" >
     <table class="table table-striped userList d-none" id="sb-teilnehmer-liste">
         <thead>
