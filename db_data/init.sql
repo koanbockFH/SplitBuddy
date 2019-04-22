@@ -7,6 +7,7 @@ CREATE TABLE `User` (
 	vname NVARCHAR(255),
 	nname NVARCHAR (255),
 	username NVARCHAR (255),
+	mail NVARCHAR (255),
 	passwort NVARCHAR (255),
 	PRIMARY KEY (userID)
 );
