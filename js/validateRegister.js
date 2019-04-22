@@ -28,7 +28,6 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
 
     var that = this;
     var initialCheck = false;
-    var initialMailCheck = false;
 
     //As a precaution, if this JavaScript isn't loaded in the login page
     if(!this.submitPassword)
@@ -50,21 +49,22 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     //event will be fired when user puts in value
     this.regFirstname.onkeyup = function ()
     {
-        that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent();
+            that.removeError(that.regFirstname, that.feedbackFirstname);
+            that.checkContentOfEachField(that.regFirstname, that.feedbackFirstname, "Vorname fehlt");
             that.validateUserInformation(that.regFirstname, that.feedbackFirstname);
         }
+
     };
 
     //event will be fired when user puts in value
     this.regLastname.onkeyup = function ()
     {
-        that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent();
+            that.removeError(that.regLastname, that.feedbackLastname);
+            that.checkContentOfEachField(that.regLastname, that.feedbackLastname, "Nachname fehlt");
             that.validateUserInformation(that.regLastname, that.feedbackLastname);
         }
     };
@@ -72,10 +72,10 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     //event will be fired when user puts in value
     this.regUser.onkeyup = function ()
     {
-        that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent();
+            that.removeError(that.regUser, that.feedbackUser);
+            that.checkContentOfEachField(that.regUser, that.feedbackUser, "User fehlt");
             that.validateUserInformation(that.regUser, that.feedbackUser);
         }
     };
@@ -83,52 +83,43 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     //event will be fired when user puts in value
     this.regMail.onkeyup = function ()
     {
-        that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent();
-            that.validateUserInformation(that.regMail, that.feedbackMail);
-        }
-        if(initialMailCheck)
-        {
+            that.removeError(that.regMail, that.feedbackMail);
+            that.checkContentOfEachField(that.regMail, that.feedbackMail, "E-Mail fehlt");
             that.validateMail()
         }
-    };
-
-    //event will be fired when the focus of the field is left
-    this.regMail.onblur = function ()
-    {
-        that.removeErrorContent();
-        that.validateMail();
-        initialMailCheck = true;
     };
 
     //event will be fired when user puts in value
     this.regPassword.onkeyup = function ()
     {
-        that.removeErrorContent();
         if(initialCheck)
         {
-            that.checkContent();
+            that.removeError(that.regPassword, that.feedbackPassword);
+            that.checkContentOfEachField(that.regPassword, that.feedbackPassword, "Passwort fehlt");
+            that.validatePassword(true);
+
+            that.removeError(that.regPasswordControl, that.feedbackPasswordControl);
+            that.checkPasswordConfirmation();
         }
-        that.validatePassword();
         that.checkStrength();
     };
 
     //event will be fired when user puts in value
     this.regPasswordControl.onkeyup = function (e)
     {
-        that.removeErrorContent();
-
         if(initialCheck || e.keyCode === 13)
         {
+            that.removeError(that.regPasswordControl, that.feedbackPasswordControl);
             if(e.keyCode === 13)
             {
                 that.checkAndSendRequest();
             }
             else
             {
-                that.check();
+                that.checkPasswordConfirmation();
+                that.checkContentOfEachField(that.regPasswordControl, that.feedbackPasswordControl, "Passwort fehlt");
             }
             initialCheck = true;
         }
@@ -137,6 +128,19 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     //this method returns true if password and passwordControl are filled
     //if a field is not filled in, there will be an error added to the field
     //if the field is filled in after an failed attempt the error will be removed from the field
+    this.checkContentOfEachField = function (element, feedbackElement, text)
+    {
+        var result = true;
+
+        if(!element.value)
+        {
+            this.addError(element, feedbackElement, text);
+            result = false;
+        }
+        return result;
+
+    };
+
     this.checkContent = function ()
     {
         var result = true;
@@ -244,31 +248,31 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     //this method returns true if all the password validation criteria are met
     //if an criteria is not met there will be an error added to the field
     //if the criteria is met after an failed attempt the error will be removed from the field
-    this.validatePassword = function ()
+    this.validatePassword = function (setErrorMessage)
     {
         var result = true;
 
         if (!this.checkForMinLength())
         {
-            that.addError(this.regPassword, this.feedbackPassword, "Das Passwort muss mindestens 8 Zeichen enthalten");
+            if(setErrorMessage)that.addError(this.regPassword, this.feedbackPassword, "Das Passwort muss mindestens 8 Zeichen enthalten");
             result = false;
         }
 
         if (!this.checkForMaxLength(this.maxLengthPwd))
         {
-            that.addError(this.regPassword, this.feedbackPassword, "Das Passwort darf maximal 100 Zeichen enthalten");
+            if(setErrorMessage)that.addError(this.regPassword, this.feedbackPassword, "Das Passwort darf maximal 100 Zeichen enthalten");
             result = false;
         }
 
         if (!this.checkForInvalidStrings())
         {
-            that.addError(this.regPassword, this.feedbackPassword, "Das Passwort enthält ungültige Zeichenkette (Vorname, Nachname, Username oder Mail)");
+            if(setErrorMessage)that.addError(this.regPassword, this.feedbackPassword, "Das Passwort enthält ungültige Zeichenkette (Vorname, Nachname, Username oder Mail)");
             result = false;
         }
 
         if (this.checkForBlanks(this.regPassword))
         {
-            that.addError(this.regPassword, this.feedbackPassword, "Das Passwort darf keine Leerzeichen beinhalten");
+            if(setErrorMessage)that.addError(this.regPassword, this.feedbackPassword, "Das Passwort darf keine Leerzeichen beinhalten");
             result = false;
         }
 
@@ -282,7 +286,7 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         //one of them would be null if one Id wouldn't exist therefore following statement would fail
         if(this.passwordWrapper && this.regPassword) {
 
-            var hasError = !this.validatePassword();
+            var hasError = !this.validatePassword(false);
             var hasLowerAndUpperCaseLetter = this.checkForLowerAndUpperCaseLetter();
             var hasSpecialChars = this.checkForSpecialCharacters(this.regPassword);
 
@@ -331,10 +335,7 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     this.removeError = function (element, textElement)
     {
         element.classList.remove("is-invalid");
-        if(initialCheck === true)
-        {
-            element.classList.add("is-valid");
-        }
+        element.classList.add("is-valid");
         textElement.textContent = null;
     };
 
@@ -371,6 +372,8 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
         {
             result = false;
         }
+
+        that.validatePassword(true);
 
         return result;
     };
