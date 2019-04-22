@@ -1,30 +1,6 @@
 @import "login_reg";
 @import "colors";
 
-/*div.small {
-  width: 50%;
-  float: left;
-  padding: 5px;
-
-
-}
-
-div.big {
-  width: 100%;
-  float: left;
-  padding: 5px;
-
-}
-
-div.placeholder
-{
-  background: white;
-  height: 40px;
-
-}*/
-
-
-
 .passwordStrength
 {
   &.error
@@ -97,7 +73,7 @@ div.placeholder
 
 .strengthIndicator {
   margin: -5px;
-  width: 200px;
+  width: 100%;
   padding:5px;
   height: 20px;
 
@@ -144,39 +120,35 @@ div.placeholder
   }
 }
 
-.pwFeedback.error, .pwFeedback.weak, .pwFeedback.moderate, pwFeedback.strong {
+.pwFeedback.error, .pwFeedback.weak, .pwFeedback.moderate, .pwFeedback.strong {
   display: none;
 }
 
 .error .pwFeedback.error {
   display: block;
-
 }
 
 .weak .pwFeedback.weak {
   display: block;
-
 }
 
 .moderate .pwFeedback.moderate {
   display: block;
-
 }
 
 .strong .pwFeedback.strong {
   display: block;
-
 }
 
-#schwach {
+.weak {
   color: $weak;
 }
 
-#mittel {
+.moderate {
   color: $moderate;
 }
 
-#stark {
+.strong {
   color: $strong;
 }
 
