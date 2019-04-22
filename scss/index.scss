@@ -2,5 +2,29 @@
 
 body
 {
-  background-image: url("../images/team_hell.jpg") !important;
+
+}
+
+div.description
+{
+  background-color: $second-color;
+  margin: 20px;
+  padding: 50px;
+  text-align: center;
+
+  position:absolute;
+  bottom: -850px;
+  left:0;
+
+}
+
+.background-container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../images/team_hell.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: fixed;
+  z-index: -1000;
 }
