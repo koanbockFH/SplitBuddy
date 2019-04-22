@@ -52,8 +52,8 @@ echo $this->header;
 
                     <div id="feedbackPassword" class="error feedback"></div>
                     <div id="schwach" class="weak feedback">schwaches Passwort</div>
-                    <div id="mittel"class="moderate feedback">mittleres Passwort</div>
-                    <div id="stark"class="strong feedback">starkes Passwort</div>
+                    <div id="mittel" class="moderate feedback">mittleres Passwort</div>
+                    <div id="stark" class="strong feedback">starkes Passwort</div>
 
 
                 </div>
@@ -61,14 +61,16 @@ echo $this->header;
 
             <div class="col-5 col-md-4 mb-3">
                 <label for="regPasswordControl" class="d-none d-md-block">Passwort überprüfen*</label>
-                <input type="password" class="form-control" id="regPasswordControl" placeholder="Passwort überprüfen" required>
+                <input type="password" class="form-control" id="regPasswordControl" placeholder="Passwort überprüfen"
+                       required>
                 <label id="feedbackPasswordControl" class="feedback"></label>
             </div>
 
         </div>
 
-
-        <button type="submit" class="btn" id="submitPassword" value="Absenden">Jetzt Registrieren</button>
+        <div class="form-row justify-content-center">
+            <button type="submit" class="btn" id="submitPassword" value="Absenden">Jetzt Registrieren</button>
+        </div>
     </form>
 
 
