@@ -1,106 +1,117 @@
 @import "login_reg";
-@import "colors";
 
-/*div.small {
-  width: 50%;
-  float: left;
-  padding: 5px;
-
-
-}
-
-div.big {
-  width: 100%;
-  float: left;
-  padding: 5px;
-
-}
-
-div.placeholder
-{
-  background: white;
-  height: 40px;
-
-}*/
-
-
-
-.passwordStrength
-{
-  &.error
-  {
-    .error{
-      display: inherit;
-    }
-    .strong, .moderate, .weak
-    {
-      display: none;
-    }
-  }
-
-  &.weak
-  {
-    .weak{
-      display: inherit;
-    }
-    .strong, .moderate, .error
-    {
-      display: none;
-    }
-  }
-
-  &.moderate
-  {
-    .moderate{
-      display: inherit;
-    }
-    .strong, .weak, .error
-    {
-      display: none;
-    }
-  }
-
-  &.strong
-  {
-    .strong{
-      display: inherit;
-    }
-    .weak, .moderate, .error
-    {
-      display: none;
-    }
-  }
-}
-
-
-.pwFeedback {
-  margin:10px;
-  font-size:11px;
-  font-weight:600;
-
+.passwordStrength {
   &.error {
     color: $error;
+
+    .error {
+      display: inherit;
+    }
+
+    .strong, .moderate, .weak {
+      display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 10%;
+        background-color: $error;
+      }
+    }
+
+    .pwFeedback.error {
+      display: block;
+    }
   }
 
   &.weak {
-    color:$weak;
+    color: $weak;
+
+    .weak {
+      display: inherit;
+    }
+
+    .strong, .moderate, .error {
+      display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 30%;
+        background-color: $weak;
+      }
+    }
+
+    .pwFeedback.weak {
+      display: block;
+    }
   }
 
   &.moderate {
-    color:$moderate;
+    color: $moderate;
+
+    .moderate {
+      display: inherit;
+    }
+
+    .strong, .weak, .error {
+      display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 60%;
+        background-color: $moderate;
+      }
+    }
+
+    .pwFeedback.moderate {
+      display: block;
+    }
   }
 
   &.strong {
-    color:$strong;
+    color: $strong;
+
+    .strong {
+      display: inherit;
+    }
+
+    .weak, .moderate, .error {
+      display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 100%;
+        background-color: $strong;
+      }
+    }
+
+    .pwFeedback.strong {
+      display: block;
+    }
+  }
+}
+
+.pwFeedback {
+  margin: 10px;
+  font-size: 11px;
+  font-weight: 600;
+
+  &.error,
+  &.weak,
+  &.moderate,
+  &.strong {
+    display: none;
   }
 }
 
 .strengthIndicator {
   margin: -5px;
-  width: 200px;
-  padding:5px;
+  width: 100%;
+  padding: 5px;
   height: 20px;
-
 
   &::before {
     content: "";
@@ -114,70 +125,6 @@ div.placeholder
   display: block;
   clear: both;
   float: none;
-}
-
-.error .strengthIndicator {
-  &::before {
-    width: 10%;
-    background-color: $error;
-  }
-}
-
-.weak .strengthIndicator {
-  &::before {
-    width: 30%;
-    background-color: $weak;
-  }
-}
-
-.moderate .strengthIndicator {
-  &::before {
-    width: 60%;
-    background-color: $moderate;
-  }
-}
-
-.strong .strengthIndicator {
-  &::before {
-    width: 100%;
-    background-color: $strong;
-  }
-}
-
-.pwFeedback.error, .pwFeedback.weak, .pwFeedback.moderate, pwFeedback.strong {
-  display: none;
-}
-
-.error .pwFeedback.error {
-  display: block;
-
-}
-
-.weak .pwFeedback.weak {
-  display: block;
-
-}
-
-.moderate .pwFeedback.moderate {
-  display: block;
-
-}
-
-.strong .pwFeedback.strong {
-  display: block;
-
-}
-
-#schwach {
-  color: $weak;
-}
-
-#mittel {
-  color: $moderate;
-}
-
-#stark {
-  color: $strong;
 }
 
 
