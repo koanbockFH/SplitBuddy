@@ -35,8 +35,8 @@
     </head>
     <body>
         <header>
-    <!-- Navbar - transparent wenn Homepage/Index-->
-    <nav class="navbar navbar-expand-lg navbar-dark sb-navbar <?php if($this->current == "index"): ?>sb-navbar-transparent<?php endif ?>">
+            <!-- Navbar - transparent wenn Homepage/Index-->
+            <nav class="navbar navbar-expand-lg navbar-dark sb-navbar <?php if($this->current == "index"): ?>sb-navbar-transparent<?php endif ?>">
         <!-- Kein Logo wenn Home/Index -->
         <a class="navbar-brand <?php if($this->current == "index"): ?>sb-nav-brand<?php endif ?>" href="/">
             <i class="fas fa-lg fa-robot d-inline-block align-baseline d-lg-none"></i>
@@ -92,4 +92,5 @@
             </ul>
         </div>
     </nav>
-</header>
+        </header>
+        <div id="content-wrap">
