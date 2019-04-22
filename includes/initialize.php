@@ -27,6 +27,10 @@ if(!function_exists('classAutoLoader'))
 		{
 			require_once(__DIR__.'/models/'.$fileName.'.php');
 		}
+        else if(file_exists(__DIR__.'/repository/'.$fileName.'.php'))
+        {
+            require_once(__DIR__.'/repository/'.$fileName.'.php');
+        }
 		else if(file_exists(__DIR__.'/controllers/'.$fileName.'.php'))
 		{
 			require_once(__DIR__.'/controllers/'.$fileName.'.php');

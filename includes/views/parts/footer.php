@@ -12,7 +12,7 @@
         <script type="text/javascript" src="js/validateRegister.js"></script>
         <script> type="text/javascript">
             document.addEventListener("DOMContentLoaded", function () {
-                var validation = new validateRegister("regFirstname", "feedbackFirstname", "regLastname", "feedbackLastname", "regUser", "feedbackUser", "regMail", "feedbackMail", "regPassword", "feedbackPassword", 'regPasswordControl', 'feedbackPasswordControl', "submitPassword", "passwordWrapper");
+                var validation = new validateRegister("#register-form","regFirstname", "feedbackFirstname", "regLastname", "feedbackLastname", "regUser", "feedbackUser", "regMail", "feedbackMail", "regPassword", "feedbackPassword", 'regPasswordControl', 'feedbackPasswordControl', "submitPassword", "passwordWrapper");
             });
 
         </script>

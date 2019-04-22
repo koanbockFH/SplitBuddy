@@ -49,7 +49,7 @@ CREATE TABLE Teilnehmer(
 	gruppenID INT,
 	projektID INT,
 	geschlechtID INT,
-	FOREIGN KEY (projektID) REFERENCES Gruppenprojekt (projektID),
+	FOREIGN KEY (projektID) REFERENCES GruppenProjekt (projektID),
 	FOREIGN KEY (gruppenID) REFERENCES Gruppen (gruppenID),
 	FOREIGN KEY (geschlechtID) REFERENCES Geschlecht (geschlechtID),
 	PRIMARY KEY (teilnehmerID)
@@ -60,7 +60,7 @@ CREATE TABLE BlacklistItem(
 	projektID INT,
 	teilnehmerEins INT,
 	teilnehmerZwei INT,
-	FOREIGN KEY (projektID) REFERENCES Gruppenprojekt (projektID),
+	FOREIGN KEY (projektID) REFERENCES GruppenProjekt (projektID),
 	FOREIGN KEY (teilnehmerEins) REFERENCES Teilnehmer (teilnehmerID),
 	FOREIGN KEY (teilnehmerZwei) REFERENCES Teilnehmer (teilnehmerID),
 	PRIMARY KEY (blacklistID)
