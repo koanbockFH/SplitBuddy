@@ -108,10 +108,8 @@
 }
 
 .strengthIndicator {
-  margin: -5px;
   width: 100%;
-  padding: 5px;
-  height: 20px;
+  height: 7px;
 
   &::before {
     content: "";
