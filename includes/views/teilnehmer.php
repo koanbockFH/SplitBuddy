@@ -18,12 +18,12 @@
         <div class="col-md-6 mb-3 ">
             <label for="vorname" class="d-none d-lg-block">Vorname</label>
             <input type="text" class="form-control" id="vorname" placeholder="Vorname" required>
-            <div class="invalid-feedback">Bitte geben Sie ein Vornamen ein!</div>
+            <div class="invalid-feedback">Bitte geben Sie einen Vornamen ein!</div>
         </div>
         <div class="col-md-6 mb-3">
             <label for="nachname" class="d-none d-lg-block">Nachname</label>
             <input type="text" class="form-control" id="nachname" placeholder="Nachname" required>
-            <div class="invalid-feedback">Bitte geben Sie ein Nachnamen ein!</div>
+            <div class="invalid-feedback">Bitte geben Sie einen Nachnamen ein!</div>
         </div>
     </div>
     <div class="form-row justify-content-center">

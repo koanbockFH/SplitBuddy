@@ -27,7 +27,6 @@ let teilnehmerDaten = [];
     }, false);
 })();
 
-
 function addTeilnehmer(vornameId, nachnameId, geburtstagId, geschlechtId, emailId) {
     let vornameControl = document.getElementById(vornameId);
     let nachnameControl = document.getElementById(nachnameId);
@@ -95,7 +94,6 @@ function loadTeilnehmer(id, vornameId, nachnameId, geburtstagId, geschlechtId, e
     geburtstagControl.value = item.geburtstag;
     geschlechtControl.value = item.geschlecht;
     emailControl.value = item.email;
-
 }
 
 function editTeilnehmer(id, vornameId, nachnameId, geburtstagId, geschlechtId, emailId) {
