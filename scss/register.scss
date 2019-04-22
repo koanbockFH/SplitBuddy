@@ -1,0 +1,128 @@
+@import "login_reg";
+
+.passwordStrength {
+  &.error {
+    color: $error;
+
+    .error {
+      display: inherit;
+    }
+
+    .strong, .moderate, .weak {
+      display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 10%;
+        background-color: $error;
+      }
+    }
+
+    .pwFeedback.error {
+      display: block;
+    }
+  }
+
+  &.weak {
+    color: $weak;
+
+    .weak {
+      display: inherit;
+    }
+
+    .strong, .moderate, .error {
+      display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 30%;
+        background-color: $weak;
+      }
+    }
+
+    .pwFeedback.weak {
+      display: block;
+    }
+  }
+
+  &.moderate {
+    color: $moderate;
+
+    .moderate {
+      display: inherit;
+    }
+
+    .strong, .weak, .error {
+      display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 60%;
+        background-color: $moderate;
+      }
+    }
+
+    .pwFeedback.moderate {
+      display: block;
+    }
+  }
+
+  &.strong {
+    color: $strong;
+
+    .strong {
+      display: inherit;
+    }
+
+    .weak, .moderate, .error {
+      display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 100%;
+        background-color: $strong;
+      }
+    }
+
+    .pwFeedback.strong {
+      display: block;
+    }
+  }
+}
+
+.pwFeedback {
+  margin: 10px;
+  font-size: 11px;
+  font-weight: 600;
+
+  &.error,
+  &.weak,
+  &.moderate,
+  &.strong {
+    display: none;
+  }
+}
+
+.strengthIndicator {
+  width: 100%;
+  height: 7px;
+
+  &::before {
+    content: "";
+    display: block;
+    height: 100%;
+  }
+}
+
+#passwordWrapper::after {
+  content: "";
+  display: block;
+  clear: both;
+  float: none;
+}
+
+
