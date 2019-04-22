@@ -1,82 +1,117 @@
 @import "login_reg";
-@import "colors";
 
-.passwordStrength
-{
-  &.error
-  {
-    .error{
+.passwordStrength {
+  &.error {
+    color: $error;
+
+    .error {
       display: inherit;
     }
-    .strong, .moderate, .weak
-    {
+
+    .strong, .moderate, .weak {
       display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 10%;
+        background-color: $error;
+      }
+    }
+
+    .pwFeedback.error {
+      display: block;
     }
   }
 
-  &.weak
-  {
-    .weak{
+  &.weak {
+    color: $weak;
+
+    .weak {
       display: inherit;
     }
-    .strong, .moderate, .error
-    {
+
+    .strong, .moderate, .error {
       display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 30%;
+        background-color: $weak;
+      }
+    }
+
+    .pwFeedback.weak {
+      display: block;
     }
   }
 
-  &.moderate
-  {
-    .moderate{
+  &.moderate {
+    color: $moderate;
+
+    .moderate {
       display: inherit;
     }
-    .strong, .weak, .error
-    {
+
+    .strong, .weak, .error {
       display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 60%;
+        background-color: $moderate;
+      }
+    }
+
+    .pwFeedback.moderate {
+      display: block;
     }
   }
 
-  &.strong
-  {
-    .strong{
+  &.strong {
+    color: $strong;
+
+    .strong {
       display: inherit;
     }
-    .weak, .moderate, .error
-    {
+
+    .weak, .moderate, .error {
       display: none;
+    }
+
+    .strengthIndicator {
+      &::before {
+        width: 100%;
+        background-color: $strong;
+      }
+    }
+
+    .pwFeedback.strong {
+      display: block;
     }
   }
 }
 
-
 .pwFeedback {
-  margin:10px;
-  font-size:11px;
-  font-weight:600;
+  margin: 10px;
+  font-size: 11px;
+  font-weight: 600;
 
-  &.error {
-    color: $error;
-  }
-
-  &.weak {
-    color:$weak;
-  }
-
-  &.moderate {
-    color:$moderate;
-  }
-
+  &.error,
+  &.weak,
+  &.moderate,
   &.strong {
-    color:$strong;
+    display: none;
   }
 }
 
 .strengthIndicator {
   margin: -5px;
   width: 100%;
-  padding:5px;
+  padding: 5px;
   height: 20px;
-
 
   &::before {
     content: "";
@@ -90,66 +125,6 @@
   display: block;
   clear: both;
   float: none;
-}
-
-.error .strengthIndicator {
-  &::before {
-    width: 10%;
-    background-color: $error;
-  }
-}
-
-.weak .strengthIndicator {
-  &::before {
-    width: 30%;
-    background-color: $weak;
-  }
-}
-
-.moderate .strengthIndicator {
-  &::before {
-    width: 60%;
-    background-color: $moderate;
-  }
-}
-
-.strong .strengthIndicator {
-  &::before {
-    width: 100%;
-    background-color: $strong;
-  }
-}
-
-.pwFeedback.error, .pwFeedback.weak, .pwFeedback.moderate, .pwFeedback.strong {
-  display: none;
-}
-
-.error .pwFeedback.error {
-  display: block;
-}
-
-.weak .pwFeedback.weak {
-  display: block;
-}
-
-.moderate .pwFeedback.moderate {
-  display: block;
-}
-
-.strong .pwFeedback.strong {
-  display: block;
-}
-
-.weak {
-  color: $weak;
-}
-
-.moderate {
-  color: $moderate;
-}
-
-.strong {
-  color: $strong;
 }
 
 
