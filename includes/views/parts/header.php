@@ -13,6 +13,7 @@
     <!-- Internal Stylesheets -->
     <link href="css/main.css" rel="stylesheet">
     <link href="css/basisinformation.css" rel="stylesheet">
+    <link href="css/einstellungen.css" rel="stylesheet">
 
 
     <!-- START NavBar Test -->
