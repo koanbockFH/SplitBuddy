@@ -12,7 +12,7 @@ echo $this->header;
     }
 
     .row {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     .button{
@@ -24,14 +24,19 @@ echo $this->header;
         font-weight: bold ;
     }
 
-    #amountGroup{
+    #amount{
         width: 60px;
     }
+
+    .amountField{
+        display:none
+    }
+
 
 
 </style>
 
-<form class="needs-validation" novalidate id="sb-basisinformation-form">
+<form id="sb-basisinformation-form">
 
     <div class="container">
 
@@ -43,32 +48,33 @@ echo $this->header;
                 <legend class="col-form-label col-md-3 sb-subheading">Gruppeneinstellung:</legend>
                 <div class="col-md-6">
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="amountGroup" name="customRadio" class="custom-control-input" onclick="addZaehler()">
-                        <label class="custom-control-label" for="amountGroup">Anzahl der Gesamtgruppen</label>
+                        <input type="radio" id="RadioAmountGroup" name="customRadio" class="custom-control-input" onclick="addZaehler(0)" >
+                        <label class="custom-control-label" for="RadioAmountGroup">Anzahl der Gesamtgruppen</label>
                     </div>
 
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="amountParticipants" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="amountParticipants">Anzahl der Teilnehmer</label>
+                        <input type="radio" id="RadioAmountParticipants" name="customRadio" class="custom-control-input" onclick="addZaehler(0)">
+                        <label class="custom-control-label" for="RadioAmountParticipants">Anzahl der Teilnehmer</label>
                     </div>
 
 
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="indvGroup" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="indvGroup">Individuelle Gruppe</label>
+                        <input type="radio" id="RadioIndvGroup" name="customRadio" class="custom-control-input" onclick="addZaehler(1)" checked>
+                        <label class="custom-control-label" for="RadioIndvGroup">Individuelle Gruppe</label>
                     </div>
 
                 </div>
             </div>
         </fieldset>
 
-        <fieldset class="form-group" id="showAmount" style="display:none">
+        <fieldset class="form-group amountField" id="showAmount">
             <div class="row" >
                 <div class="col-md-3"></div>
                 <legend class="col-form-label col-md-3 sb-subheading">Anzahl:</legend>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" id="amountGroup" class="form-control">
+                        <input type="text" id="amount" class="form-control" onblur="validateAmount()">
+                        <label id="feedbackAmount" class="feedback"></label>
                     </div>
                 </div>
             </div>
@@ -80,19 +86,19 @@ echo $this->header;
                 <legend class="col-form-label col-md-3 pt-0 sb-subheading">Sortierkriterien:</legend>
                 <div class="col-md-6">
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="age" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="age">nach Alter</label>
+                        <input type="radio" id="RadioAge" name="customRadio1" class="custom-control-input">
+                        <label class="custom-control-label" for="RadioAge">nach Alter</label>
                     </div>
 
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="gender" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="gender">nach Geschelcht</label>
+                        <input type="radio" id="RadioGender" name="customRadio1" class="custom-control-input">
+                        <label class="custom-control-label" for="RadioGender">nach Geschelcht</label>
                     </div>
 
 
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="noOpt" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="noOpt">keine zusätliche Gruppierung</label>
+                        <input type="radio" id="RadioNoOpt" name="customRadio1" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="RadioNoOpt">keine zusätliche Gruppierung</label>
                     </div>
 
                 </div>
@@ -123,26 +129,81 @@ echo $this->header;
 
 <script>
 
-    function addZaehler() {
+    function addZaehler(x) {
 
-        //Get the checkbox
-        var checkBoxAmountGroup = document.getElementById("amountGroup");
-        var anzahl = document.getElementById("showAmount");
-
-        if(checkBoxAmountGroup.checked == true)
+        if(x==0)
         {
-            anzahl.style.display = "block";
+            document.getElementById("showAmount").style.display = "block";
         }
         else
         {
-            anzahl.style.display = "none";
+            document.getElementById("showAmount").style.display = "none";
         }
+        return;
     }
 
-    function validateAmoun() {
+    function validateAmount() {
+
+        var amountId = document.getElementById("amount");
+        var feedbackAmountId = document.getElementById("feedbackAmount");
+        var that = this;
+
+        that.checkContent();
+        that.checkForNumbers();
+
+        this.checkForNumbers = function()
+        {
+            var x = document.getElementById("amount").value;
+            var result = true;
+
+            this.removeError(amountId, feedbackAmountId);
+
+            if (isNaN(x) || x < 1 || x > 10)
+            {
+                this.addError(amountId, feedbackAmountId, "Bitte geben Sie eine Zahl ein");
+                result = false;
+            }
+
+            return result;
+
+        };
+
+        this.checkContent = function ()
+        {
+            var result = true;
+            this.removeError(amountId, feedbackAmountId);
+
+            if(!this.amount.value)
+            {
+                this.addError(amountId, feedbackAmountId, "Anzahl fehlt");
+                result = false;
+            }
+
+            return result;
+        };
+
+        this.addError = function (element, textElement, text)
+        {
+            element.classList.add("is-invalid");
+            element.classList.remove("is-valid");
+            textElement.textContent = text;
+        };
+
+        //this method removes error message from input field
+        this.removeError = function (element, textElement)
+        {
+            element.classList.remove("is-invalid");
+            if(initialCheck === true)
+            {
+                element.classList.add("is-valid");
+            }
+            textElement.textContent = null;
+        };
 
 
     }
+
+
 </script>
 
 
