@@ -1,16 +1,23 @@
-div.group
+@import "colors";
+
+div.gruppe
 {
-  background-color:hsla(9, 100%, 64%, 0.5);
+  background-color: $second-color;
   float:left;
   width: 50%;
   border-radius: 5px;
   padding: 20px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
+  margin: auto;
+  text-align: center;
 }
 
-h3 {
+h1 {
   text-align:center;
+}
+
+div.container
+{
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
