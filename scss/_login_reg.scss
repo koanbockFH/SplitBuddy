@@ -11,17 +11,6 @@ input[type=text],input[type=password], select  {
   box-sizing: border-box;
 }
 
-.btn {
-  background-color: $main-color;
-  color: $login-submit-color;
-  padding: 20px;
-  border: none;
-  margin-top: 1em;
-}
-
-.btn:focus {
-  box-shadow: none;
-}
 
 h1 {
   margin-top: 2em;

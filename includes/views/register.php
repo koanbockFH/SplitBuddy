@@ -51,7 +51,7 @@ echo $this->header;
 
         </div>
         <div class="form-row justify-content-center">
-            <button type="submit" class="btn" id="submitPassword" value="Absenden">Jetzt Registrieren</button>
+            <button type="submit" class="btn btn-primary" id="submitPassword" value="Absenden">Jetzt Registrieren</button>
         </div>
     </form>
     <script>
