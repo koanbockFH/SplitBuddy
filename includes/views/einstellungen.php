@@ -1,10 +1,3 @@
-
-<?php
-
-echo $this->header;
-
-?>
-
 <form class="needs-validation" novalidate id="sb-einstellungen-form">
 
     <h1>Einstellungen</h1>
@@ -84,12 +77,4 @@ echo $this->header;
             <button type="submit" class="btn btn-primary" id="submitButton">weiter</button>
         </div>
     </div>
-    </div>
 </form>
-
-
-<?php
-
-echo $this->footer;
-
-?>

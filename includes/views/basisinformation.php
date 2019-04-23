@@ -1,10 +1,3 @@
-<?php
-
-echo $this->header;
-
-?>
-
-
     <h1>Basisinformationen</h1>
 
 
@@ -69,9 +62,3 @@ echo $this->header;
             }, false);
         })();
     </script>
-
-<?php
-
-echo $this->footer;
-
-?>

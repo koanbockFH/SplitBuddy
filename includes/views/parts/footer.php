@@ -1,3 +1,4 @@
+        </div>
         <footer class="sb-footer">
             <span>SplitBuddy © 2019</span>
             <a href="/" class="text-decoration-none float-right sb-link-muted">Impressum</a>
