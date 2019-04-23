@@ -65,3 +65,5 @@
         </div>
     </div>
 </form>
+
+<div class="row justify-content-center"><button class="btn btn-primary" id="nextTeilnehmer" disabled>Weiter</button></div>

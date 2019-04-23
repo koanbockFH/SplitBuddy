@@ -77,6 +77,15 @@ function addTeilnehmer(vornameId, nachnameId, geburtstagId, geschlechtId, emailI
         geschlecht: geschlechtControl.value,
         email: emailControl.value,
     });
+
+    if(teilnehmerDaten.length >= 4)
+    {
+        $('#nextTeilnehmer').attr('disabled', false);
+    }
+    else
+    {
+        $('#nextTeilnehmer').attr('disabled', true);
+    }
 }
 
 function loadTeilnehmer(id, vornameId, nachnameId, geburtstagId, geschlechtId, emailId) {
@@ -137,5 +146,13 @@ function deleteTeilnehmer(id){
     if(teilnehmerDaten.length === 0)
     {
         $("#sb-teilnehmer-liste").addClass("d-none");
+    }
+    if(teilnehmerDaten.length >= 4)
+    {
+        $('#nextTeilnehmer').attr('disabled', false);
+    }
+    else
+    {
+        $('#nextTeilnehmer').attr('disabled', true);
     }
 }
