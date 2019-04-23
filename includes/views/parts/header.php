@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <!-- Internal Stylesheets -->
+        <link href="css/basisinformation.css" rel="stylesheet">
+        <link href="css/einstellungen.css" rel="stylesheet">
         <?php if($this->current == "login"): ?>
         <link href="css/login.css" rel="stylesheet">
         <?php endif ?>
