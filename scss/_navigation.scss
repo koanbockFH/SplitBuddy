@@ -40,7 +40,7 @@ $navbar-mobile-login-padding: 7px 12px 7px 0px;
 
 .sb-nav-brand
 {
-  display: inherit;
+  display: unset;
 
   @include breakpoint_Min($desktop)
   {
