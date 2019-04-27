@@ -15,7 +15,7 @@
     </table>
 </div>
 
-<form class="needs-validation" novalidate id="teilnehmer-form">
+<form novalidate id="teilnehmer-form">
     <div class="form-row justify-content-center">
         <div class="col-md-6 mb-3 ">
             <label for="vorname" class="d-none d-lg-block">Vorname</label>
@@ -66,4 +66,8 @@
     </div>
 </form>
 
-<div class="row justify-content-center"><button class="btn btn-primary" id="nextTeilnehmer" disabled>Weiter</button></div>
+<div class="row justify-content-center">
+    <button class="btn btn-primary" id="teilnehmer-submit">Weiter</button>
+    <label class="text-muted text-center w-100 mt-1">mind. 4 Teilnehmer</label>
+    <label class="invalid-feedback text-center w-100" id="teilnehmerFeedback">Vorraussetzung nicht erfüllt!</label>
+</div>
