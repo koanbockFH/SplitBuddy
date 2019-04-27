@@ -11,6 +11,7 @@
 
     <script src="js/teilnehmer.js"></script>
     <script src="js/einstellungen.js"></script>
+    <script src="js/indvGruppe.js"></script>
     <?php if($this->current == "register"): ?>
         <script type="text/javascript" src="js/validateRegister.js"></script>
         <script> type="text/javascript">

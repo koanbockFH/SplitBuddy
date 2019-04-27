@@ -10,6 +10,9 @@ echo $this->header;
         <?php echo $this->readPartialView('teilnehmer'); ?>
         <hr>
         <?php echo $this->readPartialView('einstellungen'); ?>
+        <hr>
+        <?php echo $this->readPartialView('indvGruppe'); ?>
+
     </div>
 
     <script>
