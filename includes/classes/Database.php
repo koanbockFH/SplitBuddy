@@ -22,6 +22,7 @@ class Database
         $conn = mysqli_connect($host, $user, $pass);
         if(!$conn) //if we failed to establish the connection - output error and stop executing php
         {
+            error_log( "Connection to the database failed!" );
             die("Connection to the database failed!");
         }
         $this->conn = $conn; //save the connection resource in our object - maybe we need it later
@@ -29,6 +30,7 @@ class Database
         $db_sel = mysqli_select_db($this->conn, $dbname);
         if(!$db_sel) //throw error if database couldn't be selected and stop executing php
         {
+            error_log( "Can't select database with name " .  $dbname . " !");
             die("Can't select database with name " .  $dbname . " !");
         }
         //this is to ensure, that mysql operates with characterset utf-8
