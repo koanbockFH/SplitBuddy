@@ -4,8 +4,8 @@
     <table class="table table-striped userList d-none" id="sb-indivGroup-list">
         <thead>
         <tr>
-            <th scope="col">Gruppenname</th>
-            <th scope="col">Anzahl der Teilnehmer</th>
+            <th scope="col">Gruppe</th>
+            <th scope="col">Anzahl</th>
             <th scope="col"></th>
             <th scope="col"></th>
         </tr>
@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-3 mb-3">
             <label for="amountIndivGroup" class="d-none d-lg-block">Anzahl der Teilnehmer:</label>
-            <input type="number" class="form-control" id="amountIndivGroup" placeholder="Anzahl der Teilnehmer"  onkeyup="checkForPositiveNumbers()" onclick="checkForPositiveNumbers()" required>
+            <input type="number" class="form-control" id="amountIndivGroup" placeholder="Anzahl"  onkeyup="checkForPositiveNumbers()" onclick="checkForPositiveNumbers()" required>
             <div class="invalid-feedback" id="amountIndivGroupFeedback">Bitte geben Sie eine Anzahl ein!</div>
         </div>
     </div>
