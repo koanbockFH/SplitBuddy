@@ -23,14 +23,6 @@ input[type=text],input[type=password],input[type=email], select  {
   box-shadow: none;
 }
 
-h1 {
-  margin-top: 2em;
-}
-
-p, h1 {
-  text-align:center;
-}
-
 .feedback {
   font-family: $font-family;
   color: $feedback;
