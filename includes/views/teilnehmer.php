@@ -51,13 +51,13 @@
         </div>
     </div>
     <div class="form-row justify-content-center">
-        <div class="col-md-12 mb-3" id="add">
+        <div class="col-md-12 mb-3" id="teilnehmer-add">
             <button class="btn btn-primary col-md-8 mb-3 mr-auto ml-auto d-block d-lg-none sb-add-teilnehmer" type="submit">Hinzufügen
             </button>
             <button class="btn btn-primary col-md-4 mb-3 mr-auto ml-auto d-none d-lg-block sb-add-teilnehmer" type="submit">Hinzufügen
             </button>
         </div>
-        <div class="col-md-12 mb-3 d-none" id="change">
+        <div class="col-md-12 mb-3 d-none" id="teilnehmer-change">
             <button class="btn btn-primary col-md-8 mb-3 mr-auto ml-auto d-block d-lg-none sb-add-teilnehmer" type="submit">Ändern
             </button>
             <button class="btn btn-primary col-md-4 mb-3 mr-auto ml-auto d-none d-lg-block sb-add-teilnehmer" type="submit">Ändern

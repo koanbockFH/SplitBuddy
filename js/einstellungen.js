@@ -1,4 +1,20 @@
 //adds Inputfield for amount if needed
+function toggleAmount()
+{
+    if($("input[name='RadioGruppenEinstellung']:checked").val() == 2)
+    {
+        $("#amount-field").addClass("d-none");
+
+        document.getElementById("amount").classList.remove("is-invalid");
+        document.getElementById("amount").classList.add("is-valid");
+        $("#einstellungen-submit").html("Weiter");
+    }
+    else{
+
+        $("#amount-field").removeClass("d-none");
+        $("#einstellungen-submit").html("Zum Ergebnis");
+    }
+}
 
 function validateAmount()
 {

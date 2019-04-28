@@ -33,6 +33,17 @@ echo $this->header;
             <hr>
             <?php echo $this->readPartialView('einstellungen'); ?>
         </div>
+
+        <div class="collapse d-none" id="indvGruppe-passive">
+            <hr>
+            <h2 class="d-inline-block mb-0">Gruppen</h2>
+            <button class="btn btn-secondary btn-info sb-icon-btn float-right" id="indvGruppe-edit"><i class="fas fa-pencil-alt"></i></button>
+            <div class="invalid-feedback sb-card-error">Bitte vervollständigen Sie Ihre Daten!</div>
+        </div>
+        <div class="collapse" id="indvGruppe-active">
+            <hr>
+            <?php echo $this->readPartialView('indvGruppe'); ?>
+        </div>
     </div>
 <?php
 

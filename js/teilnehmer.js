@@ -9,12 +9,12 @@ let teilnehmerDaten = [];
         let form = document.getElementById('teilnehmer-form');
         form.addEventListener('submit', function (event) {
             if (form.checkValidity() === true) {
-                if($("#change").hasClass("d-none"))
+                if($("#teilnehmer-change").hasClass("d-none"))
                 {
                     addTeilnehmer("vorname", "nachname", "geburtstag", "geschlecht", "email");
                 }
                 else{
-                    editTeilnehmer($("#change").attr("data-id"),"vorname", "nachname", "geburtstag", "geschlecht", "email");
+                    editTeilnehmer($("#teilnehmer-change").attr("data-id"),"vorname", "nachname", "geburtstag", "geschlecht", "email");
                 }
                 form.reset();
                 form.classList.remove('was-validated');
@@ -42,10 +42,10 @@ function addTeilnehmer(vornameId, nachnameId, geburtstagId, geschlechtId, emailI
     //create edit Button
     var editbutton = $('<button class="btn btn-secondary btn-info sb-icon-btn" data-id="'+ currentId +'"><i class="fas fa-pencil-alt"></i></button>');
     editbutton.click(function(){
-        $("#change").removeClass("d-none");
-        $("#add").addClass("d-none");
+        $("#teilnehmer-change").removeClass("d-none");
+        $("#teilnehmer-add").addClass("d-none");
 
-        $("#change").attr("data-id", this.dataset.id);
+        $("#teilnehmer-change").attr("data-id", this.dataset.id);
         loadTeilnehmer(this.dataset.id, vornameId, nachnameId, geburtstagId,geschlechtId, emailId);
     });
 
@@ -119,8 +119,8 @@ function editTeilnehmer(id, vornameId, nachnameId, geburtstagId, geschlechtId, e
         email: emailControl.value,
     });
 
-    $("#add").removeClass("d-none");
-    $("#change").addClass("d-none");
+    $("#teilnehmer-add").removeClass("d-none");
+    $("#teilnehmer-change").addClass("d-none");
 }
 
 function deleteTeilnehmer(id){

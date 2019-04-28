@@ -9,12 +9,12 @@ let indivGroupList = [];
         let form = document.getElementById('indivGroup-form');
         form.addEventListener('submit', function (event) {
             if (form.checkValidity() === true) {
-                if($("#change").hasClass("d-none"))
+                if($("#indvGruppe-change").hasClass("d-none"))
                 {
                     addGroup("groupName", "amountIndivGroup");
                 }
                 else{
-                    editGroup($("#change").attr("data-id"), "groupName", "amountIndivGroup");
+                    editGroup($("#indvGruppe-change").attr("data-id"), "groupName", "amountIndivGroup");
                 }
                 form.reset();
                 form.classList.remove('was-validated');
@@ -64,10 +64,10 @@ function addGroup(gruppennameId, anzahlId) {
     //this event will be fired when the editbutton is clicked
     //it allows the user to change the values of his input
     editbutton.click(function () {
-        $("#change").removeClass("d-none");
-        $("#add").addClass("d-none");
+        $("#indvGruppe-change").removeClass("d-none");
+        $("#indvGruppe-add").addClass("d-none");
 
-        $("#change").attr("data-id", this.dataset.id);
+        $("#indvGruppe-change").attr("data-id", this.dataset.id);
         loadGroup(this.dataset.id, gruppennameId, anzahlId);
     });
 
@@ -143,8 +143,8 @@ function editGroup(id, groupNameId, amountId) {
     });
 
     //changes the visibility of the buttons
-    $("#add").removeClass("d-none");
-    $("#change").addClass("d-none");
+    $("#indvGruppe-add").removeClass("d-none");
+    $("#indvGruppe-change").addClass("d-none");
 }
 
 function deleteGroup(id){
@@ -168,7 +168,7 @@ function deleteGroup(id){
 function validateGroup()
 {
     let result = false;
-    if(teilnehmerDaten.length >=2)
+    if(indivGroupList.length >=2)
     {
         $("#indivGroupFeedback").removeClass('d-block');
         result = true;

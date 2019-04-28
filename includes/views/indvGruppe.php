@@ -1,4 +1,4 @@
-<h2 class="text-center mb-4">Individuelle Gruppen</h2>
+<h2 class="text-center mb-4">Gruppen</h2>
 
 <div class="table-responsive">
     <table class="table table-striped userList d-none" id="sb-indivGroup-list">
@@ -31,13 +31,13 @@
     </div>
 
     <div class="form-row justify-content-center">
-        <div class="col-md-12 mb-3" id="add">
+        <div class="col-md-12 mb-3" id="indvGruppe-add">
             <button class="btn btn-primary col-md-8 mb-3 mr-auto ml-auto d-block d-lg-none sb-add-indivGroup" type="submit">Hinzufügen
             </button>
             <button class="btn btn-primary col-md-4 mb-3 mr-auto ml-auto d-none d-lg-block sb-add-indivGroup" type="submit">Hinzufügen
             </button>
         </div>
-        <div class="col-md-12 mb-3 d-none" id="change">
+        <div class="col-md-12 mb-3 d-none" id="indvGruppe-change">
             <button class="btn btn-primary col-md-8 mb-3 mr-auto ml-auto d-block d-lg-none sb-add-indivGroup" type="submit">Ändern
             </button>
             <button class="btn btn-primary col-md-4 mb-3 mr-auto ml-auto d-none d-lg-block sb-add-indivGroup" type="submit">Ändern
