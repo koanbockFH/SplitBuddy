@@ -5,13 +5,7 @@ echo $this->header;
 ?>
 
 
-    <div class="container">
 
-        <div class="row justify-content-center logo">
-
-            <h1>SPLITBUDDY</h1>
-
-        </div>
 
     </div>
 
@@ -20,7 +14,9 @@ echo $this->header;
 
         <div class="row justify-content-center">
 
-            <div class="col-xs-8 col-md-12">
+            <div class="col-xs-8 col-md-10">
+
+
 
                 <div class="description">
                     <h3>Gruppenaufteilung</h3>
