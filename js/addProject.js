@@ -138,10 +138,16 @@ function Project(projectHeaderId, titleId, anmerkungId, gruppenEinstellungName, 
             inputData.sortierung = that.getSortierung();
             inputData.gruppen = indivGroupList;
 
-            console.log("InputData:");
-            console.log(JSON.stringify(inputData));
-
-            console.warn("Call to Service not Implemented!");
+            $.ajax({
+                'url': 'api/ProjektService',
+                'method': 'POST',
+                'data': JSON.stringify(inputData),
+                'dataType': "json",
+                'success': function (data) {
+                    console.log("Result:");
+                    console.log(data);
+                }
+            });
         }
     };
 
