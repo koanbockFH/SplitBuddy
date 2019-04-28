@@ -11,13 +11,10 @@ class LoginController extends Controller
 		$this->checkForLoginPost();
 	}
 
-    public function redirectToIndex()
-    {
-        header('Location: '.INDEX_URL);
-        header('Status: 303');
-        exit();
-    }
-
+    /**
+     * Prüft ob eine neue LoginAnfrage gesendet wurde und führt diese ggf. aus.
+     * @return void, aber JSON wird an Client gesendet (Erfolg/Fehler)
+     */
     private function checkForLoginPost()
     {
         if(!empty($_POST) && isset($_POST['username']) && isset($_POST['password']))
@@ -28,9 +25,7 @@ class LoginController extends Controller
             if($username != "" && $password != "")
             {
                 $jsonResponse = new JSON();
-                $userRepo = new UserRepository();
-                $this->sessionUser = $userRepo->login($username, $password);
-                if($this->sessionUser->isLoggedIn)
+                if($this->sessionUser->login($username, $password))
                 {
                     $jsonResponse->result = true;
                 }

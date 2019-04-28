@@ -2,29 +2,40 @@
 
 class UserRepository extends BaseRepository
 {
-    public function login($username, $password)
+    /**
+     * User anhand von Username/Passwort holen
+     * @param $username : wert der übergeben wurde
+     * @param $password : passwort das übergeben wurde
+     * @return object|null : Datenbankzeile mit Werten des Users oder null sofern nicht gefunden
+     */
+    public function getUser($username, $password)
     {
-        $sql = "SELECT `userID`,`passwort` FROM `User` WHERE `username`='". $this->Database->escapeString($username) . "'";
-        $result = $this->Database->query($sql);
-        $user = new SessionUser();
-        if($this->Database->numRows($result) == 0)
+        $db = new Database();
+        $sql = "SELECT `userID`,`passwort` FROM `User` WHERE `username`='". $db->escapeString($username) . "'";
+        $result = $db->query($sql);
+        if($db->numRows($result) == 0)
         {
-            $user->isLoggedIn = false;
-            return $user; //username not found!
+            return null; //username not found!
         }
         //now lets check for the password
-        $row = $this->Database->fetchObject($result);
+        $row = $db->fetchObject($result);
         if(password_verify($password, $row->passwort))
         {
-            $user->id = $row->userID;
-            $user->isLoggedIn = true;
-            $user->username = $username;
-            return $user;
+            return $row;
         }
-        $user->isLoggedIn = false;
-        return $user;
+        return null;
     }
 
+    /**
+     * Registriere neuen User
+     * @param $vorname : wert
+     * @param $nachname : wert
+     * @param $mail : wert
+     * @param $username : wert
+     * @param $password : wert
+     * @param $passwordControl : wert
+     * @return bool : gibt an ob User erfolgreich erstellt werden konnte
+     */
     public function register($vorname, $nachname, $mail, $username, $password, $passwordControl)
     {
         $error = false;
@@ -38,6 +49,11 @@ class UserRepository extends BaseRepository
         return $error;
     }
 
+    /**
+     * prüfe ob User bereits existiert
+     * @param $username : wert
+     * @return bool : existiert user
+     */
     public function existsWithUsername($username)
     {
         //check if user exists...
@@ -51,8 +67,18 @@ class UserRepository extends BaseRepository
         return true;
     }
 
+    /**
+     * Erzeuge User
+     * @param $vorname : wert
+     * @param $nachname : wert
+     * @param $mail : wert
+     * @param $username : wert
+     * @param $password :wert
+     * @return bool|mysqli_result : gebe Resultat der SQL Query zurück
+     */
     private function createUser($vorname, $nachname, $mail, $username, $password)
     {
+        //sichere Passwort als Hash statt klartext
         $password = password_hash($this->Database->escapeString($password), PASSWORD_BCRYPT);
 
         $sql = "INSERT INTO `User`(`vname`,`nname`,`mail`,`username` ,`passwort`) 
@@ -65,6 +91,13 @@ class UserRepository extends BaseRepository
         return $this->Database->query($sql);
     }
 
+    /**
+     * Prüfe Passwort auf Einschränkungen
+     * @param $password : wert
+     * @param $passwordControl :wert
+     * @param $error :wert
+     * @return bool : Fehler oder alter Wert, sofern kein Fehler
+     */
     private function checkPassword($password, $passwordControl, $error)
     {
         //TODO Add Sonderzeichen Check usw.
@@ -79,6 +112,12 @@ class UserRepository extends BaseRepository
         return $error;
     }
 
+    /**
+     * Prüfe Username auf Einschränkungen
+     * @param $username : wert
+     * @param $error : wert
+     * @return bool : Fehler oder alter Wert, sofern kein Fehler
+     */
     private function checkUsername($username, $error)
     {
         if($this->existsWithUsername($username) == true)

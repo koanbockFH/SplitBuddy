@@ -22,6 +22,9 @@ class SessionUser extends SessionCached
         return true;
     }
 
+    /**
+     * Sendet Session zum Login wenn eine Seite angesteuert wird die Authentifizierten User benötigt
+     */
     public function redirectToLogin()
     {
         if(API_CALL === true)
@@ -36,6 +39,10 @@ class SessionUser extends SessionCached
         exit();
     }
 
+    /**
+     * Meldet User ab
+     * @return bool
+     */
     public function logout()
     {
         $this->username = null;
@@ -43,5 +50,29 @@ class SessionUser extends SessionCached
         $this->isLoggedIn = false;
         $this->saveSessionData();
         return true;
+    }
+
+    /**
+     * @param $username : wert der übergeben wurde
+     * @param $password : passwort das übergeben wurde
+     * @return bool : erfolgreicher oder fehlerhafter LoginVersuch
+     */
+    public function login($username, $password)
+    {
+        $userRepo = new UserRepository();
+
+        $result = $userRepo->getUser($username, $password);
+        if($result == null)
+        {
+            $this->isLoggedIn = false;
+            return false;
+        }
+        else{
+            //setze Id um ggf. bei einer Profilseite, den vollständigen User zu suchen
+            $this->id = $result->userID;
+            $this->isLoggedIn = true;
+            $this->username = $username;
+            return true;
+        }
     }
 }

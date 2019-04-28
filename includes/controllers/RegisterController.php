@@ -11,13 +11,10 @@ class RegisterController extends Controller
 		$this->checkForRegisterPost();
 	}
 
-    public function redirectToIndex()
-    {
-        header('Location: '.INDEX_URL);
-        header('Status: 303');
-        exit();
-    }
-
+    /**
+     * Prüft ob eine neue RegisterAnfrage gesendet wurde und führt diese ggf. aus.
+     * @return void, aber JSON wird an Client gesendet (Erfolg/Fehler)
+     */
     private function checkForRegisterPost()
     {
         if(!empty($_POST))
@@ -26,6 +23,7 @@ class RegisterController extends Controller
             $jsonResponse->result = false;
             $requiredFields = array('regFirstname', 'regLastname', 'regUser', 'regMail', 'regPassword', 'regPasswordControl');
             $error = false;
+            //Prüfe ob alle Felder die benötigt werden auch gesetzt wurden
             foreach($requiredFields as $fieldName)
             {
                 if(!isset($_POST[$fieldName]) || $_POST[$fieldName] == '')
@@ -38,12 +36,13 @@ class RegisterController extends Controller
             {
                 $userRepo = new UserRepository();
 
+                //Versuche Registrierung sofern nicht vorher bereits ein Fehler aufgetaucht ist
                 $error = $userRepo->register($_POST['regFirstname'],$_POST['regLastname'],$_POST['regMail'], $_POST['regUser'],$_POST['regPassword'],$_POST['regPasswordControl']);
 
+                //wenn kein Fehler, dann wurde der User erfolgreich erzeugt.
                 if(!$error)
                 {
                     $jsonResponse->result = true;
-                    $jsonResponse->setMessage("Benutzer wurde erfolgreich hinzugefügt!");
                 }
             }
             $jsonResponse->send();
