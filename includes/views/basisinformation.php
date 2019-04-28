@@ -16,16 +16,6 @@
                 <small id="note" class="form-text text-muted">*gekennzeichnete Felder sind erforderlich</small>
             </div>
         </div>
-        <div class="form-row justify-content-center">
-            <div class="col-md-8 mb-3">
-                <h3>Voraussetzungen:</h3>
-            </div>
-        </div>
-        <div class="form-row justify-content-center">
-            <div class="col-md-8 mb-3">
-                <p>Um erfolgreich Gruppen bilden zu können, muss es mindestens vier Teilnehmer geben</p>
-            </div>
-        </div>
         <div class="button form-row justify-content-center">
             <div class="col-md-6 mb-3">
                 <button type="submit" class="btn btn-primary" id="basisinfo-submit">Weiter</button>
