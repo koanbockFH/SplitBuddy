@@ -44,7 +44,7 @@ class ProjektService extends BaseService
         //Speichere Daten in DB
         $projekt->createOrUpdate();
 
-        $this->returnJSON(true, "Successful", $projekt);
+        $this->returnJSON(true, "Successful", array("id" => $projekt->id));
     }
 
     private function calculateGruppen($teilnehmer, Projekt $projekt)

@@ -141,11 +141,10 @@ function Project(projectHeaderId, titleId, anmerkungId, gruppenEinstellungName, 
             $.ajax({
                 'url': 'api/ProjektService',
                 'method': 'POST',
-                'data': JSON.stringify(inputData),
+                'data': {"data" : JSON.stringify(inputData)},
                 'dataType': "json",
                 'success': function (data) {
-                    console.log("Result:");
-                    console.log(data);
+                    window.location.href = '/ergebnis?id=' + data.data.id;
                 }
             });
         }

@@ -31,12 +31,23 @@ class Projekt
         $this->gruppenAufteilungType = $data->typ;
         $this->sortierType = $data->sortierkriterium;
         $this->userID = $data->userID;
+
+        $gruppenRepo = new GruppeRepository();
+        $gruppen = $gruppenRepo->getIdListByProjectId($this->id);
+
+        foreach($gruppen as $gruppe)
+        {
+            $g = new Gruppe();
+            $g->get($gruppe->gruppenID);
+            $this->addGruppe($g);
+        }
     }
 
     public function createOrUpdate()
     {
         $repo = new ProjektRepository();
         $insertedId = $repo->createOrUpdate($this);
+        $this->id = $insertedId;
 
         if($insertedId > 0)
         {

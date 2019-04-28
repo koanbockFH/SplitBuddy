@@ -34,7 +34,8 @@ class Teilnehmer
     public function createOrUpdate()
     {
         $repo = new TeilnehmerRepository();
-        return $repo->createOrUpdate($this);
+        $insertedId = $repo->createOrUpdate($this);
+        $this->id = $insertedId;
     }
 
     public function delete()
@@ -48,7 +49,7 @@ class Teilnehmer
         $this->vorname = $jsonObj->vorname;
         $this->nachname = $jsonObj->nachname;
         $this->geburtsdatum = $jsonObj->geburtstag;
-        $this->geschlecht = $jsonObj->geschlecht;
+        $this->geschlechtID = $jsonObj->geschlecht;
         $this->mail = $jsonObj->email;
     }
 }

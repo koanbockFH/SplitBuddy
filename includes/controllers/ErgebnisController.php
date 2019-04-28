@@ -8,6 +8,14 @@ class ErgebnisController extends Controller
     public function run()
     {
         $this->view->title = "Ergebnis";
-    }
 
+        if (isset($_GET['id'])) {
+            $this->view->projekt = new Projekt();
+            $this->view->projekt->get($_GET['id']);
+            if(is_null($this->view->projekt->titel))
+            {
+                $this->view->projekt = null;
+            }
+        }
+    }
 }

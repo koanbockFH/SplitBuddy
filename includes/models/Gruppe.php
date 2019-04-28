@@ -18,12 +18,23 @@ class Gruppe
         $this->id = $data->gruppenID;
         $this->gruppenname = $data->gruppenname;
         $this->projektID = $data->projektID;
+
+        $teilnehmerRepo = new TeilnehmerRepository();
+        $teilnehmer = $teilnehmerRepo->getIdListByGruppenId($this->id);
+
+        foreach($teilnehmer as $item)
+        {
+            $t = new Teilnehmer();
+            $t->get($item->teilnehmerID);
+            $this->addTeilnehmer($t);
+        }
     }
 
     public function createOrUpdate()
     {
         $repo = new GruppeRepository();
         $insertedId = $repo->createOrUpdate($this);
+        $this->id = $insertedId;
 
         if($insertedId > 0)
         {

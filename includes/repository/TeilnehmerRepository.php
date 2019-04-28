@@ -2,6 +2,23 @@
 
 class TeilnehmerRepository extends BaseRepository
 {
+    public function getIdListByGruppenId($id)
+    {
+        $sql = "SELECT `teilnehmerID`
+                FROM `Teilnehmer` WHERE `gruppenID`='" . $this->Database->escapeString($id) . "'";
+        $result = $this->Database->query($sql);
+        if($this->Database->numRows($result) == 0)
+        {
+            return null; //not found!
+        }
+        $array = array();
+        while($row = $this->Database->fetchObject($result))
+        {
+            array_push($array, $row);
+        }
+        return $array;
+    }
+
     public function getById($id)
     {
         $sql = "SELECT `teilnehmerID`,
