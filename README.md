@@ -1,6 +1,6 @@
 Buildstatus:
  
-[![Build Status](https://dev.azure.com/1810653162/1810653162/_apis/build/status/koanbockFH.SplitBuddy-Pull-Request?branchName=master)](https://dev.azure.com/1810653162/1810653162/_build/latest?definitionId=2&branchName=master)
+[![Build Status](https://dev.azure.com/1810653162/1810653162/_apis/build/status/koanbockFH.SplitBuddy?branchName=master)](https://dev.azure.com/1810653162/1810653162/_build/latest?definitionId=1&branchName=master)
 
 Deploymentstatus: 
 
