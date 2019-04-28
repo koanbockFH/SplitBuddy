@@ -37,8 +37,8 @@
         <div class="col-md-6 mb-3">
             <label for="geschlecht" class="d-none d-lg-block">Geschlecht</label>
             <select id="geschlecht" class="form-control">
-                <option>Weiblich</option>
-                <option>Männlich</option>
+                <option value="1">Weiblich</option>
+                <option value="2">Männlich</option>
             </select>
             <div class="invalid-feedback">Bitte geben Sie das Geschlecht an!</div>
         </div>

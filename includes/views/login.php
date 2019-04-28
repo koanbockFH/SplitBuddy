@@ -3,8 +3,9 @@
 echo $this->header;
 
 ?>
-    <h1>Anmelden</h1>
-    <form method="post" action="login" novalidate id="login-form">
+    <div class="container mb-5 mt-5">
+        <h1>Anmelden</h1>
+        <form method="post" action="login" novalidate id="login-form">
 
         <div class="form-row justify-content-center">
 
@@ -32,6 +33,7 @@ echo $this->header;
             <label class="invalid-feedback text-center" id="loginServiceError">Username oder Passwort nicht korrekt.</label>
         </div>
     </form>
+    </div>
 <?php
 
 echo $this->footer;

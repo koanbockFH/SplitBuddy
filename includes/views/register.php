@@ -3,8 +3,9 @@
 echo $this->header;
 
 ?>
-    <h1>Registrieren</h1>
-    <form action="register" method="post" novalidate id="register-form">
+    <div class="container mb-5 mt-5">
+        <h1>Registrieren</h1>
+        <form action="register" method="post" novalidate id="register-form">
         <div class="form-row justify-content-center">
             <div class="col-5 col-md-4 mb-3 ">
                 <label for="regFirstname" class="d-none d-md-block">Vorname*</label>
@@ -54,6 +55,7 @@ echo $this->header;
             <label class="invalid-feedback text-center" id="registerServiceError">Username ist bereits vergeben, bitte wählen Sie einen anderen Usernamen.</label>
         </div>
     </form>
+    </div>
 <?php
 
 echo $this->footer;
