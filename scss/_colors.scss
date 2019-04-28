@@ -8,6 +8,16 @@ Hauptfarben Kombination
 $main-color: orange;
 $second-color: grey;
 
+$error: red;
+$weak: yellow;
+$moderate: lightgreen;
+$strong: green;
+
+$feedback: red;
+
+$input-border-color: #ccc;
+$login-submit-color: white;
+
 /*
 Spezifische Style Farben
  */
@@ -19,4 +29,9 @@ $navbar-dropdown-font-color: white;
 $navbar-background-color: #343a40;
 
 $footer-text-color: #363636;
+
+/*
+Einstellungen
+ */
+$feedback-color: red;
 

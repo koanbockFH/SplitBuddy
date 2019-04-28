@@ -1,0 +1,29 @@
+@import "base";
+
+/*input*/
+input[type=text],input[type=password],input[type=email], select  {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid $input-border-color;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn {
+  background-color: $main-color;
+  color: $login-submit-color;
+  padding: 20px;
+  border: none;
+  margin-top: 1em;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.feedback {
+  font-family: $font-family;
+  color: $feedback;
+}
