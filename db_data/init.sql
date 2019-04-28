@@ -19,7 +19,6 @@ CREATE TABLE GruppenProjekt(
 	anzahl INT,
 	typ INT,
 	sortierkriterium INT,
-	blacklisting BIT,
 	userID INT,
 	FOREIGN KEY (userID) REFERENCES `User` (userID),
 	PRIMARY KEY (projektID)
@@ -49,23 +48,16 @@ CREATE TABLE Teilnehmer(
 	gruppenID INT,
 	projektID INT,
 	geschlechtID INT,
-	FOREIGN KEY (projektID) REFERENCES Gruppenprojekt (projektID),
+	FOREIGN KEY (projektID) REFERENCES GruppenProjekt (projektID),
 	FOREIGN KEY (gruppenID) REFERENCES Gruppen (gruppenID),
 	FOREIGN KEY (geschlechtID) REFERENCES Geschlecht (geschlechtID),
 	PRIMARY KEY (teilnehmerID)
 );
 
-CREATE TABLE BlacklistItem(
-	blacklistID INT AUTO_INCREMENT, 
-	projektID INT,
-	teilnehmerEins INT,
-	teilnehmerZwei INT,
-	FOREIGN KEY (projektID) REFERENCES Gruppenprojekt (projektID),
-	FOREIGN KEY (teilnehmerEins) REFERENCES Teilnehmer (teilnehmerID),
-	FOREIGN KEY (teilnehmerZwei) REFERENCES Teilnehmer (teilnehmerID),
-	PRIMARY KEY (blacklistID)
-);
+CREATE USER 'splitBuddyUser'@'localhost' IDENTIFIED BY 'splitBuddyUserPass';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `SplitBuddy`.* TO 'splitBuddyUser'@'localhost';
 
-
-
-
+INSERT INTO `Geschlecht`(geschlecht, kuerzel)
+VALUES
+	('Weiblich', 'w'),
+  ('Männlich', 'm');
