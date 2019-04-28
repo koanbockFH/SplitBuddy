@@ -128,14 +128,18 @@ function Project(projectHeaderId, titleId, anmerkungId, gruppenEinstellungName, 
     this.getResult = function(){
         if(that.checkBasisInfo() & that.checkEinstellungen() & that.checkTeilnehmer() & that.checkIndvGruppe())
         {
-            console.log("Values:");
-            console.log(title.val());
-            console.log(anmerkung.val());
-            console.log(teilnehmerDaten);
-            console.log(that.getGruppenEinstellung());
-            console.log(anzahl.val() || 0);
-            console.log(that.getSortierung());
-            console.log(indivGroupList);
+            let inputData = {};
+
+            inputData.title = title.val();
+            inputData.anmerkung = anmerkung.val();
+            inputData.teilnehmer = teilnehmerDaten;
+            inputData.gruppenEinstellungType = that.getGruppenEinstellung();
+            inputData.anzahl = anzahl.val() || 0;
+            inputData.sortierung = that.getSortierung();
+            inputData.gruppen = indivGroupList;
+
+            console.log("InputData:");
+            console.log(JSON.stringify(inputData));
 
             console.warn("Call to Service not Implemented!");
         }
