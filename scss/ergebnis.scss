@@ -1,4 +1,4 @@
-@import "colors";
+@import "base";
 
 div.gruppe
 {
@@ -12,11 +12,7 @@ div.gruppe
   text-align: center;
 }
 
-h1 {
-  text-align:center;
-}
-
-div.container
+.gruppen-row
 {
   margin-bottom: 20px;
   margin-top: 20px;
