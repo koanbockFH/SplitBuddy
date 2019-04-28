@@ -19,14 +19,13 @@ class ProjektService extends BaseService
 
     protected function createRequest($data)
     {
-        $data = '{"title":"Testprojekt","anmerkung":"meineAnmerkung","teilnehmer":[{"vorname":"111","nachname":"111","geburtstag":"0001-01-01","geschlecht":"Weiblich","email":"1@1"},{"vorname":"222","nachname":"222","geburtstag":"0002-02-02","geschlecht":"Weiblich","email":"2@2"},{"vorname":"333","nachname":"333","geburtstag":"0003-03-03","geschlecht":"Weiblich","email":"3@3"},{"vorname":"444","nachname":"444","geburtstag":"0004-04-04","geschlecht":"Weiblich","email":"4@4"}],"gruppenEinstellungType":0,"anzahl":"2","sortierung":0,"gruppen":[]}';
-
-        if(sizeOf($data) == 0)
+        if(!isset($data['data']))
         {
             return;
         }
 
-        $jsonObj = json_decode($data);
+        //Hole Daten von Post
+        $jsonObj = json_decode($data['data']);
 
         $projekt = new Projekt();
         $projekt->loadFromJSON($jsonObj);
@@ -38,14 +37,45 @@ class ProjektService extends BaseService
             $t->loadFromJSON($tJsonObj);
             array_push($teilnehmerListe, $t);
         }
+        //Alle Daten vorbereitet, nun muss die Aufteilung gemacht werden
 
         $this->calculateGruppen($teilnehmerListe, $projekt);
+
+        //Speichere Daten in DB
+        $projekt->createOrUpdate();
 
         $this->returnJSON(true, "Successful", $projekt);
     }
 
     private function calculateGruppen($teilnehmer, Projekt $projekt)
     {
-        $projekt->addGruppe(new Gruppe());
+        //Anzahl der Gruppen
+        if($projekt->gruppenAufteilungType == 0)
+        {
+            $this->divideByGroupCount($teilnehmer, $projekt->anzahl, $projekt);
+        }
+        //TODO Anzahl Teilnehmer und indiv. Gruppen hinzufügen & deren respektive Methode wie "DivideByGroupCount"
+        else
+        {
+            $this->divideByGroupCount($teilnehmer, $projekt->anzahl, $projekt);
+        }
+    }
+
+    private function divideByGroupCount($teilnehmer, $anzahlGruppen, Projekt $projekt)
+    {
+        //GruppenAufteilung hier machen BEGINN
+        $one = new Gruppe();
+        $two = new Gruppe();
+
+        $one->addTeilnehmer($teilnehmer[0]);
+        $one->addTeilnehmer($teilnehmer[1]);
+        $two->addTeilnehmer($teilnehmer[2]);
+        $two->addTeilnehmer($teilnehmer[3]);
+
+        //ENDE
+
+        //Hier die erzeugten Gruppen Hinzufügen
+        $projekt->addGruppe($one);
+        $projekt->addGruppe($two);
     }
 }

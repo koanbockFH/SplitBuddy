@@ -13,10 +13,11 @@ class SessionUser extends SessionCached
     public function authenticate()
     {
         //checks if the user is logged in - if not - redirect to login!
-        if($this->isLoggedIn)
+        if(!$this->isLoggedIn)
         {
             define('LOGGED_IN', false);
             $this->redirectToLogin();
+            return false; //will never be called
         }
         define('LOGGED_IN', true);
         return true;

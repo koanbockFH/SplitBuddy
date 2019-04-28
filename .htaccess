@@ -1,15 +1,15 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  #Docker Images has this deactivated, it needs this to negotiate file when using /api/something
+  AddType application/x-httpd-php .php
+
   #adapt this following line to your path if necessary
   RewriteBase /
 
   ##
   # Change the RewriteBase if your project is in a subdirectoy and
   # the rewrite rules are not working properly. Usage examples:
-  #
-  #RewriteBase /uebung04/aufgabe02	# we assume url is http://localhost/uebung04/aufgabe02
-  #RewriteBase /aufgabe02/	# we assume url is http://localhost/aufgabe02
 
   RewriteRule ^/?api/(.*)$ api.php [L] #adapt this line to your path if necessary
 

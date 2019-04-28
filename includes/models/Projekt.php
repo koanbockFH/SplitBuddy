@@ -8,7 +8,7 @@ class Projekt
     public $anzahl;
     public $gruppenAufteilungType;
     public $sortierType;
-    private $gruppen = array();
+    public $gruppen = array();
 
     public $userID;
 

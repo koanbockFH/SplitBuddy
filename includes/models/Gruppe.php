@@ -5,7 +5,7 @@ class Gruppe
     public $id;
     public $gruppenname;
     public $anzahl;
-    private $teilnehmer = array();
+    public $teilnehmer = array();
 
     public $projektID;
 
@@ -30,6 +30,7 @@ class Gruppe
             foreach($this->teilnehmer as $t)
             {
                 $t->gruppenID = $insertedId; //set GroupId
+                $t->projektID = $this->projektID; //set GroupId
                 $t->createOrUpdate();
             }
         }
