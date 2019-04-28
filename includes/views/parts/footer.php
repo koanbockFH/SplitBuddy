@@ -1,3 +1,4 @@
+        </div>
         <footer class="sb-footer">
             <span>SplitBuddy © 2019</span>
             <a href="/" class="text-decoration-none float-right sb-link-muted">Impressum</a>
@@ -10,6 +11,13 @@
 
     <?php if($this->current == "login"): ?>
         <script type="text/javascript" src="js/login.js"></script>
+    <?php endif ?>
+    <?php if($this->current == "addProject"): ?>
+        <script src="js/CardNavigation.js"></script>
+        <script src="js/addProject.js"></script>
+        <script src="js/teilnehmer.js"></script>
+        <script src="js/einstellungen.js"></script>
+        <script src="js/indvGruppe.js"></script>
     <?php endif ?>
     <?php if($this->current == "register"): ?>
         <script type="text/javascript" src="js/validateRegister.js"></script>
