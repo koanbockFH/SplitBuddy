@@ -10,15 +10,14 @@ class UserRepository extends BaseRepository
      */
     public function getUser($username, $password)
     {
-        $db = new Database();
-        $sql = "SELECT `userID`,`passwort` FROM `User` WHERE `username`='". $db->escapeString($username) . "'";
-        $result = $db->query($sql);
-        if($db->numRows($result) == 0)
+        $sql = "SELECT `userID`,`passwort` FROM `User` WHERE `username`='". $this->Database->escapeString($username) . "'";
+        $result = $this->Database->query($sql);
+        if($this->Database->numRows($result) == 0)
         {
             return null; //username not found!
         }
         //now lets check for the password
-        $row = $db->fetchObject($result);
+        $row = $this->Database->fetchObject($result);
         if(password_verify($password, $row->passwort))
         {
             return $row;
