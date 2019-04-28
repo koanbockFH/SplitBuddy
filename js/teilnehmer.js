@@ -40,7 +40,7 @@ function addTeilnehmer(vornameId, nachnameId, geburtstagId, geschlechtId, emailI
     let currentId = teilnehmerDaten.length;
 
     //create edit Button
-    var editbutton = $('<button class="btn btn-secondary btn-info col-sm sb-teilnehmer-btn" data-id="'+ currentId +'"><i class="fas fa-pencil-alt"></i></button>');
+    var editbutton = $('<button class="btn btn-secondary btn-info sb-icon-btn" data-id="'+ currentId +'"><i class="fas fa-pencil-alt"></i></button>');
     editbutton.click(function(){
         $("#change").removeClass("d-none");
         $("#add").addClass("d-none");
@@ -50,14 +50,14 @@ function addTeilnehmer(vornameId, nachnameId, geburtstagId, geschlechtId, emailI
     });
 
     //create loeschen Button
-    var deletebutton = $('<button class="btn btn-secondary btn-danger col-sm sb-teilnehmer-btn" data-id="'+ currentId +'"><i class="fas fa-trash"></i></button>');
+    var deletebutton = $('<button class="btn btn-secondary btn-danger sb-icon-btn" data-id="'+ currentId +'"><i class="fas fa-trash"></i></button>');
     deletebutton.click(function(){
         deleteTeilnehmer(this.dataset.id);
     });
 
     //Create last Cell of Row and add the Button
-    var editCell = $("<td class='sb-teilnehmer-btn'></td>");
-    var deleteCell = $("<td class='sb-teilnehmer-btn'></td>");
+    var editCell = $("<td class='sb-icon-btn'></td>");
+    var deleteCell = $("<td class='sb-icon-btn'></td>");
     editCell.append(editbutton);
     deleteCell.append(deletebutton);
 
@@ -77,15 +77,6 @@ function addTeilnehmer(vornameId, nachnameId, geburtstagId, geschlechtId, emailI
         geschlecht: geschlechtControl.value,
         email: emailControl.value,
     });
-
-    if(teilnehmerDaten.length >= 4)
-    {
-        $('#nextTeilnehmer').attr('disabled', false);
-    }
-    else
-    {
-        $('#nextTeilnehmer').attr('disabled', true);
-    }
 }
 
 function loadTeilnehmer(id, vornameId, nachnameId, geburtstagId, geschlechtId, emailId) {
@@ -147,12 +138,18 @@ function deleteTeilnehmer(id){
     {
         $("#sb-teilnehmer-liste").addClass("d-none");
     }
+}
+
+function validateTeilnehmer()
+{
+    let result = false;
     if(teilnehmerDaten.length >= 4)
     {
-        $('#nextTeilnehmer').attr('disabled', false);
+        $("#teilnehmerFeedback").removeClass('d-block');
+        result = true;
     }
-    else
-    {
-        $('#nextTeilnehmer').attr('disabled', true);
+    else{
+        $("#teilnehmerFeedback").addClass('d-block');
     }
+    return result;
 }
