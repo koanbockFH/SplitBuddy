@@ -33,7 +33,7 @@
         ?>
         <!-- END NavBar Test -->
     </head>
-    <body>
+    <body class="withbg">
         <header class="sb-header">
     <!-- Navbar - transparent wenn Homepage/Index-->
     <nav class="navbar navbar-expand-lg navbar-dark sb-navbar <?php if($this->current == "index"): ?>sb-navbar-transparent<?php endif ?>">

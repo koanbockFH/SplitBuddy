@@ -40,17 +40,3 @@ body
 {
   color: $link-muted-text-color !important;
 }
-
-/*button*/
-
-.btn {
-  background-color: $main-color;
-  color: $login-submit-color;
-  padding: 20px;
-  border: none;
-  margin-top: 1em;
-}
-
-.btn:focus {
-  box-shadow: none;
-}
