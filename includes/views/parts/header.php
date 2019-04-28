@@ -68,7 +68,7 @@
                                 <a class="nav-link" href="/">Einstellungen</a>
                             </li>
                             <li class="nav-item d-lg-none">
-                                <a class="nav-link" href="/">Abmelden</a>
+                                <a class="nav-link" href="logout">Abmelden</a>
                             </li>
                             <!-- END Mobile Menu; kein Dropdown -->
                             <!-- START Desktop Menu; Dropdown -->
@@ -79,7 +79,7 @@
                                 <div class="dropdown-menu sb-profile-dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="/?otherSite&loggedIn">Meine Gruppen</a>
                                     <a class="dropdown-item" href="/">Einstellungen</a>
-                                    <a class="dropdown-item" href="/">Abmelden</a>
+                                    <a class="dropdown-item" href="logout">Abmelden</a>
                                 </div>
                             </li>
                             <!-- END Desktop Menu; Dropdown -->
