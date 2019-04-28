@@ -38,7 +38,7 @@ class UserRepository extends BaseRepository
     public function register($vorname, $nachname, $mail, $username, $password, $passwordControl)
     {
         $error = false;
-        $error = $this->checkPassword($password, $passwordControl, $error);
+        $error = $this->checkPassword($password, $passwordControl, $error, $vorname, $nachname, $mail, $username);
         $error = $this->checkUsername($username, $error);
 
         if($error == false)
@@ -97,14 +97,40 @@ class UserRepository extends BaseRepository
      * @param $error :wert
      * @return bool : Fehler oder alter Wert, sofern kein Fehler
      */
-    private function checkPassword($password, $passwordControl, $error)
+    private function checkPassword($password, $passwordControl, $error, $vorname, $nachname, $mail, $username)
     {
         //TODO Add Sonderzeichen Check usw.
+        $firstPartOfMail = preg_split("@", $mail);
+
         if(strlen($password) < 8) //check if password is long enough
         {
             $error = true;
         }
         else if($password != $passwordControl) //check if password matches password repetition
+        {
+            $error = true;
+        }
+        else if(strlen($password) > 100) //check if password isn't long enough
+        {
+            $error = true;
+        }
+        else if(preg_match("\s", $password)) //checks if password contains a blank
+        {
+            $error = true;
+        }
+        else if (strpos($password, $vorname)) //checks if password contains vorname
+        {
+            $error = true;
+        }
+        else if (strpos($password, $nachname)) //checks if password contains nachname
+        {
+            $error = true;
+        }
+        else if (strpos($password, $username)) //checks if password contains username
+        {
+            $error = true;
+        }
+        else if (strpos($password, $firstPartOfMail)) //checks if password contains email
         {
             $error = true;
         }
@@ -120,6 +146,18 @@ class UserRepository extends BaseRepository
     private function checkUsername($username, $error)
     {
         if($this->existsWithUsername($username) == true)
+        {
+            $error = true;
+        }
+        else if(preg_match("\s", $username)) //checks if password contains a blank
+        {
+            $error = true;
+        }
+        else if(preg_match("(){}?!$%&=*+~,.;:<>§_", $username)) //checks if password contains a blank
+        {
+            $error = true;
+        }
+        else if(strlen($username) > 100) //check if password isn't long enough
         {
             $error = true;
         }
