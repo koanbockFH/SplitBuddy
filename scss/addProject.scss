@@ -1,0 +1,16 @@
+@import "base";
+@import "einstellungen";
+
+.sb-card-error div:last-child
+{
+  display: block !important;
+}
+
+//teilnehmer & Indiv. Gruppe
+.sb-icon-btn{
+  width: 44px;
+}
+
+.table th, .table td {
+  vertical-align: inherit;
+}
