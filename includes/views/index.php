@@ -12,6 +12,18 @@ echo $this->header;
 
     <div class="container">
 
+    <div class="row justify-content-center">
+
+        <div class="col-xs-8 col-md-10">
+
+            <div class="justify-content-center">
+                <span class="logo">Splitbuddy</span>
+            </div>
+
+        </div>
+
+    </div>
+
         <div class="row justify-content-center">
 
             <div class="col-xs-8 col-md-10">

@@ -11,7 +11,9 @@ div.description
   position: absolute;
 
 
+
   @include breakpoint_Min($desktop) {
+
     bottom: 0;
     position: fixed;
     left:0;
@@ -21,18 +23,18 @@ div.description
 
 
 body.withbg {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   background-image: url('../images/hintergrund.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-repeat: repeat;
+  background-position: bottom center;
   background-size: 100%;
 
 }
 
 html {
   width:100%;
-  min-height: 100%;
+  height: 100%;
 }
 
 img
@@ -41,4 +43,11 @@ img
   width: 100%;
 
 
+}
+
+.logo {
+  height: auto;
+  width: 100%;
+  font-size: 80px;
+  margin-top: 500px;
 }
