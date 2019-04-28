@@ -7,7 +7,8 @@ echo $this->header;
         <h1 id="projectHeader">Neues Projekt</h1>
         <div class="collapse" id="basisinfo-passive">
             <h2 class="d-inline-block mb-0">Informationen</h2>
-            <button class="btn btn-secondary btn-info sb-icon-btn float-right" id="basisinfo-edit"><i class="fas fa-pencil-alt"></i></button>
+            <button class="btn btn-secondary btn-info sb-icon-btn float-right" id="basisinfo-edit"><i
+                        class="fas fa-pencil-alt"></i></button>
             <div class="invalid-feedback sb-card-error">Bitte vervollständigen Sie Ihre Daten!</div>
         </div>
         <div class="collapse show" id="basisinfo-active">
@@ -16,7 +17,8 @@ echo $this->header;
         <hr>
         <div class="collapse show" id="teilnehmer-passive">
             <h2 class="d-inline-block mb-0">Teilnehmer</h2>
-            <button class="btn btn-secondary btn-info sb-icon-btn float-right" id="teilnehmer-edit"><i class="fas fa-pencil-alt"></i></button>
+            <button class="btn btn-secondary btn-info sb-icon-btn float-right" id="teilnehmer-edit"><i
+                        class="fas fa-pencil-alt"></i></button>
             <div class="invalid-feedback sb-card-error">Bitte vervollständigen Sie Ihre Daten!</div>
         </div>
         <div class="collapse" id="teilnehmer-active">
@@ -26,7 +28,8 @@ echo $this->header;
         <div class="collapse show" id="einstellungen-passive">
             <hr>
             <h2 class="d-inline-block mb-0">Einstellungen</h2>
-            <button class="btn btn-secondary btn-info sb-icon-btn float-right" id="einstellungen-edit"><i class="fas fa-pencil-alt"></i></button>
+            <button class="btn btn-secondary btn-info sb-icon-btn float-right" id="einstellungen-edit"><i
+                        class="fas fa-pencil-alt"></i></button>
             <div class="invalid-feedback sb-card-error">Bitte vervollständigen Sie Ihre Daten!</div>
         </div>
         <div class="collapse" id="einstellungen-active">
@@ -37,7 +40,8 @@ echo $this->header;
         <div class="collapse d-none" id="indvGruppe-passive">
             <hr>
             <h2 class="d-inline-block mb-0">Gruppen</h2>
-            <button class="btn btn-secondary btn-info sb-icon-btn float-right" id="indvGruppe-edit"><i class="fas fa-pencil-alt"></i></button>
+            <button class="btn btn-secondary btn-info sb-icon-btn float-right" id="indvGruppe-edit"><i
+                        class="fas fa-pencil-alt"></i></button>
             <div class="invalid-feedback sb-card-error">Bitte vervollständigen Sie Ihre Daten!</div>
         </div>
         <div class="collapse" id="indvGruppe-active">

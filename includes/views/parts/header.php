@@ -62,7 +62,7 @@
                         <?php else: ?>
                             <!-- START Mobile Menu; kein Dropdown -->
                             <li class="nav-item d-lg-none">
-                                <a class="nav-link" href="/?otherSite&loggedIn">Meine Gruppen</a>
+                                <a class="nav-link" href="/">Meine Gruppen</a>
                             </li>
                             <li class="nav-item d-lg-none">
                                 <a class="nav-link" href="/">Einstellungen</a>
@@ -77,7 +77,7 @@
                                     <i class="fas fa-2x fa-user-circle"></i>
                                 </a>
                                 <div class="dropdown-menu sb-profile-dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="/?otherSite&loggedIn">Meine Gruppen</a>
+                                    <a class="dropdown-item" href="/">Meine Gruppen</a>
                                     <a class="dropdown-item" href="/">Einstellungen</a>
                                     <a class="dropdown-item" href="logout">Abmelden</a>
                                 </div>
