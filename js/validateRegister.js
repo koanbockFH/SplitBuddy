@@ -1,7 +1,6 @@
-function validateRegister (regFormID, firstnameID, fbfirstnameID, lastnameID, fblastnameID, userID, fbUserID, mailID, fbMailID, pwdID, fbPwdID, pwControlID, fbPwdControlID, submitPasswordID, passwordWrapperID) {
+function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID, userID, fbUserID, mailID, fbMailID, pwdID, fbPwdID, pwControlID, fbPwdControlID, submitPasswordID, passwordWrapperID, callbackOnSuccess) {
 
     //attributes which are set with constructor
-    this.regForm = $(regFormID);
     this.regFirstname = document.getElementById(firstnameID);
     this.feedbackFirstname = document.getElementById(fbfirstnameID);
     this.regLastname = document.getElementById(lastnameID);
@@ -390,17 +389,9 @@ function validateRegister (regFormID, firstnameID, fbfirstnameID, lastnameID, fb
     //this method checks for non empty fields and if so sends a request to backend
     this.success = function ()
     {
-        this.submitPassword.disabled = true; //prevent sending form again till result is here
-
-        $.ajax({
-            'url': this.regForm.attr('action'),
-            'method': this.regForm.attr('method'),
-            'data': this.regForm.serialize(),
-            'dataType': "json",
-            'success': function () {
-                that.submitPassword.disabled = false;
-            }
-        });
+        if(callbackOnSuccess && typeof callbackOnSuccess === "function"){
+            callbackOnSuccess();
+        }
     };
 
     //This method returns true if a special character is found in password

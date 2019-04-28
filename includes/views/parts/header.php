@@ -4,6 +4,9 @@
         <title><?php echo $this->title; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
+        <?php if($this->current == "registrationComplete" || $this->current == "logout"): ?>
+            <meta http-equiv="Refresh" content="3; url=/">
+        <?php endif ?>
 
         <!-- Extern Stylesheets Sources -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
@@ -13,13 +16,12 @@
         <!-- Internal Stylesheets -->
         <?php if($this->current == "login"): ?>
         <link href="css/login.css" rel="stylesheet">
-        <?php endif ?>
-        <?php if($this->current == "index"): ?>
+        <?php elseif($this->current == "index"): ?>
             <link href="css/index.css" rel="stylesheet">
-        <?php endif ?>
-
-        <?php if($this->current == "register"): ?>
+        <?php elseif($this->current == "register"): ?>
             <link href="css/register.css" rel="stylesheet">
+        <?php else: ?>
+            <link href="css/standard.css" rel="stylesheet">
         <?php endif ?>
 
     </head>
@@ -35,7 +37,7 @@
             </a>
             <!-- START Toogler oder Anmeldungslink -->
             <!-- Falls nicht angemeldet, Link zur Anmeldung, in Mobiler Version statt Toggler-->
-            <?php if($this->loggedIn != true): ?>
+            <?php if(LOGGED_IN != true): ?>
             <ul class="navbar-nav ml-auto d-lg-none">
                 <li class="nav-item">
                     <a class="nav-link" href="login" id="mobile-login"><i class="fas fa-sign-in-alt"></i></a>
@@ -50,7 +52,7 @@
             <!-- END Toogler oder Anmeldungslink -->
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
-                    <?php if($this->loggedIn != true): ?>
+                    <?php if(LOGGED_IN != true): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="login">Anmelden/Registrieren</a>
                     </li>
@@ -63,7 +65,7 @@
                         <a class="nav-link" href="/">Einstellungen</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/">Abmelden</a>
+                        <a class="nav-link" href="logout">Abmelden</a>
                     </li>
                     <!-- END Mobile Menu; kein Dropdown -->
                     <!-- START Desktop Menu; Dropdown -->
@@ -74,7 +76,7 @@
                         <div class="dropdown-menu sb-profile-dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="/?otherSite&loggedIn">Meine Gruppen</a>
                             <a class="dropdown-item" href="/">Einstellungen</a>
-                            <a class="dropdown-item" href="/">Abmelden</a>
+                            <a class="dropdown-item" href="logout">Abmelden</a>
                         </div>
                     </li>
                     <!-- END Desktop Menu; Dropdown -->

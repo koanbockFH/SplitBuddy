@@ -33,6 +33,7 @@ class Route
 			}
 		}
 
+        define('LOGGED_IN', false);
 		//if we are here - there was no Route found - throw 404 and show 404 view!
 		$view = new View('404');
 		http_response_code(404);

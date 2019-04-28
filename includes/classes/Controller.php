@@ -6,7 +6,7 @@ abstract class Controller
 	public $pageName = "";
 	protected $view = null;
 	protected $sessionUser = null;
-	protected $loginRequired = true;
+	protected $loginRequired = false;
 
 	abstract function run();
 
@@ -21,7 +21,7 @@ abstract class Controller
         }
         else
         {
-            define('LOGGED_IN', false);
+            define('LOGGED_IN', $this->sessionUser->isLoggedIn);
         }
 
 		$this->view = new View($this->viewFileName, $pageName);

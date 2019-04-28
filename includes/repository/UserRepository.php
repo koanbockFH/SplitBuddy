@@ -4,9 +4,9 @@ class UserRepository extends BaseRepository
 {
     public function login($username, $password)
     {
-        $sql = "SELECT `userID`,`password` FROM `User` WHERE `username`='". $this->Database->escapeString($username) . "'";
+        $sql = "SELECT `userID`,`passwort` FROM `User` WHERE `username`='". $this->Database->escapeString($username) . "'";
         $result = $this->Database->query($sql);
-        $user = new User();
+        $user = new SessionUser();
         if($this->Database->numRows($result) == 0)
         {
             $user->isLoggedIn = false;
@@ -14,9 +14,9 @@ class UserRepository extends BaseRepository
         }
         //now lets check for the password
         $row = $this->Database->fetchObject($result);
-        if(password_verify($password, $row->password))
+        if(password_verify($password, $row->passwort))
         {
-            $user->id = $row->id;
+            $user->id = $row->userID;
             $user->isLoggedIn = true;
             $user->username = $username;
             return $user;
@@ -36,6 +36,19 @@ class UserRepository extends BaseRepository
             $error = !$this->createUser($vorname, $nachname, $mail, $username, $password);
         }
         return $error;
+    }
+
+    public function existsWithUsername($username)
+    {
+        //check if user exists...
+        $sql = "SELECT COUNT(`userID`) AS num FROM `User` WHERE `username`='".$this->Database->escapeString($username)."'";
+        $result = $this->Database->query($sql);
+        $row = $this->Database->fetchObject($result);
+        if($row->num == 0)
+        {
+            return false;
+        }
+        return true;
     }
 
     private function createUser($vorname, $nachname, $mail, $username, $password)
@@ -73,18 +86,5 @@ class UserRepository extends BaseRepository
             $error = true;
         }
         return $error;
-    }
-
-    public function existsWithUsername($username)
-    {
-        //check if user exists...
-        $sql = "SELECT COUNT(`userID`) AS num FROM `User` WHERE `username`='".$this->Database->escapeString($username)."'";
-        $result = $this->Database->query($sql);
-        $row = $this->Database->fetchObject($result);
-        if($row->num == 0)
-        {
-            return false;
-        }
-        return true;
     }
 }

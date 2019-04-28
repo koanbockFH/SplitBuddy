@@ -4,15 +4,19 @@ class RegisterController extends Controller
 {
 	protected $viewFileName = "register"; //this will be the View that gets the data...
 
-    //Überschreibt die Base Variable, damit ist ein User nicht zwingend notwendig um die Seite zu sehen
-    protected $loginRequired = false;
-
 	public function run()
 	{
 		$this->view->title = "Register";
 
 		$this->checkForRegisterPost();
 	}
+
+    public function redirectToIndex()
+    {
+        header('Location: '.INDEX_URL);
+        header('Status: 303');
+        exit();
+    }
 
     private function checkForRegisterPost()
     {
