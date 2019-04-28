@@ -1,36 +1,14 @@
 version: '3'
 services:
   webserver:
-    image: phpstorm/php-71-apache-xdebug-26
-    depends_on:
-      - mysql
-    links:
-      - mysql
+    image: mattrayner/lamp:latest
     ports:
       - 80:80
-    volumes:
-      - ./:/var/www/html
-    command: |
-      sh -c 'a2enmod rewrite \
-          && apache2-foreground'
-    environment:
-      XDEBUG_CONFIG: remote_host=host.docker.internal
-  mysql:
-    image: mysql/mysql-server:5.7
-    environment:
-      MYSQL_DATABASE: 'splitbuddy'
-      # So you don't have to use root, but you can if you like
-      MYSQL_USER: 'root'
-      # You can use whatever password you like
-      MYSQL_PASSWORD: 'testpass'
-      # Password for root access
-      MYSQL_ROOT_PASSWORD: 'testpass'
-    ports:
-      # <Port exposed> : < MySQL Port running inside container>
       - 3306:3306
-    expose:
-      # Opens port 3306 on the container
-      - 3306
+    volumes:
+      - ./:/app
+    environment:
+      MYSQL_ADMIN_PASS: 'asdf'
   compass:
     image: antonienko/compass-watch:latest
     command: watch --poll ./

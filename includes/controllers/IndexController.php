@@ -2,8 +2,7 @@
 
 class IndexController extends Controller
 {
-	protected $viewFileName = "index"; //this will be the View that gets the data...
-
+	protected $viewFileName = "index";
 
 	public function run()
 	{
