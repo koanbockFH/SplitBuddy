@@ -63,4 +63,21 @@ class Projekt
     {
         $this->gruppen = array();
     }
+
+    public function loadFromJSON($jsonObj)
+    {
+        $this->titel = $jsonObj->title;
+        $this->anmerkung = $jsonObj->anmerkung;
+        $this->anzahl = $jsonObj->anzahl;
+        $this->gruppenAufteilungType = $jsonObj->gruppenEinstellungType;
+        $this->sortierType = $jsonObj->sortierung;
+
+        foreach($jsonObj->gruppen as $g)
+        {
+            $gruppe = new Gruppe();
+            $gruppe->loadFromJSON($g);
+
+            $this->addGruppe($gruppe);
+        }
+    }
 }

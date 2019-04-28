@@ -69,9 +69,9 @@ class ApiController
             {
                 foreach ($restfulservices as $callback)
                 {
-                    if (strtolower($callback[0]) == $serviceName)
+                    if (strtolower($callback[0]) == strtolower($serviceName))
                     {
-                        $restServiceToCall = new $serviceName();
+                        $restServiceToCall = new $callback[0]();
                         $restServiceToCall->{$callback[1]}($request_method, $dataForApi);
                     }
                 }

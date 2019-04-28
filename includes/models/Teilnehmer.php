@@ -42,4 +42,13 @@ class Teilnehmer
         $repo = new TeilnehmerRepository();
         return $repo->delete($this->id);
     }
+
+    public function loadFromJSON($jsonObj)
+    {
+        $this->vorname = $jsonObj->vorname;
+        $this->nachname = $jsonObj->nachname;
+        $this->geburtsdatum = $jsonObj->geburtstag;
+        $this->geschlecht = $jsonObj->geschlecht;
+        $this->mail = $jsonObj->email;
+    }
 }

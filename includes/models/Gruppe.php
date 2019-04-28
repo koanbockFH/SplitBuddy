@@ -50,4 +50,10 @@ class Gruppe
     {
         $this->teilnehmer = array();
     }
+
+    public function loadFromJSON($jsonObj)
+    {
+        $this->gruppenname = $jsonObj->groupName;
+        $this->anzahl = $jsonObj->amount;
+    }
 }
