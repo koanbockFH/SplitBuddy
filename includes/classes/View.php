@@ -6,7 +6,6 @@ class View
 	private $arrData = array();
 	private $strBuffer = "";
 
-
 	public function __construct($viewName, $currentPage = null)
 	{
 		$this->viewName = $viewName;

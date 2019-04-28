@@ -10,6 +10,7 @@ session_start();//we need to do this - in order to determine if a user is logged
 //the session_start will look if there is a session cookie - if there is no cookie it creates one and sets a sessionId
 
 
+require_once(__DIR__ . '/dbconfig.php'); //this needs to be first
 require_once(__DIR__ . '/routes.php');
 require_once(__DIR__ . '/config.php');
 
@@ -26,6 +27,10 @@ if(!function_exists('classAutoLoader'))
 		{
 			require_once(__DIR__.'/models/'.$fileName.'.php');
 		}
+        else if(file_exists(__DIR__.'/repository/'.$fileName.'.php'))
+        {
+            require_once(__DIR__.'/repository/'.$fileName.'.php');
+        }
 		else if(file_exists(__DIR__.'/controllers/'.$fileName.'.php'))
 		{
 			require_once(__DIR__.'/controllers/'.$fileName.'.php');

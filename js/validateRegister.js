@@ -1,4 +1,4 @@
-function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID, userID, fbUserID, mailID, fbMailID, pwdID, fbPwdID, pwControlID, fbPwdControlID, submitPasswordID, passwordWrapperID) {
+function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID, userID, fbUserID, mailID, fbMailID, pwdID, fbPwdID, pwControlID, fbPwdControlID, submitPasswordID, passwordWrapperID, callbackOnSuccess) {
 
     //attributes which are set with constructor
     this.regFirstname = document.getElementById(firstnameID);
@@ -389,7 +389,9 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
     //this method checks for non empty fields and if so sends a request to backend
     this.success = function ()
     {
-        console.info("Erfolgreich Validiert und eingeloggt")
+        if(callbackOnSuccess && typeof callbackOnSuccess === "function"){
+            callbackOnSuccess();
+        }
     };
 
     //This method returns true if a special character is found in password
