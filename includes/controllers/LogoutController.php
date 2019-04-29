@@ -1,6 +1,6 @@
 <?php
 
-class LogoutController extends Controller
+class LogoutController extends BaseController
 {
     protected $viewFileName = "logout"; //this will be the View that gets the data...
 

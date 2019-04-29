@@ -1,6 +1,6 @@
 <?php
 
-class RegistrationCompleteController extends Controller
+class RegistrationCompleteController extends BaseController
 {
 	protected $viewFileName = "registrationComplete";
 

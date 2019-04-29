@@ -3,54 +3,11 @@
 /**
  * Class TeilnehmerRepository - Gives access to DB Results
  */
-class TeilnehmerRepository extends BaseRepository
+class TeilnehmerRepository extends BaseCRUDRepository
 {
-    /**
-     * Gets all Ids of requested Item by using the given ParentID
-     * @param $id : Parent ID
-     * @return array|null : array of Ids
-     */
-    public function getIdListByGruppenId($id)
-    {
-        $sql = "SELECT `teilnehmerID`
-                FROM `Teilnehmer` WHERE `gruppenID`='" . $this->Database->escapeString($id) . "'";
-        $result = $this->Database->query($sql);
-        if($this->Database->numRows($result) == 0)
-        {
-            return null; //not found!
-        }
-        $array = array();
-        while($row = $this->Database->fetchObject($result))
-        {
-            array_push($array, $row);
-        }
-        return $array;
-    }
-
-    /**
-     * Gets Data by ID from DB
-     * @param $id : ID of DB Value
-     * @return object|null : DB Row
-     */
-    public function getById($id)
-    {
-        $sql = "SELECT `teilnehmerID`,
-                        `vname`,
-                        `nname`,
-                        `gebdate`,
-                        `mail`,
-                        `geschlechtID`,
-                        `gruppenID`,
-                        `projektID`
-                FROM `Teilnehmer` WHERE `teilnehmerID`='" . $this->Database->escapeString($id) . "'";
-        $result = $this->Database->query($sql);
-        if($this->Database->numRows($result) == 0)
-        {
-            return null; //not found!
-        }
-        $row = $this->Database->fetchObject($result);
-        return $row;
-    }
+    protected $tableName = "Teilnehmer";
+    protected $idColumnName = "teilnehmerID";
+    protected $parentIdColumnName = "gruppenID";
 
     /**
      * Creates or Updates the given Value on the DB
@@ -93,18 +50,5 @@ class TeilnehmerRepository extends BaseRepository
         {
             return false;
         }
-    }
-
-    /**
-     * Deletes Object based on ID from the DB
-     * @param $id : Id of the Object
-     * @return bool|mysqli_result : result of Query execution
-     */
-    public function delete($id)
-    {
-        $sql = "DELETE FROM `Teilnehmer`
-                WHERE `teilnehmerID`='" . $this->Database->escapeString($id) . "'";
-
-        return $this->Database->query($sql);
     }
 }

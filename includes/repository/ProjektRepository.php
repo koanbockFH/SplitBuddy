@@ -3,31 +3,10 @@
 /**
  * Class ProjektRepository - Gives access to DB Results
  */
-class ProjektRepository extends BaseRepository
+class ProjektRepository extends BaseCRUDRepository
 {
-    /**
-     * Gets Data by ID from DB
-     * @param $id : ID of DB Value
-     * @return object|null : DB Row
-     */
-    public function getById($id)
-    {
-        $sql = "SELECT `projektID`,
-                        `titel`,
-                        `anmerkung`,
-                        `anzahl`,
-                        `typ`,
-                        `sortierkriterium`,
-                        `userID`
-                FROM `GruppenProjekt` WHERE `projektID`='" . $this->Database->escapeString($id) . "'";
-        $result = $this->Database->query($sql);
-        if($this->Database->numRows($result) == 0)
-        {
-            return null; //not found!
-        }
-        $row = $this->Database->fetchObject($result);
-        return $row;
-    }
+    protected $tableName = "GruppenProjekt";
+    protected $idColumnName = "projektID";
 
     /**
      * Creates or Updates the given Value on the DB
@@ -68,18 +47,5 @@ class ProjektRepository extends BaseRepository
         {
             return false;
         }
-    }
-
-    /**
-     * Deletes Object based on ID from the DB
-     * @param $id : Id of the Object
-     * @return bool|mysqli_result : result of Query execution
-     */
-    public function delete($id)
-    {
-        $sql = "DELETE FROM `GruppenProjekt`
-                WHERE `projektID`='" . $this->Database->escapeString($id) . "'";
-
-        return $this->Database->query($sql);
     }
 }

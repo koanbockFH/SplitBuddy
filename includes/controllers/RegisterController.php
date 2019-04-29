@@ -1,6 +1,6 @@
 <?php
 
-class RegisterController extends Controller
+class RegisterController extends BaseController
 {
 	protected $viewFileName = "register"; //this will be the View that gets the data...
 

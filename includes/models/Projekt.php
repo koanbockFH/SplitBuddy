@@ -40,7 +40,7 @@ class Projekt
         $this->userID = $data->userID;
 
         $gruppenRepo = new GruppeRepository();
-        $gruppen = $gruppenRepo->getIdListByProjectId($this->id);
+        $gruppen = $gruppenRepo->getIdListByParentId($this->id);
 
         foreach($gruppen as $gruppe)
         {

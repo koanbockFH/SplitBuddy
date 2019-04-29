@@ -1,6 +1,6 @@
 <?php
 
-class AddProjectController extends Controller
+class AddProjectController extends BaseController
 {
 	protected $viewFileName = "addProject"; //this will be the View that gets the data...
     protected $loginRequired = true;

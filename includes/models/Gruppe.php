@@ -27,7 +27,7 @@ class Gruppe
         $this->projektID = $data->projektID;
 
         $teilnehmerRepo = new TeilnehmerRepository();
-        $teilnehmer = $teilnehmerRepo->getIdListByGruppenId($this->id);
+        $teilnehmer = $teilnehmerRepo->getIdListByParentId($this->id);
 
         foreach($teilnehmer as $item)
         {
