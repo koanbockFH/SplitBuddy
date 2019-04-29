@@ -63,7 +63,23 @@ class ProjektService extends BaseService
 
     private function divideByGroupCount($teilnehmer, $anzahlGruppen, Projekt $projekt)
     {
-        //GruppenAufteilung hier machen BEGINN
+        //diesen code anpassen
+        foreach ($teilnehmer as $gruppe){
+
+            $one = new Gruppe();
+            $one->addTeilnehmer($teilnehmer[$i]);
+
+            ;
+
+            foreach ($gruppe as $projekt){
+
+                $projekt->addGruppe($one);
+            }
+
+
+
+
+            //GruppenAufteilung hier machen BEGINN
         $one = new Gruppe();
         $two = new Gruppe();
 
