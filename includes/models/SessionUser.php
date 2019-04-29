@@ -17,6 +17,7 @@ class SessionUser extends SessionCached
         {
             define('LOGGED_IN', false);
             $this->redirectToLogin();
+            return false; //will never be called
         }
         define('LOGGED_IN', true);
         return true;

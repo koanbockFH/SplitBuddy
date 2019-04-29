@@ -14,6 +14,9 @@ $route['/login.html'] = array('controller' => 'LoginController', 'uniqueName' =>
 $route['/register'] = array('controller' => 'RegisterController', 'uniqueName' => 'register');
 $route['/register.html'] = array('controller' => 'RegisterController', 'uniqueName' => 'register');
 
+$route['/ergebnis'] = array('controller' => 'ErgebnisController', 'uniqueName' => 'ergebnis');
+$route['/ergebnis.html'] = array('controller' => 'ErgebnisController', 'uniqueName' => 'ergebnis');
+
 $route['/registrationComplete'] = array('controller' => 'RegistrationCompleteController', 'uniqueName' => 'registrationComplete');
 $route['/registrationComplete.html'] = array('controller' => 'RegistrationCompleteController', 'uniqueName' => 'registrationComplete');
 

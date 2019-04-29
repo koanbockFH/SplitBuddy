@@ -3,16 +3,16 @@
 echo $this->header;
 
 ?>
-<div class="container justify-content-center">
+    <div class="container mb-5 mt-5 justify-content-center">
 
-<h1 class="text-center mt-5">Abmeldung Erfolgreich</h1>
-<p class="text-center">Sie werden in Kürze weitergeleitet.</p>
-    <div class="d-flex justify-content-center ">
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+        <h1 class="text-center mt-5">Abmeldung Erfolgreich</h1>
+        <p class="text-center">Sie werden in Kürze weitergeleitet.</p>
+        <div class="d-flex justify-content-center ">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
     </div>
-</div>
 
 <?php
 
