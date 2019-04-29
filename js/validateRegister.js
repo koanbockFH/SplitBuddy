@@ -373,7 +373,10 @@ function validateRegister (firstnameID, fbfirstnameID, lastnameID, fblastnameID,
             result = false;
         }
 
-        that.validatePassword(true);
+        if(!that.validatePassword(true))
+        {
+            result = false;
+        };
 
         return result;
     };
