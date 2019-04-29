@@ -10,4 +10,3 @@ define('LOGIN_URL', 'login');
 
 define('REGISTER_URL', 'register');
 
-
