@@ -63,23 +63,23 @@ class TeilnehmerRepository extends BaseRepository
         if($teilnehmer->id == 0)
         {
             $sql = "INSERT INTO `Teilnehmer`(`vname`,`nname`,`gebdate`,`mail`,`geschlechtID`,`gruppenID`,`projektID`) 
-                    VALUES('".$teilnehmer->vorname."',
-                           '".$teilnehmer->nachname."',
-                           '".$teilnehmer->geburtsdatum."',
-                           '".$teilnehmer->mail."',
-                           '".$teilnehmer->geschlechtID."',
-                           '".$teilnehmer->gruppenID."',
-                           '".$teilnehmer->projektID."')";
+                    VALUES('".$this->Database->escapeString($teilnehmer->vorname)."',
+                           '".$this->Database->escapeString($teilnehmer->nachname)."',
+                           '".$this->Database->escapeString($teilnehmer->geburtsdatum)."',
+                           '".$this->Database->escapeString($teilnehmer->mail)."',
+                           '".$this->Database->escapeString($teilnehmer->geschlechtID)."',
+                           '".$this->Database->escapeString($teilnehmer->gruppenID)."',
+                           '".$this->Database->escapeString($teilnehmer->projektID)."')";
         }
         else{
             $sql = "UPDATE `Teilnehmer`
-                    SET '`vname`=".$teilnehmer->vorname."',
-                        '`nname` = ".$teilnehmer->nachname."',
-                        '`gebdate` = ".$teilnehmer->geburtsdatum."',
-                        '`mail` = ".$teilnehmer->mail."',
-                        '`geschlechtID` = ".$teilnehmer->geschlechtID."',
-                        '`gruppenID` = ".$teilnehmer->gruppenID."',
-                        '`projektID` = ".$teilnehmer->projektID."'
+                    SET '`vname`=".$this->Database->escapeString($teilnehmer->vorname)."',
+                        '`nname` = ".$this->Database->escapeString($teilnehmer->nachname)."',
+                        '`gebdate` = ".$this->Database->escapeString($teilnehmer->geburtsdatum)."',
+                        '`mail` = ".$this->Database->escapeString($teilnehmer->mail)."',
+                        '`geschlechtID` = ".$this->Database->escapeString($teilnehmer->geschlechtID)."',
+                        '`gruppenID` = ".$this->Database->escapeString($teilnehmer->gruppenID)."',
+                        '`projektID` = ".$this->Database->escapeString($teilnehmer->projektID)."'
                     WHERE `teilnehmerID`='" . $this->Database->escapeString($teilnehmer->id) . "'";
         }
 

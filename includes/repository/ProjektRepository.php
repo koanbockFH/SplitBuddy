@@ -40,21 +40,21 @@ class ProjektRepository extends BaseRepository
         if($projekt->id == 0)
         {
             $sql = "INSERT INTO `GruppenProjekt`(`titel`,`anmerkung`,`anzahl`,`typ`,`sortierkriterium`,`userID`) 
-                    VALUES('".$projekt->titel."',
-                           '".$projekt->anmerkung."',
-                           '".$projekt->anzahl."',
-                           '".$projekt->gruppenAufteilungType."',
-                           '".$projekt->sortierType."',
-                           '".$projekt->userID."')";
+                    VALUES('".$this->Database->escapeString($projekt->titel)."',
+                           '".$this->Database->escapeString($projekt->anmerkung)."',
+                           '".$this->Database->escapeString($projekt->anzahl)."',
+                           '".$this->Database->escapeString($projekt->gruppenAufteilungType)."',
+                           '".$this->Database->escapeString($projekt->sortierType)."',
+                           '".$this->Database->escapeString($projekt->userID)."')";
         }
         else{
             $sql = "UPDATE `GruppenProjekt`
-                    SET '`titel`=".$projekt->titel."',
-                        '`anmerkung` = ".$projekt->anmerkung."',
-                        '`anzahl` = ".$projekt->anzahl."',
-                        '`typ` = ".$projekt->gruppenAufteilungType."',
-                        '`sortierkriterium` = ".$projekt->sortierType."',
-                        '`userID` = ".$projekt->userID."'
+                    SET '`titel`=".$this->Database->escapeString($projekt->titel)."',
+                        '`anmerkung` = ".$this->Database->escapeString($projekt->anmerkung)."',
+                        '`anzahl` = ".$this->Database->escapeString($projekt->anzahl)."',
+                        '`typ` = ".$this->Database->escapeString($projekt->gruppenAufteilungType)."',
+                        '`sortierkriterium` = ".$this->Database->escapeString($projekt->sortierType)."',
+                        '`userID` = ".$this->Database->escapeString($projekt->userID)."'
                     WHERE `projektID`='" . $this->Database->escapeString($projekt->id) . "'";
         }
 

@@ -58,13 +58,13 @@ class GruppeRepository extends BaseRepository
         if($gruppe->id == 0)
         {
             $sql = "INSERT INTO `Gruppen`(`gruppenname`,`projektID`) 
-                    VALUES('".$gruppe->gruppenname."',
-                           '".$gruppe->projektID."')";
+                    VALUES('".$this->Database->escapeString($gruppe->gruppenname)."',
+                           '".$this->Database->escapeString($gruppe->projektID)."')";
         }
         else{
             $sql = "UPDATE `Gruppen`
-                    SET '`gruppenname`=".$gruppe->gruppenname."',
-                        '`projektID` = ".$gruppe->projektID."'
+                    SET '`gruppenname`=".$this->Database->escapeString($gruppe->gruppenname)."',
+                        '`projektID` = ".$this->Database->escapeString($gruppe->projektID)."'
                     WHERE `gruppenID`='" . $this->Database->escapeString($gruppe->id) . "'";
         }
 
