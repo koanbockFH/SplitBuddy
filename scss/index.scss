@@ -8,7 +8,8 @@ div.description
   margin: 20px;
   padding: 50px;
   text-align: center;
-  position: absolute;
+  position: fixed;
+  float:left;
 
 
 
@@ -46,8 +47,16 @@ img
 }
 
 .logo {
-  height: auto;
+  height: 200px;
   width: 100%;
   font-size: 80px;
-  margin-top: 500px;
+  margin-top: 150px;
+  float: left;
+  bottom: initial;
+  text-align: center;
+  color: $second-color;
+
+  @include breakpoint_Min($desktop) {
+    font-size: 150px;
+  }
 }

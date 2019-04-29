@@ -17,16 +17,25 @@ echo $this->header;
         <div class="col-xs-8 col-md-10">
 
             <div class="justify-content-center">
-                <span class="logo">Splitbuddy</span>
+                <div class="logo">
+                    <i class="fas fa-2x fa-robot align-top d-lg-inline-block"></i>
+                    <h1 class="align-baseline ml-1 d-inline">SplitBuddy</h1>
+                </div>
             </div>
 
         </div>
 
+
+
+
+
+
+
     </div>
 
-        <div class="row justify-content-center">
+        <div class="row">
 
-            <div class="col-xs-8 col-md-10">
+            <div class="col-xs-8 col-md-10 justify-content-center">
 
 
 
