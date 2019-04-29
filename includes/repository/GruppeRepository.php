@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * Class GruppeRepository - Gives access to DB Results
+ */
 class GruppeRepository extends BaseRepository
 {
+    /**
+     * Gets all Ids of requested Item by using the given ParentID
+     * @param $id : Parent ID
+     * @return array|null : array of Ids
+     */
     public function getIdListByProjectId($id)
     {
         $sql = "SELECT `gruppenID`
@@ -19,6 +27,11 @@ class GruppeRepository extends BaseRepository
         return $array;
     }
 
+    /**
+     * Gets Data by ID from DB
+     * @param $id : ID of DB Value
+     * @return object|null : DB Row
+     */
     public function getById($id)
     {
         $sql = "SELECT `gruppenID`,
@@ -34,7 +47,12 @@ class GruppeRepository extends BaseRepository
         return $row;
     }
 
-    public function createOrUpdate($gruppe)
+    /**
+     * Creates or Updates the given Value on the DB
+     * @param Gruppe $gruppe : Gruppe to be added/updated
+     * @return bool|int|string : result depending on state
+     */
+    public function createOrUpdate(Gruppe $gruppe)
     {
         $sql= "";
         if($gruppe->id == 0)
@@ -62,6 +80,11 @@ class GruppeRepository extends BaseRepository
         }
     }
 
+    /**
+     * Deletes Object based on ID from the DB
+     * @param $id : Id of the Object
+     * @return bool|mysqli_result : result of Query execution
+     */
     public function delete($id)
     {
         $sql = "DELETE FROM `Gruppen`

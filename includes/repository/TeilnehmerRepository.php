@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * Class TeilnehmerRepository - Gives access to DB Results
+ */
 class TeilnehmerRepository extends BaseRepository
 {
+    /**
+     * Gets all Ids of requested Item by using the given ParentID
+     * @param $id : Parent ID
+     * @return array|null : array of Ids
+     */
     public function getIdListByGruppenId($id)
     {
         $sql = "SELECT `teilnehmerID`
@@ -19,6 +27,11 @@ class TeilnehmerRepository extends BaseRepository
         return $array;
     }
 
+    /**
+     * Gets Data by ID from DB
+     * @param $id : ID of DB Value
+     * @return object|null : DB Row
+     */
     public function getById($id)
     {
         $sql = "SELECT `teilnehmerID`,
@@ -39,7 +52,12 @@ class TeilnehmerRepository extends BaseRepository
         return $row;
     }
 
-    public function createOrUpdate($teilnehmer)
+    /**
+     * Creates or Updates the given Value on the DB
+     * @param Teilnehmer $teilnehmer : Teilnehmer to be added/updated
+     * @return bool|int|string : result depending on state
+     */
+    public function createOrUpdate(Teilnehmer $teilnehmer)
     {
         $sql= "";
         if($teilnehmer->id == 0)
@@ -77,6 +95,11 @@ class TeilnehmerRepository extends BaseRepository
         }
     }
 
+    /**
+     * Deletes Object based on ID from the DB
+     * @param $id : Id of the Object
+     * @return bool|mysqli_result : result of Query execution
+     */
     public function delete($id)
     {
         $sql = "DELETE FROM `Teilnehmer`

@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * Class ProjektRepository - Gives access to DB Results
+ */
 class ProjektRepository extends BaseRepository
 {
+    /**
+     * Gets Data by ID from DB
+     * @param $id : ID of DB Value
+     * @return object|null : DB Row
+     */
     public function getById($id)
     {
         $sql = "SELECT `projektID`,
@@ -21,7 +29,12 @@ class ProjektRepository extends BaseRepository
         return $row;
     }
 
-    public function createOrUpdate($projekt)
+    /**
+     * Creates or Updates the given Value on the DB
+     * @param Projekt $projekt : Projekt to be added/updated
+     * @return bool|int|string : result depending on state
+     */
+    public function createOrUpdate(Projekt $projekt)
     {
         $sql= "";
         if($projekt->id == 0)
@@ -57,6 +70,11 @@ class ProjektRepository extends BaseRepository
         }
     }
 
+    /**
+     * Deletes Object based on ID from the DB
+     * @param $id : Id of the Object
+     * @return bool|mysqli_result : result of Query execution
+     */
     public function delete($id)
     {
         $sql = "DELETE FROM `GruppenProjekt`

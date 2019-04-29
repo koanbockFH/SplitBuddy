@@ -95,6 +95,10 @@ class UserRepository extends BaseRepository
      * @param $password : wert
      * @param $passwordControl :wert
      * @param $error :wert
+     * @param $vorname :wert
+     * @param $nachname :wert
+     * @param $mail :wert
+     * @param $username :wert
      * @return bool : Fehler oder alter Wert, sofern kein Fehler
      */
     private function checkPassword($password, $passwordControl, $error, $vorname, $nachname, $mail, $username)

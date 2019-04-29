@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Teilnehmer
+ */
 class Teilnehmer
 {
     public $id;
@@ -13,6 +16,10 @@ class Teilnehmer
     public $gruppenID;
     public $geschlechtID;
 
+    /**
+     * Sets Values of Instance to the given Data found in Database by the given ID
+     * @param $id : of value in DB
+     */
     public function get($id)
     {
         $repo = new TeilnehmerRepository();
@@ -31,6 +38,9 @@ class Teilnehmer
         $this->geschlecht->get($data->geschlechtID);
     }
 
+    /**
+     * Creates or Updates Values in DB - Childs are also saved
+     */
     public function createOrUpdate()
     {
         $repo = new TeilnehmerRepository();
@@ -38,12 +48,20 @@ class Teilnehmer
         $this->id = $insertedId;
     }
 
+    /**
+     * Deletes the current Object from DB
+     * @return bool|mysqli_result
+     */
     public function delete()
     {
         $repo = new TeilnehmerRepository();
         return $repo->delete($this->id);
     }
 
+    /**
+     * Maps Data from jsonDecoded Object - FIXED SCHEMA
+     * @param $jsonObj
+     */
     public function loadFromJSON($jsonObj)
     {
         $this->vorname = $jsonObj->vorname;

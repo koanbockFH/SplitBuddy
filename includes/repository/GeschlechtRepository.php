@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * Class GeschlechtRepository - Gives access to DB Results
+ */
 class GeschlechtRepository extends BaseRepository
 {
+    /**
+     * Gets Data by ID from DB
+     * @param $id : ID of DB Value
+     * @return object|null : DB Row
+     */
     public function getById($id)
     {
         $sql = "SELECT `geschlechtID`,
