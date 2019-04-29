@@ -1,0 +1,35 @@
+body{
+  background-color: black;
+  color: white;
+}
+
+#astronaut{
+  position: absolute;
+  top: 10%;
+  right: 20%;
+}
+
+#pageNotFound{
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+}
+
+h1 {
+  font-size: 150px;
+  margin: 0px;
+  padding: 0px;
+}
+
+p{
+  font-size: 40px;
+  margin-top: 0px;
+}
+
+a{
+  border: solid 1px white;
+  color: white;
+  font-size: 40px;
+  text-decoration: none;
+  padding: 15px;
+}
