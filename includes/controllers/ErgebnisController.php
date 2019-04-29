@@ -3,7 +3,7 @@
 class ErgebnisController extends Controller
 {
     protected $viewFileName = "ergebnis"; //this will be the View that gets the data...
-
+    protected $loginRequired = true;
 
     public function run()
     {

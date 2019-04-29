@@ -1,0 +1,8 @@
+.table th, .table td {
+  vertical-align: inherit;
+}
+
+#td-anmerkungen {
+  max-width: 500px;
+  table-layout: fixed;
+}

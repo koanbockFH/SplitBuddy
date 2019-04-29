@@ -12,21 +12,20 @@ echo $this->header;
         <?php if($counter++ % 2 == 0): ?>
         <div class="row gruppen-row">
         <?php endif ?>
-            <div class="col-5 gruppe">
-                <h3 id="group"><?php echo $gruppe->gruppenname ?></h3>
+        <div class="col-5 gruppe">
+            <h3 id="group"><?php echo $gruppe->gruppenname ?></h3>
             <?php foreach($gruppe->teilnehmer as $teilnehmer) { ?>
                 <span><?php echo $teilnehmer->vorname ?></span>
                 <span><?php echo $teilnehmer->nachname ?></span><br>
             <?php } ?>
-            </div>
-        <?php if($counter % 2 == 0): ?>
         </div>
+        <?php if($counter % 2 == 0): ?>
+            </div>
         <?php endif ?>
     <?php } ?>
 <?php endif ?>
 </div>
 <?php
-
 echo $this->footer;
 
 ?>
