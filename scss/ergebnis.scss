@@ -1,0 +1,19 @@
+@import "base";
+
+div.gruppe
+{
+  background-color: $second-color;
+  float:left;
+  width: 50%;
+  border-radius: 5px;
+  padding: 20px;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.gruppen-row
+{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
