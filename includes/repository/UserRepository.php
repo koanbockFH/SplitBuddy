@@ -99,8 +99,8 @@ class UserRepository extends BaseRepository
      */
     private function checkPassword($password, $passwordControl, $error, $vorname, $nachname, $mail, $username)
     {
-        //TODO Add Sonderzeichen Check usw.
-        $firstPartOfMail = preg_split("@", $mail);
+        $mailArray = (explode('@',$mail));
+        $firstPartOfMail = ($mailArray[0]);
 
         if(strlen($password) < 8) //check if password is long enough
         {
@@ -110,27 +110,27 @@ class UserRepository extends BaseRepository
         {
             $error = true;
         }
-        else if(strlen($password) > 100) //check if password isn't long enough
+        else if(strlen($password) > 100) //check if password is too long
         {
             $error = true;
         }
-        else if(preg_match("\s", $password)) //checks if password contains a blank
+        else if(preg_match("[\s]", $password)) //check if password contains a blank
         {
             $error = true;
         }
-        else if (strpos($password, $vorname)) //checks if password contains vorname
+        else if (strpos($password, $vorname) !== false) //check if password contains vorname string
         {
             $error = true;
         }
-        else if (strpos($password, $nachname)) //checks if password contains nachname
+        else if (strpos($password, $nachname)!== false) //check if password contains nachname string
         {
             $error = true;
         }
-        else if (strpos($password, $username)) //checks if password contains username
+        else if (strpos($password, $username)!== false) //check if password contains username string
         {
             $error = true;
         }
-        else if (strpos($password, $firstPartOfMail)) //checks if password contains email
+        else if (strpos($password, $firstPartOfMail)!== false) //check if password contains email string
         {
             $error = true;
         }
@@ -145,19 +145,15 @@ class UserRepository extends BaseRepository
      */
     private function checkUsername($username, $error)
     {
-        if($this->existsWithUsername($username) == true)
+        if(preg_match("[\s]", $username)) //check if username contains a blank
         {
             $error = true;
         }
-        else if(preg_match("\s", $username)) //checks if password contains a blank
+        else if(preg_match("/[(){}?!$%&=*+~,.;:<>§_]/", $username)) //check if username contains a special char
         {
             $error = true;
         }
-        else if(preg_match("(){}?!$%&=*+~,.;:<>§_", $username)) //checks if password contains a blank
-        {
-            $error = true;
-        }
-        else if(strlen($username) > 100) //check if password isn't long enough
+        else if(strlen($username) > 254) //check if username is too long
         {
             $error = true;
         }
