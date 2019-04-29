@@ -145,7 +145,11 @@ class UserRepository extends BaseRepository
      */
     private function checkUsername($username, $error)
     {
-        if(preg_match("[\s]", $username)) //check if username contains a blank
+        if($this->existsWithUsername($username) == true)
+        {
+            $error = true;
+        }
+        else if(preg_match("[\s]", $username)) //check if username contains a blank
         {
             $error = true;
         }
