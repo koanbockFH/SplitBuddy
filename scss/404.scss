@@ -7,6 +7,7 @@ body{
   position: absolute;
   top: 10%;
   right: 20%;
+  z-index: -1;
 }
 
 #pageNotFound{
@@ -17,8 +18,8 @@ body{
 
 h1 {
   font-size: 150px;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 p{
