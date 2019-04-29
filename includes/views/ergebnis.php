@@ -2,8 +2,6 @@
 
 echo $this->header;
 
-error_log(print_r($this->projekt, true));
-
 ?>
 <div class="container mb-5 mt-5">
     <h1>Ergebnis</h1>
