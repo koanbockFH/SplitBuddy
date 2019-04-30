@@ -23,9 +23,6 @@ class ProjektService extends BaseService
             return;
         }
 
-        echo $data["data"];
-        return;
-
         //Hole Daten von Post
         $jsonObj = json_decode($data['data']);
 
@@ -39,12 +36,18 @@ class ProjektService extends BaseService
             array_push($teilnehmerListe, $t);
         }
 
+
+        var_dump($teilnehmerListe);
+
         // Sortierung
-        $sortedArray = sortTeilnehmer($teilnehmer, $projekt);
+        //$sortedArray = $this->sortTeilnehmer($teilnehmerListe, $projekt);
 
         //Alle Daten vorbereitet, nun muss die Aufteilung gemacht werden
 
         $this->calculateGruppen($teilnehmerListe, $projekt);
+
+        var_dump($projekt);
+        return;
 
         //Speichere Daten in DB
         $projekt->createOrUpdate();
@@ -58,7 +61,7 @@ class ProjektService extends BaseService
         if ($projekt->gruppenAufteilungType == 0) {
             $this->divideByGroupCount($teilnehmerListe, $projekt->anzahl, $projekt);
         }
-        if ($projekt->gruppenAufteilungType == 1) {
+        else if ($projekt->gruppenAufteilungType == 1) {
             $this->divideByGroupCount($teilnehmerListe, $projekt->anzahl, $projekt, false);
         } //TODO Anzahl Teilnehmer und indiv. Gruppen hinzufügen & deren respektive Methode wie "DivideByGroupCount"
         else {
@@ -68,14 +71,14 @@ class ProjektService extends BaseService
 
     function sortTeilnehmer($teilnehmerListe, $projekt){
 
-        if ($projekt->sortierType == 1){
+        if ($projekt->sortierType == 0){
             // Sortierung: Datum (Älteste zuerst)
             usort($teilnehmerListe, function($a, $b){
                 return strtotime($b->geburtsdatum) - strtotime($a->geburtsdatum);
             });
         }
 
-        else if($projekt->sortierType == 2) {
+        else if($projekt->sortierType == 1) {
             // Sortierung: Geschlecht (Männlich zuerst)
             usort($teilnehmerListe, function($a, $b){
                 return $a->geschlecht > $b->geschlecht;
@@ -91,7 +94,7 @@ class ProjektService extends BaseService
      * @param Projekt $projekt <- why?
      * @param divideByGroups boolean (true: divide by Groups false: put anzahl Teilnehmer into Groups)
      */
-    private function divideByGroupCount($teilnehmerListe, $anzahl, Projekt $projekt)
+    public function divideByGroupCount($teilnehmerListe, $anzahl, Projekt $projekt)
     {
 
         //sortierung / vorher oder nachher?...
@@ -129,6 +132,8 @@ class ProjektService extends BaseService
                 $counter++;
             }
 
+            //var_dump($groups);
+
         }
 
 
@@ -136,6 +141,7 @@ class ProjektService extends BaseService
             $newGroup = new Gruppe();
 
             foreach ($group as $teilnehmer) {
+
                 $newGroup->addTeilnehmer($teilnehmer);
             }
 
