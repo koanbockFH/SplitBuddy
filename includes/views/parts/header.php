@@ -24,7 +24,7 @@
             <link href="css/register.css" rel="stylesheet">
         <?php elseif($this->current == "ergebnis"): ?>
             <link href="css/ergebnis.css" rel="stylesheet">
-        <?php elseif($this->current == "ergebnis"): ?>
+        <?php elseif($this->current == "meineGruppen"): ?>
             <link href="css/meineGruppen.css" rel="stylesheet">
         <?php else: ?>
             <link href="css/standard.css" rel="stylesheet">
