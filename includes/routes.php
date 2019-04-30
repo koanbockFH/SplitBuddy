@@ -23,3 +23,5 @@ $route['/registrationComplete.html'] = array('BaseController' => 'RegistrationCo
 $route['/logout'] = array('BaseController' => 'LogoutController', 'uniqueName' => 'logout');
 $route['/logout.html'] = array('BaseController' => 'LogoutController', 'uniqueName' => 'logout');
 
+$route['/meineGruppen'] = array('BaseController' => 'GruppenController', 'uniqueName' => 'meineGruppen');
+$route['/meineGruppen.html'] = array('BaseController' => 'GruppenController', 'uniqueName' => 'meineGruppen');

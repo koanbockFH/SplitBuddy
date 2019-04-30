@@ -8,6 +8,51 @@ class ProjektRepository extends BaseCRUDRepository
     protected $tableName = "GruppenProjekt";
     protected $idColumnName = "projektID";
 
+    public function getAllByUserId($id)
+    {
+        $sql = "SELECT `projektID`
+                FROM `GruppenProjekt` WHERE `userID`='" . $this->Database->escapeString($id) . "'";
+        $result = $this->Database->query($sql);
+        if($this->Database->numRows($result) == 0)
+        {
+            return null; //not found!
+        }
+
+        $projektIds = array();
+        while($row = $this->Database->fetchObject($result))
+        {
+            array_push($projektIds, $row);
+        }
+
+        $projekte = array();
+        foreach($projektIds as $id)
+        {
+            $p = new Projekt();
+            $p->get($id->projektID);
+            array_push($projekte, $p);
+        }
+        return $projekte;
+    }
+
+    public function getById($id)
+    {
+        $sql = "SELECT `projektID`,
+                        `titel`,
+                        `anmerkung`,
+                        `anzahl`,
+                        `typ`,
+                        `sortierkriterium`,
+                        `userID`
+                FROM `GruppenProjekt` WHERE `projektID`='" . $this->Database->escapeString($id) . "'";
+        $result = $this->Database->query($sql);
+        if($this->Database->numRows($result) == 0)
+        {
+            return null; //not found!
+        }
+        $row = $this->Database->fetchObject($result);
+        return $row;
+    }
+
     /**
      * Creates or Updates the given Value on the DB
      * @param Projekt $projekt : Projekt to be added/updated
