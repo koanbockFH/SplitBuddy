@@ -1,6 +1,6 @@
 <?php
 
-abstract class Controller
+abstract class BaseController
 {
 	protected $viewFileName = ""; //this will be the Template that gets the data...
 	public $pageName = "";

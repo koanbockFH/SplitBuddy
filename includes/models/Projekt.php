@@ -12,12 +12,19 @@ class Projekt
 
     public $userID;
 
+    /**
+     * Projekt constructor. Sets UserID to the current SessionUserID
+     */
     public function __construct()
     {
         $user = new SessionUser();
         $this->userID = $user->id;
     }
 
+    /**
+     * Sets Values of Instance to the given Data found in Database by the given ID
+     * @param $id : of value in DB
+     */
     public function get($id)
     {
         $repo = new ProjektRepository();
@@ -33,7 +40,7 @@ class Projekt
         $this->userID = $data->userID;
 
         $gruppenRepo = new GruppeRepository();
-        $gruppen = $gruppenRepo->getIdListByProjectId($this->id);
+        $gruppen = $gruppenRepo->getIdListByParentId($this->id);
 
         foreach($gruppen as $gruppe)
         {
@@ -43,6 +50,9 @@ class Projekt
         }
     }
 
+    /**
+     * Creates or Updates Values in DB - Childs are also saved
+     */
     public function createOrUpdate()
     {
         $repo = new ProjektRepository();
@@ -59,22 +69,37 @@ class Projekt
         }
     }
 
+    /**
+     * Deletes the current Object from DB
+     * @return bool|mysqli_result
+     */
     public function delete()
     {
         $repo = new ProjektRepository();
         return $repo->delete($this->id);
     }
 
-    public function addGruppe($gruppe)
+    /**
+     * Adds Gruppe to List of Gruppe
+     * @param $gruppe : Gruppe to be added
+     */
+    public function addGruppe(Gruppe $gruppe)
     {
         array_push($this->gruppen, $gruppe);
     }
 
+    /**
+     * Resets Lists of Gruppe
+     */
     public function resetGruppen()
     {
         $this->gruppen = array();
     }
 
+    /**
+     * Maps Data from jsonDecoded Object - FIXED SCHEMA
+     * @param $jsonObj
+     */
     public function loadFromJSON($jsonObj)
     {
         $this->titel = $jsonObj->title;

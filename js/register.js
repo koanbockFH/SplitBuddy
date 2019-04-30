@@ -29,6 +29,11 @@ function onRegisterValidationSuccess()
             else{
                 window.location.href = "/registrationComplete";
             }
+        },
+        'error': function () {
+            console.error("AJAX Call Failed");
+            submitButton.prop('disabled', false);
+            $("#registerServiceError").addClass("d-block");
         }
     });
 }

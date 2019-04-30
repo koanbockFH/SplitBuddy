@@ -81,11 +81,11 @@ class UserRepository extends BaseRepository
         $password = password_hash($this->Database->escapeString($password), PASSWORD_BCRYPT);
 
         $sql = "INSERT INTO `User`(`vname`,`nname`,`mail`,`username` ,`passwort`) 
-                VALUES('".$vorname."',
-                       '".$nachname."',
-                       '".$mail."',
-                       '".$username."',
-                       '".$password."')";
+                VALUES('".$this->Database->escapeString($vorname)."',
+                       '".$this->Database->escapeString($nachname)."',
+                       '".$this->Database->escapeString($mail)."',
+                       '".$this->Database->escapeString($username)."',
+                       '".$this->Database->escapeString($password)."')";
 
         return $this->Database->query($sql);
     }
@@ -95,6 +95,10 @@ class UserRepository extends BaseRepository
      * @param $password : wert
      * @param $passwordControl :wert
      * @param $error :wert
+     * @param $vorname :wert
+     * @param $nachname :wert
+     * @param $mail :wert
+     * @param $username :wert
      * @return bool : Fehler oder alter Wert, sofern kein Fehler
      */
     private function checkPassword($password, $passwordControl, $error, $vorname, $nachname, $mail, $username)

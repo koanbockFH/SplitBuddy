@@ -1,6 +1,6 @@
 <?php
 
-class LoginController extends Controller
+class LoginController extends BaseController
 {
 	protected $viewFileName = "login"; //this will be the View that gets the data...
 
