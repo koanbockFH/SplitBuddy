@@ -1,6 +1,6 @@
 <?php
 
-class GruppenController extends Controller
+class GruppenController extends BaseController
 {
     protected $viewFileName = "meineGruppen"; //this will be the View that gets the data...
     protected $loginRequired = true;
