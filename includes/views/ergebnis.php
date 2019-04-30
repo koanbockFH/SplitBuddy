@@ -7,14 +7,16 @@ echo $this->header;
     <div class="sb-whiteBackground">
         <h1 class="display-1">Ergebnis</h1>
     <?php if(is_null($this->projekt)):?>
-        <div class="text-center">Da ist etwas schief gelaufen</div>
+        <div class="text-center ">Da ist etwas schief gelaufen</div>
     <?php else: $counter = 0;?>
+        <?php $gruppenZaehler=1; ?>
+
         <?php foreach($this->projekt->gruppen as $gruppe) { ?>
             <?php if($counter++ % 2 == 0): ?>
-            <div class="row gruppen-row">
+            <div class="row justify-content-center">
             <?php endif ?>
-            <div class="col-5 gruppe">
-                <h3 id="group"><?php echo $gruppe->gruppenname ?></h3>
+            <div class="col-lg-5 gruppe">
+                <h3 id="group">Gruppe <?php echo $gruppenZaehler++?></h3>
                 <?php foreach($gruppe->teilnehmer as $teilnehmer) { ?>
                     <span><?php echo $teilnehmer->vorname ?></span>
                     <span><?php echo $teilnehmer->nachname ?></span><br>
@@ -28,10 +30,6 @@ echo $this->header;
     </div>
 </div>
 
-1u 1su 2wg
-2g 3wu 4sg
-3u 5su 6wg
-4g 7wu 8sg
 
 <?php
 echo $this->footer;

@@ -30,21 +30,14 @@ body {
   }
 }
 
-
-div.gruppe
-{
-  background-color: $second-color;
-  float:left;
-  width: 50%;
-  border-radius: 5px;
-  padding: 20px;
-  display: block;
-  margin: auto;
-  text-align: center;
+h3{
+  margin: 20px;
 }
-
-.gruppen-row
-{
-  margin-bottom: 20px;
-  margin-top: 20px;
+.gruppe{
+  background-color: $second-color;
+  text-align: center;
+  margin: 5px;
+  padding: 20px;
+  color: $fifth-color;
+  font-size: 1.1em;
 }
