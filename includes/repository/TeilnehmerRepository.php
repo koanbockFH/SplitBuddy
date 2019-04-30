@@ -42,7 +42,7 @@ class TeilnehmerRepository extends BaseRepository
     public function createOrUpdate($teilnehmer)
     {
         $sql= "";
-        if($teilnehmer->id == 0)
+        if(true)
         {
             $sql = "INSERT INTO `Teilnehmer`(`vname`,`nname`,`gebdate`,`mail`,`geschlechtID`,`gruppenID`,`projektID`) 
                     VALUES('".$teilnehmer->vorname."',
