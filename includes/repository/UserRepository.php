@@ -38,7 +38,7 @@ class UserRepository extends BaseRepository
     public function register($vorname, $nachname, $mail, $username, $password, $passwordControl)
     {
         $error = false;
-        $error = $this->checkPassword($password, $passwordControl, $error);
+        $error = $this->checkPassword($password, $passwordControl, $error, $vorname, $nachname, $mail, $username);
         $error = $this->checkUsername($username, $error);
 
         if($error == false)
@@ -81,11 +81,11 @@ class UserRepository extends BaseRepository
         $password = password_hash($this->Database->escapeString($password), PASSWORD_BCRYPT);
 
         $sql = "INSERT INTO `User`(`vname`,`nname`,`mail`,`username` ,`passwort`) 
-                VALUES('".$vorname."',
-                       '".$nachname."',
-                       '".$mail."',
-                       '".$username."',
-                       '".$password."')";
+                VALUES('".$this->Database->escapeString($vorname)."',
+                       '".$this->Database->escapeString($nachname)."',
+                       '".$this->Database->escapeString($mail)."',
+                       '".$this->Database->escapeString($username)."',
+                       '".$this->Database->escapeString($password)."')";
 
         return $this->Database->query($sql);
     }
@@ -95,16 +95,46 @@ class UserRepository extends BaseRepository
      * @param $password : wert
      * @param $passwordControl :wert
      * @param $error :wert
+     * @param $vorname :wert
+     * @param $nachname :wert
+     * @param $mail :wert
+     * @param $username :wert
      * @return bool : Fehler oder alter Wert, sofern kein Fehler
      */
-    private function checkPassword($password, $passwordControl, $error)
+    private function checkPassword($password, $passwordControl, $error, $vorname, $nachname, $mail, $username)
     {
-        //TODO Add Sonderzeichen Check usw.
+        $mailArray = (explode('@',$mail));
+        $firstPartOfMail = ($mailArray[0]);
+
         if(strlen($password) < 8) //check if password is long enough
         {
             $error = true;
         }
         else if($password != $passwordControl) //check if password matches password repetition
+        {
+            $error = true;
+        }
+        else if(strlen($password) > 100) //check if password is too long
+        {
+            $error = true;
+        }
+        else if(preg_match("[\s]", $password)) //check if password contains a blank
+        {
+            $error = true;
+        }
+        else if (strpos($password, $vorname) !== false) //check if password contains vorname string
+        {
+            $error = true;
+        }
+        else if (strpos($password, $nachname)!== false) //check if password contains nachname string
+        {
+            $error = true;
+        }
+        else if (strpos($password, $username)!== false) //check if password contains username string
+        {
+            $error = true;
+        }
+        else if (strpos($password, $firstPartOfMail)!== false) //check if password contains email string
         {
             $error = true;
         }
@@ -120,6 +150,18 @@ class UserRepository extends BaseRepository
     private function checkUsername($username, $error)
     {
         if($this->existsWithUsername($username) == true)
+        {
+            $error = true;
+        }
+        else if(preg_match("[\s]", $username)) //check if username contains a blank
+        {
+            $error = true;
+        }
+        else if(preg_match("/[(){}?!$%&=*+~,.;:<>§_]/", $username)) //check if username contains a special char
+        {
+            $error = true;
+        }
+        else if(strlen($username) > 254) //check if username is too long
         {
             $error = true;
         }

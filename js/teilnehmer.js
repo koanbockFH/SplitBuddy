@@ -9,12 +9,14 @@ let teilnehmerDaten = [];
         let form = document.getElementById('teilnehmer-form');
         form.addEventListener('submit', function (event) {
             if (form.checkValidity() === true) {
-                if($("#teilnehmer-change").hasClass("d-none"))
+                let teilnehmerChangeButton = $("#teilnehmer-change");
+                if(teilnehmerChangeButton.hasClass("d-none"))
                 {
                     addTeilnehmer("vorname", "nachname", "geburtstag", "geschlecht", "email");
                 }
                 else{
-                    editTeilnehmer($("#teilnehmer-change").attr("data-id"),"vorname", "nachname", "geburtstag", "geschlecht", "email");
+                    //attribute data-id is set after pressing Edit-button of each Teilnehmer
+                    editTeilnehmer(teilnehmerChangeButton.attr("data-id"),"vorname", "nachname", "geburtstag", "geschlecht", "email");
                 }
                 form.reset();
                 form.classList.remove('was-validated');

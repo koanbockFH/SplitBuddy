@@ -1,7 +1,13 @@
 <?php
 
-class ProjektRepository extends BaseRepository
+/**
+ * Class ProjektRepository - Gives access to DB Results
+ */
+class ProjektRepository extends BaseCRUDRepository
 {
+    protected $tableName = "GruppenProjekt";
+    protected $idColumnName = "projektID";
+
     public function getAllByUserId($id)
     {
         $sql = "SELECT `projektID`
@@ -47,27 +53,32 @@ class ProjektRepository extends BaseRepository
         return $row;
     }
 
-    public function createOrUpdate($projekt)
+    /**
+     * Creates or Updates the given Value on the DB
+     * @param Projekt $projekt : Projekt to be added/updated
+     * @return bool|int|string : result depending on state
+     */
+    public function createOrUpdate(Projekt $projekt)
     {
         $sql= "";
         if($projekt->id == 0)
         {
             $sql = "INSERT INTO `GruppenProjekt`(`titel`,`anmerkung`,`anzahl`,`typ`,`sortierkriterium`,`userID`) 
-                    VALUES('".$projekt->titel."',
-                           '".$projekt->anmerkung."',
-                           '".$projekt->anzahl."',
-                           '".$projekt->gruppenAufteilungType."',
-                           '".$projekt->sortierType."',
-                           '".$projekt->userID."')";
+                    VALUES('".$this->Database->escapeString($projekt->titel)."',
+                           '".$this->Database->escapeString($projekt->anmerkung)."',
+                           '".$this->Database->escapeString($projekt->anzahl)."',
+                           '".$this->Database->escapeString($projekt->gruppenAufteilungType)."',
+                           '".$this->Database->escapeString($projekt->sortierType)."',
+                           '".$this->Database->escapeString($projekt->userID)."')";
         }
         else{
             $sql = "UPDATE `GruppenProjekt`
-                    SET '`titel`=".$projekt->titel."',
-                        '`anmerkung` = ".$projekt->anmerkung."',
-                        '`anzahl` = ".$projekt->anzahl."',
-                        '`typ` = ".$projekt->gruppenAufteilungType."',
-                        '`sortierkriterium` = ".$projekt->sortierType."',
-                        '`userID` = ".$projekt->userID."'
+                    SET '`titel`=".$this->Database->escapeString($projekt->titel)."',
+                        '`anmerkung` = ".$this->Database->escapeString($projekt->anmerkung)."',
+                        '`anzahl` = ".$this->Database->escapeString($projekt->anzahl)."',
+                        '`typ` = ".$this->Database->escapeString($projekt->gruppenAufteilungType)."',
+                        '`sortierkriterium` = ".$this->Database->escapeString($projekt->sortierType)."',
+                        '`userID` = ".$this->Database->escapeString($projekt->userID)."'
                     WHERE `projektID`='" . $this->Database->escapeString($projekt->id) . "'";
         }
 
@@ -81,13 +92,5 @@ class ProjektRepository extends BaseRepository
         {
             return false;
         }
-    }
-
-    public function delete($id)
-    {
-        $sql = "DELETE FROM `GruppenProjekt`
-                WHERE `projektID`='" . $this->Database->escapeString($id) . "'";
-
-        return $this->Database->query($sql);
     }
 }
