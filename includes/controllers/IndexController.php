@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
 	protected $viewFileName = "index";
 

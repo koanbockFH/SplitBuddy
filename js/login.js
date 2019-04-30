@@ -3,7 +3,7 @@
     'use strict';
     window.addEventListener('load', function () {
         let login = new Login("#login-form", (data) => {
-            if(data["result"] === false)
+            if(data["result"] === false || data === false)
             {
                 $("#loginServiceError").addClass("d-block");
             }
@@ -33,6 +33,13 @@ function Login(formId, callbackOnSuccess){
                     submitButton.prop('disabled', false);
                     if(callbackOnSuccess && typeof callbackOnSuccess === "function"){
                         callbackOnSuccess(data);
+                    }
+                },
+                'error': function () {
+                    console.error("AJAX Call Failed");
+                    submitButton.prop('disabled', false);
+                    if(callbackOnSuccess && typeof callbackOnSuccess === "function"){
+                        callbackOnSuccess(false);
                     }
                 }
             });
