@@ -37,17 +37,16 @@ class ProjektService extends BaseService
         }
 
 
-        var_dump($teilnehmerListe);
+
 
         // Sortierung
-        //$sortedArray = $this->sortTeilnehmer($teilnehmerListe, $projekt);
+        $sortedArray = $this->sortTeilnehmer($teilnehmerListe, $projekt);
 
         //Alle Daten vorbereitet, nun muss die Aufteilung gemacht werden
 
         $this->calculateGruppen($teilnehmerListe, $projekt);
 
-        var_dump($projekt);
-        return;
+
 
         //Speichere Daten in DB
         $projekt->createOrUpdate();
@@ -71,6 +70,7 @@ class ProjektService extends BaseService
 
     function sortTeilnehmer($teilnehmerListe, $projekt){
 
+
         if ($projekt->sortierType == 0){
             // Sortierung: Datum (Älteste zuerst)
             usort($teilnehmerListe, function($a, $b){
@@ -81,7 +81,7 @@ class ProjektService extends BaseService
         else if($projekt->sortierType == 1) {
             // Sortierung: Geschlecht (Männlich zuerst)
             usort($teilnehmerListe, function($a, $b){
-                return $a->geschlecht > $b->geschlecht;
+                return $a->geschlechtID > $b->geschlechtID;
             });
         };
 
@@ -96,97 +96,94 @@ class ProjektService extends BaseService
      */
     public function divideByGroupCount($teilnehmerListe, $anzahl, Projekt $projekt)
     {
+        //wenn keine sortierung zuvor ist funktioniert dieser Code
+        if ($projekt->sortierType == 2){
 
-        //sortierung / vorher oder nachher?...
-        if ($projekt->gruppenAufteilungType == 0) {
-            //diesen code anpassen
-            $counter = 0;
-            $groups = array();
+            //sortierung / vorher oder nachher?...
+            if ($projekt->gruppenAufteilungType == 0) {
+                //diesen code anpassen
+
+                $counter = 0;
+                $groups = array();
 
 
-            foreach ($teilnehmerListe as $teilnehmer) {
+                foreach ($teilnehmerListe as $teilnehmer) {
 
-                $groupnumnber = $counter % intval($anzahl);
+                    $groupnumber = $counter % intval($anzahl);
 
-                //var_dump($groupnumnber);
+                    //var_dump($groupnumnber);
 
-                $groups[$groupnumnber][] = $teilnehmer;
+                    $groups[$groupnumber][] = $teilnehmer;
 
-                $counter++;
-            }
-
-        } else if ($projekt->gruppenAufteilungType == 1) {
-
-            $counter = 0;
-
-            $groupnumnber = 0;
-
-            foreach ($teilnehmerListe as $teilnehmer) {
-                if ($counter % intval($anzahl) == 0) {
-                    $groupnumnber++;
+                    $counter++;
                 }
 
+            } else if ($projekt->gruppenAufteilungType == 1) {
 
-                $groups[$groupnumnber][] = $teilnehmer;
+                $counter = 0;
 
-                $counter++;
-            }
+                $groupnumnber = 0;
 
-            //var_dump($groups);
+                foreach ($teilnehmerListe as $teilnehmer) {
 
-        }
-
-
-        foreach ($groups as $group) {
-            $newGroup = new Gruppe();
-
-            foreach ($group as $teilnehmer) {
-
-                $newGroup->addTeilnehmer($teilnehmer);
-            }
-
-            $projekt->addGruppe($newGroup);
-        }
-
-        return $projekt;
+                    if ($teilnehmer % intval($anzahl) == 0) {
+                        $groupnumnber++;
+                    }
 
 
-        /*
-        foreach ($teilnehmer as $gruppe) {
 
-            $groupnumnber = $counter % $anzahl;
+                    $groups[$groupnumnber][] = $teilnehmer;
 
-            $groups[$groupnumnber][] = $teilnehmer;
-        }
+                    $counter++;
+                }
 
-        var_dump($groups);
-        */
-
-        /*$gruppenAnzahl = $anzahl;
-        $teilnehmerProGruppe = sizeof($teilnehmerListe) / $gruppenAnzahl;
-
-        for($i = 1; $i <= $gruppenAnzahl; $i++)
-        {
-            $gruppe = new Gruppe();
-
-            for($i = 1; $i <= $teilnehmerProGruppe; $i++)
-            {
-                $gruppe->addTeilnehmer($teilnehmerListe[$i]);
-
-
+                //var_dump($groups);
 
             }
 
+
+            foreach ($groups as $group) {
+                $newGroup = new Gruppe();
+
+                foreach ($group as $teilnehmer) {
+
+                    $newGroup->addTeilnehmer($teilnehmer);
+                }
+
+                $projekt->addGruppe($newGroup);
+            }
+
+            return $projekt;
         }
-        foreach ($teilnehmerListe as $teilnehmer)
-        {
 
-            $groupnumnber = $counter % $anzahl;
+        //wenn eine sortierung ist muss der Code verändert werden
+        else {
 
-            $groups[$groupnumnber][] = $teilnehmer;
+                if ($projekt->gruppenAufteilungType == 0)
+                {
+                    //diesen code anpassen
+
+
+
+                }
+
+            }
+
+
+
+
+
+
+
+
+
         }
 
-        var_dump($groups);*/
+
+
+    }
+
+
 
 
         //GruppenAufteilung hier machen BEGINN
@@ -203,7 +200,9 @@ class ProjektService extends BaseService
         //Hier die erzeugten Gruppen Hinzufügen
         $projekt->addGruppe($one);
         $projekt->addGruppe($two);*/
-    }
+
+
+
 
     private function divideIndividualGroup($teilnehmerListe, Projekt $projekt)
     {
@@ -237,5 +236,11 @@ class ProjektService extends BaseService
         }
 
         return $projekt;
-    }
+
+
+
 }
+}
+
+
+

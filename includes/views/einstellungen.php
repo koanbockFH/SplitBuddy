@@ -50,7 +50,7 @@
 
                 <div class="custom-control custom-radio">
                     <input type="radio" id="RadioGender" name="RadioSortierKriterien" class="custom-control-input" value="1" >
-                    <label class="custom-control-label" for="RadioGender">nach Geschelcht</label>
+                    <label class="custom-control-label" for="RadioGender">nach Geschlecht</label>
                 </div>
 
                 <div class="custom-control custom-radio">
