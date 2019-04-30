@@ -9,11 +9,11 @@ echo $this->header;
 
 
 
-    <div class="container justify-content-center">
+    <div class="container">
 
     <div class="row center">
 
-        <div class="col-xs-5 col-md-8">
+        <div class="col-xs-6 col-lg-12">
 
             <div>
                 <div class="logo">
@@ -29,7 +29,7 @@ echo $this->header;
 
         <div class="row">
 
-            <div class="col-xs-8 col-md-10 justify-content-center">
+            <div class="col-xs-6 col-lg-12">
 
 
 
@@ -45,11 +45,11 @@ echo $this->header;
                     </p>
 
                     <?php if(LOGGED_IN == true): ?>
-                        <button class="btn" type="button">Jetzt loslegen</button>
+                       <a href="addProject.php"><button class="btn" type="button">Jetzt loslegen</button></a>
                     <?php endif ?>
 
                     <?php if(LOGGED_IN == false): ?>
-                        <button class="btn" type="button">Jetzt anmelden</button>
+                       <a href="login.php"><button class="btn" type="button">Jetzt anmelden</button></a>
                     <?php endif ?>
 
                 </div>

@@ -4,23 +4,14 @@
 
 div.description
 {
-  background-color: white;
-  text-align: center;
-  float:left;
-  height: auto;
-  width: 90%;
-  bottom: 20px;
+  background-color: rgb(230,239,241);
+  text-align:center;
+  margin: 10%;
+  padding: 15px;
 
+ @include breakpoint_Min($desktop) {
 
-
-
-  @include breakpoint_Min($desktop) {
-
-    bottom: 50px;
-
-    width: 90%;
-    margin: 10px;
-    padding:10px;
+  margin: 5%;
   }
 
 }
@@ -41,30 +32,17 @@ html {
   height: 100%;
 }
 
-img
-{
 
-  width: 100%;
-
-
-}
 
 .logo {
-  height: 200px;
   font-size: 40pt;
-  margin-top: 20px;
-  float: left;
-  bottom:initial;
-  text-align: center;
-  color: white;
+  color: rgb(230,239,241);
+  margin: 10%;
+  text-align:center;
 
   @include breakpoint_Min($desktop)
   {
-      font-size: 70pt;
+      font-size: 60pt;
   }
 }
 
-.center {
-  margin: 20%;
-
-}
