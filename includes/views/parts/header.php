@@ -32,8 +32,8 @@
 
 
     </head>
-    <body class="withbg">
-    <div id="page-container">
+    <body>
+    <div id="page-container" class="withbg">
         <header>
             <!-- Navbar - transparent wenn Homepage/Index-->
             <nav class="navbar navbar-expand-lg navbar-dark sb-navbar <?php if($this->current == "index"): ?>sb-navbar-transparent<?php endif ?>">

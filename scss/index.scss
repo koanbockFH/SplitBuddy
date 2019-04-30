@@ -4,28 +4,31 @@
 
 div.description
 {
-  background-color: $second-color;
-  margin: 20px;
-  padding: 50px;
+  background-color: white;
   text-align: center;
-  position: fixed;
   float:left;
+  height: auto;
+  width: 90%;
+  bottom: 20px;
+
 
 
 
   @include breakpoint_Min($desktop) {
 
-    bottom: 0;
-    position: fixed;
-    left:0;
+    bottom: 50px;
+
+    width: 90%;
+    margin: 10px;
+    padding:10px;
   }
 
 }
 
 
-body.withbg {
+.withbg {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-image: url('../images/hintergrund.jpg');
   background-repeat: repeat;
   background-position: bottom center;
@@ -48,15 +51,20 @@ img
 
 .logo {
   height: 200px;
-  width: 100%;
-  font-size: 80px;
-  margin-top: 150px;
+  font-size: 40pt;
+  margin-top: 20px;
   float: left;
-  bottom: initial;
+  bottom:initial;
   text-align: center;
-  color: $second-color;
+  color: white;
 
-  @include breakpoint_Min($desktop) {
-    font-size: 150px;
+  @include breakpoint_Min($desktop)
+  {
+      font-size: 70pt;
   }
+}
+
+.center {
+  margin: 20%;
+
 }

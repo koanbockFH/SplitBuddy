@@ -7,16 +7,15 @@ echo $this->header;
 
 
 
-    </div>
 
 
-    <div class="container">
+    <div class="container justify-content-center">
 
-    <div class="row justify-content-center">
+    <div class="row center">
 
-        <div class="col-xs-8 col-md-10">
+        <div class="col-xs-5 col-md-8">
 
-            <div class="justify-content-center">
+            <div>
                 <div class="logo">
                     <i class="fas fa-2x fa-robot align-top d-lg-inline-block"></i>
                     <h1 class="align-baseline ml-1 d-inline">SplitBuddy</h1>
@@ -24,11 +23,6 @@ echo $this->header;
             </div>
 
         </div>
-
-
-
-
-
 
 
     </div>
