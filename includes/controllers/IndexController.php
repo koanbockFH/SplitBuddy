@@ -1,9 +1,8 @@
 <?php
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
-	protected $viewFileName = "index"; //this will be the View that gets the data...
-
+	protected $viewFileName = "index";
 
 	public function run()
 	{

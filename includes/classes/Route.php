@@ -28,11 +28,12 @@ class Route
 		{
 			if($requestUri == $urlPath.$key)
 			{
-				$controller = new $routeOption['controller']($routeOption['uniqueName']);
+				$controller = new $routeOption['BaseController']($routeOption['uniqueName']);
 				exit;
 			}
 		}
 
+        define('LOGGED_IN', false);
 		//if we are here - there was no Route found - throw 404 and show 404 view!
 		$view = new View('404');
 		http_response_code(404);
