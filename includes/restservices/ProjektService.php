@@ -40,7 +40,7 @@ class ProjektService extends BaseService
         }
 
         // Sortierung
-
+        $sortedArray = sortTeilnehmer($teilnehmer, $projekt);
 
         //Alle Daten vorbereitet, nun muss die Aufteilung gemacht werden
 
@@ -66,11 +66,23 @@ class ProjektService extends BaseService
         }
     }
 
-    private function sortTeilnehmer($teilnehmerListe, $sort)
-    {
+    function sortTeilnehmer($teilnehmerListe, $projekt){
 
+        if ($projekt->sortierType == 1){
+            // Sortierung: Datum (Älteste zuerst)
+            usort($teilnehmerListe, function($a, $b){
+                return strtotime($b->geburtsdatum) - strtotime($a->geburtsdatum);
+            });
+        }
 
+        else if($projekt->sortierType == 2) {
+            // Sortierung: Geschlecht (Männlich zuerst)
+            usort($teilnehmerListe, function($a, $b){
+                return $a->geschlecht > $b->geschlecht;
+            });
+        };
 
+        return $teilnehmerListe;
     }
 
     /**
@@ -81,9 +93,6 @@ class ProjektService extends BaseService
      */
     private function divideByGroupCount($teilnehmerListe, $anzahl, Projekt $projekt)
     {
-
-        echo var_dump($teilnehmerListe);
-        return;
 
         //sortierung / vorher oder nachher?...
         if ($projekt->gruppenAufteilungType == 0) {
