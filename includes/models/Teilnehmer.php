@@ -12,7 +12,6 @@ class Teilnehmer
     public $mail;
     public $geschlecht;
 
-    public $projektID;
     public $gruppenID;
     public $geschlechtID;
 
@@ -30,7 +29,6 @@ class Teilnehmer
         $this->vorname = $data->vname;
         $this->nachname = $data->nname;
         $this->geburtsdatum = $data->gebdate;
-        $this->projektID = $data->projektID;
         $this->gruppenID = $data->gruppenID;
         $this->geschlechtID = $data->geschlechtID;
 
