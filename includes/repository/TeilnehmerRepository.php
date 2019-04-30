@@ -25,8 +25,7 @@ class TeilnehmerRepository extends BaseCRUDRepository
                            '".$this->Database->escapeString($teilnehmer->geburtsdatum)."',
                            '".$this->Database->escapeString($teilnehmer->mail)."',
                            '".$this->Database->escapeString($teilnehmer->geschlechtID)."',
-                           '".$this->Database->escapeString($teilnehmer->gruppenID)."',
-                           '".$this->Database->escapeString($teilnehmer->projektID)."')";
+                           '".$this->Database->escapeString($teilnehmer->gruppenID)."')";
         }
         else{
             $sql = "UPDATE `Teilnehmer`
@@ -35,8 +34,7 @@ class TeilnehmerRepository extends BaseCRUDRepository
                         '`gebdate` = ".$this->Database->escapeString($teilnehmer->geburtsdatum)."',
                         '`mail` = ".$this->Database->escapeString($teilnehmer->mail)."',
                         '`geschlechtID` = ".$this->Database->escapeString($teilnehmer->geschlechtID)."',
-                        '`gruppenID` = ".$this->Database->escapeString($teilnehmer->gruppenID)."',
-                        '`projektID` = ".$this->Database->escapeString($teilnehmer->projektID)."'
+                        '`gruppenID` = ".$this->Database->escapeString($teilnehmer->gruppenID)."'
                     WHERE `teilnehmerID`='" . $this->Database->escapeString($teilnehmer->id) . "'";
         }
 
