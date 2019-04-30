@@ -150,6 +150,7 @@ class ProjektService extends BaseService
                     $newGroup->addTeilnehmer($teilnehmer);
                 }
 
+                $newGroup->sortTeilnehmer($teilnehmerListe, $projekt);
                 $projekt->addGruppe($newGroup);
             }
 
@@ -181,7 +182,7 @@ class ProjektService extends BaseService
 
 
 
-    }
+
 
 
 
