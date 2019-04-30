@@ -5,8 +5,8 @@ echo $this->header;
 ?>
 
     <div class="container mb-5 mt-5">
-        <div class="background-login">
-            <h1 id="h1-login">Anmelden</h1>
+        <div class="sb-whiteBackground">
+            <h1 class="display-1" >Anmelden</h1>
             <form method="post" action="login" novalidate id="login-form">
 
                 <div class="form-row justify-content-center">
@@ -31,7 +31,7 @@ echo $this->header;
                 </div>
 
                 <div class="form-row justify-content-center">
-                    <button type="submit" class="btn" id="submitPassword">Anmelden</button>
+                    <button type="submit" class="btn btn-primary" id="submitPassword">Anmelden</button>
                     <label class="invalid-feedback text-center" id="loginServiceError">Username oder Passwort nicht korrekt.</label>
                 </div>
             </form>

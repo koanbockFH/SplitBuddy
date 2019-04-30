@@ -19,7 +19,7 @@ class TeilnehmerRepository extends BaseCRUDRepository
         $sql= "";
         if($teilnehmer->id == 0)
         {
-            $sql = "INSERT INTO `Teilnehmer`(`vname`,`nname`,`gebdate`,`mail`,`geschlechtID`,`gruppenID`,`projektID`) 
+            $sql = "INSERT INTO `Teilnehmer`(`vname`,`nname`,`gebdate`,`mail`,`geschlechtID`,`gruppenID`) 
                     VALUES('".$this->Database->escapeString($teilnehmer->vorname)."',
                            '".$this->Database->escapeString($teilnehmer->nachname)."',
                            '".$this->Database->escapeString($teilnehmer->geburtsdatum)."',

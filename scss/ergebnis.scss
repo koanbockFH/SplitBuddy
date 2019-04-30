@@ -1,5 +1,36 @@
 @import "base";
 
+body {
+  @include breakpoint_Max($desktop) {
+    background-color: $third-color;
+  }
+}
+
+.display-1{
+  font-size: 48pt;
+  margin-botom: 80px;
+
+  @include breakpoint_Max($desktop) {
+    font-size: 40pt;
+  }
+}
+
+.sb-whiteBackground{
+  @include breakpoint_Max($desktop) {
+    margin-top: 30%;
+  }
+  @include breakpoint_Min($desktop) {
+    background-color: white;
+    opacity: 0.9;
+    box-shadow:  $box-shadow;
+    padding: 100px;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
 div.gruppe
 {
   background-color: $second-color;
