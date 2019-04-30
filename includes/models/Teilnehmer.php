@@ -52,4 +52,5 @@ class Teilnehmer
         $this->geschlechtID = $jsonObj->geschlecht;
         $this->mail = $jsonObj->email;
     }
+
 }

@@ -23,6 +23,9 @@ class ProjektService extends BaseService
             return;
         }
 
+        echo $data["data"];
+        return;
+
         //Hole Daten von Post
         $jsonObj = json_decode($data['data']);
 
@@ -35,6 +38,10 @@ class ProjektService extends BaseService
             $t->loadFromJSON($tJsonObj);
             array_push($teilnehmerListe, $t);
         }
+
+        // Sortierung
+
+
         //Alle Daten vorbereitet, nun muss die Aufteilung gemacht werden
 
         $this->calculateGruppen($teilnehmerListe, $projekt);
@@ -59,6 +66,13 @@ class ProjektService extends BaseService
         }
     }
 
+    private function sortTeilnehmer($teilnehmerListe, $sort)
+    {
+
+
+
+    }
+
     /**
      * @param Teilnehmer $teilnehmer <- if we have this - we have a reference to Project...
      * @param $anzahl
@@ -67,6 +81,9 @@ class ProjektService extends BaseService
      */
     private function divideByGroupCount($teilnehmerListe, $anzahl, Projekt $projekt)
     {
+
+        echo var_dump($teilnehmerListe);
+        return;
 
         //sortierung / vorher oder nachher?...
         if ($projekt->gruppenAufteilungType == 0) {
