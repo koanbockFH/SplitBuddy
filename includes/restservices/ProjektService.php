@@ -40,7 +40,7 @@ class ProjektService extends BaseService
 
 
         // Sortierung
-        $sortedArray = $this->sortTeilnehmer($teilnehmerListe, $projekt);
+        $this->sortTeilnehmer($teilnehmerListe, $projekt);
 
         //Alle Daten vorbereitet, nun muss die Aufteilung gemacht werden
 
@@ -150,7 +150,7 @@ class ProjektService extends BaseService
                     $newGroup->addTeilnehmer($teilnehmer);
                 }
 
-                $newGroup->sortTeilnehmer($teilnehmerListe, $projekt);
+
                 $projekt->addGruppe($newGroup);
             }
 
@@ -163,24 +163,36 @@ class ProjektService extends BaseService
                 if ($projekt->gruppenAufteilungType == 0)
                 {
                     //diesen code anpassen
+                    $gruppenGroesse = (count($teilnehmerListe) / $anzahl);
+                    $gruppen = array_chunk($teilnehmerListe, round($gruppenGroesse));
+
+                    $cnt = 1;
+
+                    foreach ($gruppen as $gruppe){
+
+                        $newGroup = new Gruppe();
+
+                        foreach ($gruppe as $teilnehmer){
+                            $newGroup->addTeilnehmer($teilnehmer);
+                        }
 
 
+                        $cnt++;
+
+
+                    }
+                   return $projekt;
 
                 }
 
             }
 
-
-
-
-
-
-
-
-
         }
 
-
+    function divideByPersonCount($teilnehmerInput, $anzahlInput){
+        $gruppen = array_chunk($teilnehmerInput, round($anzahlInput));
+        return $gruppen;
+    }
 
 
 
