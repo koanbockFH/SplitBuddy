@@ -102,6 +102,9 @@ class ProjektService extends BaseService
      * @param Projekt $projekt <- why?
      * @param divideByGroups boolean (true: divide by Groups false: put anzahl Teilnehmer into Groups)
      */
+
+    /*Dieser Code wurde im Unterricht mit Hilfe von Herrn Hoover geschrieben
+
     public function divideByGroupCount($teilnehmerListe, $anzahl, Projekt $projekt)
     {
         //wenn keine sortierung zuvor ist funktioniert dieser Code
@@ -172,7 +175,7 @@ class ProjektService extends BaseService
             return $projekt;
 
 
-        //wenn eine sortierung ist muss der Code verändert werden
+        //Das war ein Versuch, den Code auf eine andere Art zu schreiben
         /*else {
 
                 if ($projekt->gruppenAufteilungType == 0)
@@ -203,22 +206,18 @@ class ProjektService extends BaseService
 
                 }*/
 
-    }
 
 
 
-    function divideByPersonCount($teilnehmerInput, $anzahlInput)
+    //gehört zu Versuch 2
+    /*function divideByPersonCount($teilnehmerInput, $anzahlInput)
     {
         $gruppen = array_chunk($teilnehmerInput, round($anzahlInput));
         return $gruppen;
-    }
+    }*/
 
 
-
-
-
-
-        //GruppenAufteilung hier machen BEGINN
+        //GruppenAufteilung hier machen BEGINN --> DUMMYDATEN
         /*$one = new Gruppe();
         $two = new Gruppe();
 
@@ -233,20 +232,64 @@ class ProjektService extends BaseService
         $projekt->addGruppe($one);
         $projekt->addGruppe($two);*/
 
+public function divideByGroupCount($teilnehmerListe, Projekt $projekt)
+{
+    $gruppenAnzahl = 0;
+    $teilnehmerAnzahlProGruppe = 0;
 
+    //Berechne Teilnehmeranzahl pro Gruppe
+    if($projekt->gruppenAufteilungType == 0)
+    {
+        //Berechne Datenparameter
+        $gruppenAnzahl = $projekt->anzahl;
+        $teilnehmerAnzahlProGruppe = round(sizeof($teilnehmerListe) / $gruppenAnzahl);
+    }
+    //Berechne Gruppen Anzahl
+    if($projekt->gruppenAufteilungType == 1)
+    {
+        //Berechne Datenparameter
+        $teilnehmerAnzahlProGruppe = $projekt->anzahl;
+        $gruppenAnzahl = sizeof($teilnehmerListe) / $teilnehmerAnzahlProGruppe;
+    }
+
+    //erzeuge die Gruppen auf Basis der eingabedaten - die letzte Gruppe wir für Rundungsfehler später hinzugefügt
+    for($i = 1; $i<$gruppenAnzahl; $i++)
+    {
+        $g = new Gruppe();
+        $g->gruppenname = "Gruppe " . $i;
+        $g->anzahl = $teilnehmerAnzahlProGruppe;
+
+        $projekt->addGruppe($g);
+    }
+
+    //es kann sein das keine gleichmäßigkeit möglich ist z.b. 7 teilnehmer auf 2 gruppen (3,4) oder 7 auf 3 (3,3,1) usw.
+    //letzte Gruppe erhält also den Rest der Teilnehmer die benötigt werden
+    //Alle Teilnehmer - (Anzahl pro Gruppe * (GruppenAnzahl - 1)) = TeilnehmerAnzahl die bisher keiner Gruppe zugewiesen wurde
+    $teilnehmerAnzahlLetzterGruppe = sizeof($teilnehmerListe) - ($teilnehmerAnzahlProGruppe * ($gruppenAnzahl - 1));
+    $g = new Gruppe();
+    $g->gruppenname = "Gruppe " . $gruppenAnzahl; //letzte Gruppe
+    $g->anzahl = $teilnehmerAnzahlLetzterGruppe;
+    $projekt->addGruppe($g);
+
+    //teile nun die teilnehmer auf die erstellten gruppen auf
+    //durch die zuvor sortierte Liste wird nun erst gruppe 1 befüllt, dann gruppe 2 usw. sodass durch die Sortierung zuvor
+    // eine sortierte Teilgruppe entsteht
+    // Ausnahme beim geschlecht kann es vorkommen das durch Ungleichmäßige anzahl an W/M Geschlechter 1 Gruppe existiert die gemischt ist
+    // diese Gruppe wird in den randbedingungen als Ausnahme akzeptiert (vom Team bei Feature definition deklariert siehe Dokumentation)
+    foreach ($teilnehmerListe as $teilnehmer) {
+        $nochPlatz = false;
+        foreach ($projekt->gruppen as $gruppe) {
+            if ($nochPlatz == false && sizeof($gruppe->teilnehmer) != $gruppe->anzahl) {
+                $gruppe->addTeilnehmer($teilnehmer);
+                $nochPlatz = true;
+            }
+        }
+    }
+}
 
 
     private function divideIndividualGroup($teilnehmerListe, Projekt $projekt)
     {
-
-
-        //für jede gruppe --> foreach --> foreach teilnehmer die hinzugefügt werden -->
-
-        //oder zuerst Teilnehmer nnehmen und in gruppe stecken --> foreach
-
-        //gruppen müssen nicht erstellt werden --> diese gibt es schon un djede gruppe hat
-        //hat eine fixe teilnehmeranzahl
-
 
         $ueberlaufGruppe = new Gruppe();
         foreach ($teilnehmerListe as $teilnehmer)
@@ -271,8 +314,6 @@ class ProjektService extends BaseService
         }
 
         return $projekt;
-
-
 
     }
 }
