@@ -44,11 +44,11 @@ echo $this->header;
                     </p>
 
                     <?php if(LOGGED_IN == true): ?>
-                       <a href="addProject.php"><button class="btn" type="button">Jetzt loslegen</button></a>
+                       <a href="addProject"><button class="btn" type="button">Jetzt loslegen</button></a>
                     <?php endif ?>
 
                     <?php if(LOGGED_IN == false): ?>
-                       <a href="login.php"><button class="btn" type="button">Jetzt anmelden</button></a>
+                       <a href="login"><button class="btn" type="button">Jetzt anmelden</button></a>
                     <?php endif ?>
 
                 </div>
