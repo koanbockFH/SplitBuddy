@@ -120,7 +120,7 @@ function editGroup(id, groupNameId, amountId) {
     let groupNameControl = document.getElementById(groupNameId);
     let amountControl = document.getElementById(amountId);
 
-    let row = $('tr[data-id='+ id +']');
+    let row = $('#sb-indivGroup-list').find('tr[data-id='+ id +']');
 
     //The find() method returns descendant elements of the selected element
     let cells = row.find("td");
