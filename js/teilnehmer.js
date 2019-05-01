@@ -105,7 +105,7 @@ function editTeilnehmer(id, vornameId, nachnameId, geburtstagId, geschlechtId, e
     let geschlechtControl = document.getElementById(geschlechtId);
     let emailControl = document.getElementById(emailId);
 
-    let row = $('tr[data-id='+ id +']');
+    let row = $("#sb-teilnehmer-liste").find('tr[data-id='+ id +']');
 
     let cells = row.find("td");
     cells[0].textContent = vornameControl.value;
