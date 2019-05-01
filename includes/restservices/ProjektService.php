@@ -62,7 +62,7 @@ class ProjektService extends BaseService
         }
         else if ($projekt->gruppenAufteilungType == 1) {
             $this->divideByGroupCount($teilnehmerListe, $projekt->anzahl, $projekt, false);
-        } //TODO Anzahl Teilnehmer und indiv. Gruppen hinzufügen & deren respektive Methode wie "DivideByGroupCount"
+        } // Anzahl Teilnehmer und indiv. Gruppen hinzufügen & deren respektive Methode wie "DivideByGroupCount"
         else {
             $this->divideIndividualGroup($teilnehmerListe, $projekt);
         }
@@ -74,14 +74,20 @@ class ProjektService extends BaseService
         if ($projekt->sortierType == 0){
             // Sortierung: Datum (Älteste zuerst)
             usort($teilnehmerListe, function($a, $b){
-                return strtotime($b->geburtsdatum) - strtotime($a->geburtsdatum);
+                if(strtotime($b->geburtsdatum) == strtotime($a->geburtsdatum))
+                    return 0;
+
+                return strtotime($a->geburtsdatum) < strtotime($b->geburtsdatum) ? -1 : 1;
             });
         }
 
-        else if($projekt->sortierType == 1) {
+        if($projekt->sortierType == 1) {
             // Sortierung: Geschlecht (Männlich zuerst)
             usort($teilnehmerListe, function($a, $b){
-                return $a->geschlechtID > $b->geschlechtID;
+                if($a->geschlecht->id == $b->geschlecht-->id)
+                    return 0;
+
+                return ($a->geschlecht->id < $b->geschlecht->id) ? -1 : 1;
             });
         };
 
@@ -97,17 +103,18 @@ class ProjektService extends BaseService
     public function divideByGroupCount($teilnehmerListe, $anzahl, Projekt $projekt)
     {
         //wenn keine sortierung zuvor ist funktioniert dieser Code
-        if ($projekt->sortierType == 2){
+       // if ($projekt->sortierType == 2){
+
+            $counter = 0;
+            $groups = array();
 
             //sortierung / vorher oder nachher?...
-            if ($projekt->gruppenAufteilungType == 0) {
+            if ($projekt->gruppenAufteilungType == 0)
+            {
                 //diesen code anpassen
 
-                $counter = 0;
-                $groups = array();
-
-
-                foreach ($teilnehmerListe as $teilnehmer) {
+                foreach ($teilnehmerListe as $teilnehmer)
+                {
 
                     $groupnumber = $counter % intval($anzahl);
 
@@ -118,21 +125,25 @@ class ProjektService extends BaseService
                     $counter++;
                 }
 
-            } else if ($projekt->gruppenAufteilungType == 1) {
+            }
+            else if ($projekt->gruppenAufteilungType == 1)
+            {
 
                 $counter = 0;
 
-                $groupnumnber = 0;
+                $groupnumber = 0;
 
-                foreach ($teilnehmerListe as $teilnehmer) {
+                foreach ($teilnehmerListe as $teilnehmer)
+                {
 
-                    if ($teilnehmer % intval($anzahl) == 0) {
-                        $groupnumnber++;
+                    if ($counter % intval($anzahl) == 0)
+                    {
+                        $groupnumber++;
                     }
 
 
 
-                    $groups[$groupnumnber][] = $teilnehmer;
+                    $groups[$groupnumber][] = $teilnehmer;
 
                     $counter++;
                 }
@@ -142,10 +153,12 @@ class ProjektService extends BaseService
             }
 
 
-            foreach ($groups as $group) {
+            foreach ($groups as $group)
+            {
                 $newGroup = new Gruppe();
 
-                foreach ($group as $teilnehmer) {
+                foreach ($group as $teilnehmer)
+                {
 
                     $newGroup->addTeilnehmer($teilnehmer);
                 }
@@ -155,10 +168,10 @@ class ProjektService extends BaseService
             }
 
             return $projekt;
-        }
+
 
         //wenn eine sortierung ist muss der Code verändert werden
-        else {
+        /*else {
 
                 if ($projekt->gruppenAufteilungType == 0)
                 {
@@ -186,13 +199,14 @@ class ProjektService extends BaseService
                     }
                    return $projekt;
 
-                }
+                }*/
 
-            }
+    }
 
-        }
 
-    function divideByPersonCount($teilnehmerInput, $anzahlInput){
+
+    function divideByPersonCount($teilnehmerInput, $anzahlInput)
+    {
         $gruppen = array_chunk($teilnehmerInput, round($anzahlInput));
         return $gruppen;
     }
@@ -233,10 +247,13 @@ class ProjektService extends BaseService
 
 
         $ueberlaufGruppe = new Gruppe();
-        foreach ($teilnehmerListe as $teilnehmer) {
+        foreach ($teilnehmerListe as $teilnehmer)
+        {
             $nochPlatz = false;
-            foreach ($projekt->gruppen as $gruppe) {
-                if ($nochPlatz == false && sizeof($gruppe->teilnehmer) != $gruppe->anzahl) {
+            foreach ($projekt->gruppen as $gruppe)
+            {
+                if ($nochPlatz == false && sizeof($gruppe->teilnehmer) != $gruppe->anzahl)
+                {
                     $gruppe->addTeilnehmer($teilnehmer);
                     $nochPlatz = true;
                 }
@@ -255,7 +272,7 @@ class ProjektService extends BaseService
 
 
 
-}
+    }
 }
 
 
