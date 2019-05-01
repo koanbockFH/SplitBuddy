@@ -46,8 +46,6 @@ class ProjektService extends BaseService
 
         $this->calculateGruppen($teilnehmerListe, $projekt);
 
-
-
         //Speichere Daten in DB
         $projekt->createOrUpdate();
 
@@ -84,7 +82,7 @@ class ProjektService extends BaseService
         if($projekt->sortierType == 1) {
             // Sortierung: Geschlecht (Männlich zuerst)
             usort($teilnehmerListe, function($a, $b){
-                if($a->geschlecht->id == $b->geschlecht-->id)
+                if($a->geschlecht->id == $b->geschlecht->id)
                     return 0;
 
                 return ($a->geschlecht->id < $b->geschlecht->id) ? -1 : 1;
