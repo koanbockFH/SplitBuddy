@@ -8,8 +8,23 @@ class LoginController extends BaseController
 	{
 		$this->view->title = "Login";
 
+		if($this->sessionUser->isLoggedIn)
+        {
+            $this->redirectToIndex();
+        }
+
 		$this->checkForLoginPost();
 	}
+
+    /**
+     * Redirects User to Index if already Logged In
+     */
+	public function redirectToIndex()
+    {
+	    header('Location: /'.INDEX_URL);
+        header('Status: 303');
+        exit();
+    }
 
     /**
      * Prüft ob eine neue LoginAnfrage gesendet wurde und führt diese ggf. aus.
