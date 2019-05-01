@@ -14,7 +14,7 @@ class GruppenController extends BaseController
         $this->view->projektListe = $projektRepo->getAllByUserId($this->sessionUser->id );
 
 
-        if(sizeof($this->view->projektListe) == 0)
+        if(!is_null($this->view->projektListe)&& sizeof($this->view->projektListe) == 0)
         {
             $this->view->projektListe = null;
         }

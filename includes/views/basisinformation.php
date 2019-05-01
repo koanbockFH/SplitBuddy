@@ -1,19 +1,18 @@
-    <h2 class="text-center mb-4">Informationen</h2>
+    <h2 class="text-center mb-6 sb-h2-open">Informationen</h2>
 
 
     <form novalidate id="sb-basisinformation-form">
         <div class="form-row justify-content-center">
-            <div class="col-md-8 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="title" class="d-none d-lg-block">Titel*</label>
                 <input type="text" class="form-control" id="title" placeholder="Titel" required>
                 <div class="invalid-feedback">Bitte geben Sie einen Titel ein </div>
             </div>
         </div>
         <div class="form-row justify-content-center">
-            <div class="col-md-8 mb-3">
-                <label for="comment"  class="d-none d-lg-block">Anmerkungen</label>
+            <div class="col-md-12 mb-3">
+                <label for="comment"  class="d-none d-lg-block">Anmerkungen (optional)</label>
                 <textarea class="form-control" id="comment" rows="4" placeholder="Anmerkungen"></textarea>
-                <small id="note" class="form-text text-muted">*gekennzeichnete Felder sind erforderlich</small>
             </div>
         </div>
         <div class="button form-row justify-content-center">
