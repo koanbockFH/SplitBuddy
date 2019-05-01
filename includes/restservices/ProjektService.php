@@ -62,8 +62,9 @@ class ProjektService extends BaseService
         if ($projekt->gruppenAufteilungType == 0) {
             $this->divideByGroupCount($teilnehmerListe, $projekt->anzahl, $projekt);
         }
+        //für kommentierte variante wird auch noch false übergeben
         else if ($projekt->gruppenAufteilungType == 1) {
-            $this->divideByGroupCount($teilnehmerListe, $projekt->anzahl, $projekt, false);
+            $this->divideByGroupCount($teilnehmerListe, $projekt->anzahl, $projekt);
         } // Anzahl Teilnehmer und indiv. Gruppen hinzufügen & deren respektive Methode wie "DivideByGroupCount"
         else {
             $this->divideIndividualGroup($teilnehmerListe, $projekt);
