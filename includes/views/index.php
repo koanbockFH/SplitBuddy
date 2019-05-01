@@ -37,8 +37,7 @@ echo $this->header;
                     <h3>Gruppenaufteilung</h3>
 
                     <p>Mind. 4 Teilnehmer</p>
-                    <p>Diese Webanwendung ist für jeden der Gruppen einteilen muss.
-                        Egal ob Lehrer, Sommercampbetreuer oder unter Freunden,
+                    <p>Egal ob Lehrer, Sommercampbetreuer oder unter Freunden,
                         jeder braucht Gruppeneinteilungen.
                         SplitBuddy übernimmt das mühsame Gruppen bilden für dich.
                         Einfach Teilnehmer eingeben, Einstellungen treffen und fertig.
