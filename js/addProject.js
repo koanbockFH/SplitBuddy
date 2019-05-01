@@ -21,7 +21,7 @@ function Project(projectHeaderId, titleId, anmerkungId, gruppenEinstellungName, 
 
     //bei jeder Änderung der gruppenEinstellungen schauen ob indiv. Gruppen angezeigt werden müssen
     $("input[name='"+gruppenEinstellungName+"']").each(function(i, obj) {
-        obj.addEventListener("change", function(e){
+        obj.addEventListener("change", function(){
            if(this.value == 2)
            {
                $("#indvGruppe-passive").removeClass("d-none");
@@ -145,6 +145,9 @@ function Project(projectHeaderId, titleId, anmerkungId, gruppenEinstellungName, 
                 'dataType': "json",
                 'success': function (data) {
                     window.location.href = '/ergebnis?id=' + data.data.id;
+                },
+                'error': function () {
+                    console.error("AJAX Call Failed");
                 }
             });
         }

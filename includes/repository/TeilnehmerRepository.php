@@ -1,67 +1,40 @@
 <?php
 
-class TeilnehmerRepository extends BaseRepository
+/**
+ * Class TeilnehmerRepository - Gives access to DB Results
+ */
+class TeilnehmerRepository extends BaseCRUDRepository
 {
-    public function getIdListByGruppenId($id)
-    {
-        $sql = "SELECT `teilnehmerID`
-                FROM `Teilnehmer` WHERE `gruppenID`='" . $this->Database->escapeString($id) . "'";
-        $result = $this->Database->query($sql);
-        if($this->Database->numRows($result) == 0)
-        {
-            return null; //not found!
-        }
-        $array = array();
-        while($row = $this->Database->fetchObject($result))
-        {
-            array_push($array, $row);
-        }
-        return $array;
-    }
+    protected $tableName = "Teilnehmer";
+    protected $idColumnName = "teilnehmerID";
+    protected $parentIdColumnName = "gruppenID";
 
-    public function getById($id)
-    {
-        $sql = "SELECT `teilnehmerID`,
-                        `vname`,
-                        `nname`,
-                        `gebdate`,
-                        `mail`,
-                        `geschlechtID`,
-                        `gruppenID`,
-                        `projektID`
-                FROM `Teilnehmer` WHERE `teilnehmerID`='" . $this->Database->escapeString($id) . "'";
-        $result = $this->Database->query($sql);
-        if($this->Database->numRows($result) == 0)
-        {
-            return null; //not found!
-        }
-        $row = $this->Database->fetchObject($result);
-        return $row;
-    }
-
-    public function createOrUpdate($teilnehmer)
+    /**
+     * Creates or Updates the given Value on the DB
+     * @param Teilnehmer $teilnehmer : Teilnehmer to be added/updated
+     * @return bool|int|string : result depending on state
+     */
+    public function createOrUpdate(Teilnehmer $teilnehmer)
     {
         $sql= "";
         if(true)
         {
-            $sql = "INSERT INTO `Teilnehmer`(`vname`,`nname`,`gebdate`,`mail`,`geschlechtID`,`gruppenID`,`projektID`) 
-                    VALUES('".$teilnehmer->vorname."',
-                           '".$teilnehmer->nachname."',
-                           '".$teilnehmer->geburtsdatum."',
-                           '".$teilnehmer->mail."',
-                           '".$teilnehmer->geschlechtID."',
-                           '".$teilnehmer->gruppenID."',
-                           '".$teilnehmer->projektID."')";
+            $sql = "INSERT INTO `Teilnehmer`(`vname`,`nname`,`gebdate`,`mail`,`geschlechtID`,`gruppenID`) 
+                    VALUES('".$this->Database->escapeString($teilnehmer->vorname)."',
+                           '".$this->Database->escapeString($teilnehmer->nachname)."',
+                           '".$this->Database->escapeString($teilnehmer->geburtsdatum)."',
+                           '".$this->Database->escapeString($teilnehmer->mail)."',
+                           '".$this->Database->escapeString($teilnehmer->geschlechtID)."',
+                           '".$this->Database->escapeString($teilnehmer->gruppenID)."')";
         }
         else{
             $sql = "UPDATE `Teilnehmer`
-                    SET '`vname`=".$teilnehmer->vorname."',
-                        '`nname` = ".$teilnehmer->nachname."',
-                        '`gebdate` = ".$teilnehmer->geburtsdatum."',
-                        '`mail` = ".$teilnehmer->mail."',
-                        '`geschlechtID` = ".$teilnehmer->geschlechtID."',
-                        '`gruppenID` = ".$teilnehmer->gruppenID."',
-                        '`projektID` = ".$teilnehmer->projektID."'
+                    SET '`vname`=".$this->Database->escapeString($teilnehmer->vorname)."',
+                        '`nname` = ".$this->Database->escapeString($teilnehmer->nachname)."',
+                        '`gebdate` = ".$this->Database->escapeString($teilnehmer->geburtsdatum)."',
+                        '`mail` = ".$this->Database->escapeString($teilnehmer->mail)."',
+                        '`geschlechtID` = ".$this->Database->escapeString($teilnehmer->geschlechtID)."',
+                        '`gruppenID` = ".$this->Database->escapeString($teilnehmer->gruppenID)."'
                     WHERE `teilnehmerID`='" . $this->Database->escapeString($teilnehmer->id) . "'";
         }
 
@@ -75,13 +48,5 @@ class TeilnehmerRepository extends BaseRepository
         {
             return false;
         }
-    }
-
-    public function delete($id)
-    {
-        $sql = "DELETE FROM `Teilnehmer`
-                WHERE `teilnehmerID`='" . $this->Database->escapeString($id) . "'";
-
-        return $this->Database->query($sql);
     }
 }

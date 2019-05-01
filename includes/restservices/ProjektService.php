@@ -17,6 +17,10 @@ class ProjektService extends BaseService
         return; //not Used
     }
 
+    /**
+     * Creates Projekt and calculates all Values
+     * @param $data : Data of Projekt
+     */
     protected function createRequest($data)
     {
         if (!isset($data['data'])) {

@@ -1,7 +1,6 @@
         </div>
         <footer class="sb-footer">
-            <span>SplitBuddy © 2019</span>
-            <a href="/" class="text-decoration-none float-right sb-link-muted">Impressum</a>
+            <div class="text-center">© 2019 | Axel, Larissa, Magdalena</div>
         </footer>
     </div>
     <!-- Script Load -->

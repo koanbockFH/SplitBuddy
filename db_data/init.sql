@@ -46,9 +46,7 @@ CREATE TABLE Teilnehmer(
 	gebdate DATE,
 	mail NVARCHAR (255),
 	gruppenID INT,
-	projektID INT,
 	geschlechtID INT,
-	FOREIGN KEY (projektID) REFERENCES GruppenProjekt (projektID),
 	FOREIGN KEY (gruppenID) REFERENCES Gruppen (gruppenID),
 	FOREIGN KEY (geschlechtID) REFERENCES Geschlecht (geschlechtID),
 	PRIMARY KEY (teilnehmerID)

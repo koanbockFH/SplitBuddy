@@ -28,7 +28,7 @@ class Route
 		{
 			if($requestUri == $urlPath.$key)
 			{
-				$controller = new $routeOption['controller']($routeOption['uniqueName']);
+				$controller = new $routeOption['BaseController']($routeOption['uniqueName']);
 				exit;
 			}
 		}

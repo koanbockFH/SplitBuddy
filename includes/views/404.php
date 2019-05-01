@@ -1,24 +1,22 @@
-<?php
-echo $this->header;
-?>
-<div id="main">
-	<h1>404 Seite nicht gefunden</h1>
+<!DOCTYPE html>
+<html lang="de">
+<head>
 
-	<p>Leider konnte Ihre Anfrage nicht richtig verarbeitet werden. Mögliche Ursachen hierfür sind:</p>
-	<ul>
-		<li>die URL die Sie eingegeben haben enthält einen Tippfehler</li>
-		<li>die Seite die Sie versucht haben aufzurufen existiert nicht mehr</li>
-	</ul>
-	<p>
-		Was können Sie jetzt tun?
-	</p>
-	<ul>
-		<li>prüfen Sie ob die URL tatsächlich richtig ist</li>
-		<li>Nutzen Sie die Navigation um zu der Seite zu gelangen die Sie aufrufen wollten</li>
-	</ul>
-</div>
-<?php
+    <meta charset="utf-8">
+    <title>Page Not Found :(</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="css/404.css" rel="stylesheet">
 
-echo $this->footer;
+</head>
 
-?>
+<body>
+    <div id="pageNotFound">
+        <h1>404</h1>
+        <p>Don't panic, and make sure <br> to watch your oxygen levels.</p>
+        <a href="index">return to saftey</a>
+    </div>
+
+    <div id="astronaut"><img src="\images\404.png" width="200px"></div>
+
+</body>
+</html>
