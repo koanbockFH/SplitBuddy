@@ -168,6 +168,9 @@ class ProjektService extends BaseService
 
                     $cnt = 1;
 
+                    var_dump($gruppen);
+
+
                     foreach ($gruppen as $gruppe){
 
                         $newGroup = new Gruppe();
