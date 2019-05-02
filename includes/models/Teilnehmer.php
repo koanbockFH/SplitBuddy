@@ -67,5 +67,9 @@ class Teilnehmer
         $this->geburtsdatum = $jsonObj->geburtstag;
         $this->geschlechtID = $jsonObj->geschlecht;
         $this->mail = $jsonObj->email;
+
+        $this->geschlecht = new Geschlecht();
+        $this->geschlecht->get($this->geschlechtID);
     }
+
 }

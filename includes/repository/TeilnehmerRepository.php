@@ -17,7 +17,7 @@ class TeilnehmerRepository extends BaseCRUDRepository
     public function createOrUpdate(Teilnehmer $teilnehmer)
     {
         $sql= "";
-        if($teilnehmer->id == 0)
+        if(true)
         {
             $sql = "INSERT INTO `Teilnehmer`(`vname`,`nname`,`gebdate`,`mail`,`geschlechtID`,`gruppenID`) 
                     VALUES('".$this->Database->escapeString($teilnehmer->vorname)."',
