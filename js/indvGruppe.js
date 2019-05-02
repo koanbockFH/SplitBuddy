@@ -9,12 +9,14 @@ let indivGroupList = [];
         let form = document.getElementById('indivGroup-form');
         form.addEventListener('submit', function (event) {
             if (form.checkValidity() === true) {
+                let groupChangeButton = $("#indvGruppe-change")
                 if($("#indvGruppe-change").hasClass("d-none"))
                 {
                     addGroup("groupName", "amountIndivGroup");
                 }
                 else{
-                    editGroup($("#indvGruppe-change").attr("data-id"), "groupName", "amountIndivGroup");
+                    //attribute data-id is set after pressing Edit-button of each Teilnehmer
+                    editGroup(groupChangeButton.attr("data-id"), "groupName", "amountIndivGroup");
                 }
                 form.reset();
                 form.classList.remove('was-validated');
@@ -52,42 +54,41 @@ function addGroup(gruppennameId, anzahlId) {
     let groupNameControl = document.getElementById(gruppennameId);
     let amountControl = document.getElementById(anzahlId);
 
-    //table will be visible
+    //table will be visible when a Group is entered
     let listControl = $("#sb-indivGroup-list");
     listControl.removeClass('d-none');
 
-    let currentId = indivGroupList.length;
-
     //create edit button
-    var editbutton = $('<button class="btn btn-secondary btn-info col-sm sb-icon-btn" data-id="' + currentId + '"><i class="fas fa-pencil-alt"></i></button>');
+    var editbutton = $('<button class="btn btn-secondary btn-info col-sm sb-icon-btn"><i class="fas fa-pencil-alt"></i></button>');
 
     //this event will be fired when the editbutton is clicked
     //it allows the user to change the values of his input
-    editbutton.click(function () {
+    editbutton.click(function (e) {
+        let row = $(e.currentTarget).parents('tr');
         $("#indvGruppe-change").removeClass("d-none");
         $("#indvGruppe-add").addClass("d-none");
 
-        $("#indvGruppe-change").attr("data-id", this.dataset.id);
-        loadGroup(this.dataset.id, gruppennameId, anzahlId);
+        $("#indvGruppe-change").attr("data-id", row.index());
+        loadGroup(row.index(), gruppennameId, anzahlId);
     });
 
     //create delete button
-    var deletebutton = $('<button class="btn btn-secondary btn-danger col-sm sb-icon-btn" data-id="' + currentId + '"><i class="fas fa-trash"></i></button>');
+    var deletebutton = $('<button class="btn btn-secondary btn-danger col-sm sb-icon-btn"><i class="fas fa-trash"></i></button>');
 
     //this event will be fired when the delete button is clicked
     //it allows the user to delete an entered group again
-    deletebutton.click(function () {
-        deleteGroup(this.dataset.id);
+    deletebutton.click(function (e) {
+        deleteGroup($(e.currentTarget).parents('tr').index());
     });
 
-    //Create last cell of row and add buttons
+    //Create last cells of row and add buttons
     var editCell = $("<td class='sb-icon-btn'></td>");
     var deleteCell = $("<td class='sb-icon-btn'></td>");
     editCell.append(editbutton);
     deleteCell.append(deletebutton);
 
     //create row
-    var row = $('<tr data-id="' + currentId + '">');
+    var row = $('<tr>');
     row.append($('<td>' + groupNameControl.value + '</td>'))
         .append($('<td>' + amountControl.value + '</td>'))
         .append($(editCell))
@@ -115,12 +116,11 @@ function loadGroup(id, groupNameId, amountId) {
     amountControl.value = item.amount;
 }
 
-
 function editGroup(id, groupNameId, amountId) {
     let groupNameControl = document.getElementById(groupNameId);
     let amountControl = document.getElementById(amountId);
 
-    let row = $('#sb-indivGroup-list').find('tr[data-id='+ id +']');
+    let row = $('#sb-indivGroup-list').find('tbody').find('tr').eq(id);
 
     //The find() method returns descendant elements of the selected element
     let cells = row.find("td");
@@ -129,18 +129,11 @@ function editGroup(id, groupNameId, amountId) {
     cells[0].textContent = groupNameControl.value;
     cells[1].textContent = amountControl.value;
 
-    //removes the old value in the array
-    /*Parameters:
-    index = specifies the position of the element which will be removed
-    howmany = the number of items to be removed
-     */
-    indivGroupList.splice(id,1);
+   //get data from the list
+    let item = indivGroupList[id];
 
-    //adds the new values to the array
-    indivGroupList.push({
-        groupName: groupNameControl.value,
-        amount: amountControl.value,
-    });
+    item.groupName = groupNameControl.value;
+    item.amount = amountControl.value;
 
     //changes the visibility of the buttons
     $("#indvGruppe-add").removeClass("d-none");
@@ -153,7 +146,8 @@ function deleteGroup(id){
         return;
     }
 
-    let row = $('tr[data-id='+ id +']');
+    //The find() method returns descendant elements of the selected element
+    let row = $("#sb-indivGroup-list").find('tbody').find('tr').eq(id);
 
     row.remove();
     indivGroupList.splice(id,1);
@@ -165,6 +159,7 @@ function deleteGroup(id){
     }
 }
 
+//At least 2 groups have to be entered
 function validateGroup()
 {
     let result = false;
@@ -178,5 +173,3 @@ function validateGroup()
     }
     return result;
 }
-
-    
