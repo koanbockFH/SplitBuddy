@@ -42,6 +42,11 @@ class Projekt
         $gruppenRepo = new GruppeRepository();
         $gruppen = $gruppenRepo->getIdListByParentId($this->id);
 
+        if(is_null($gruppen))
+        {
+            return;
+        }
+
         foreach($gruppen as $gruppe)
         {
             $g = new Gruppe();
@@ -55,6 +60,11 @@ class Projekt
      */
     public function createOrUpdate()
     {
+        if(sizeof($this->gruppen) == 0)
+        {
+            return;
+        }
+
         $repo = new ProjektRepository();
         $insertedId = $repo->createOrUpdate($this);
         $this->id = $insertedId;

@@ -45,6 +45,12 @@ class ProjektService extends BaseService
 
         $this->calculateGruppen($teilnehmerListe, $projekt);
 
+        if(sizeof($projekt->gruppen) == 0)
+        {
+            $this->returnJSON(false, "Es wurden keine Gruppen erstellt");
+            return;
+        }
+
         //Speichere Daten in DB
         $projekt->createOrUpdate();
 
