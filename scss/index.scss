@@ -1,2 +1,54 @@
 @import "base";
 
+
+
+div.description
+{
+  background-color: rgb(230,239,241);
+  text-align:center;
+  margin: 10%;
+  padding: 15px;
+
+ @include breakpoint_Min($desktop) {
+
+  margin: 5%;
+  }
+
+}
+
+
+.withbg {
+  width: 100%;
+  min-height: 100%;
+  background-image: url('../images/hintergrund.jpg');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 200%;
+
+  @include breakpoint_Min($desktop) {
+
+    background-repeat: repeat;
+    background-size: 100%;
+  }
+
+}
+
+html {
+  width:100%;
+  height: 100%;
+}
+
+
+
+.logo {
+  font-size: 50pt;
+  color: rgb(230,239,241);
+  margin: 10%;
+  text-align:center;
+
+  @include breakpoint_Min($desktop)
+  {
+      font-size: 80pt;
+  }
+}
+
