@@ -29,6 +29,11 @@ class Gruppe
         $teilnehmerRepo = new TeilnehmerRepository();
         $teilnehmer = $teilnehmerRepo->getIdListByParentId($this->id);
 
+        if(is_null($teilnehmer))
+        {
+            return;
+        }
+
         foreach($teilnehmer as $item)
         {
             $t = new Teilnehmer();
@@ -42,6 +47,11 @@ class Gruppe
      */
     public function createOrUpdate()
     {
+        if(sizeof($this->teilnehmer) == 0)
+        {
+            return;
+        }
+
         $repo = new GruppeRepository();
         $insertedId = $repo->createOrUpdate($this);
         $this->id = $insertedId;
