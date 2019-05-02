@@ -5,23 +5,35 @@
 /*
 Hauptfarben Kombination
  */
-$main-color: orange;
+$main-color: rgb(7, 103, 118);
 $second-color: grey;
+$third-color: rgb(230,239,241);
+$fourth-color: #363636;
+$fifth-color: white;
 
+/*
+Strength Indicator
+ */
 $error: red;
-$weak: yellow;
-$moderate: lightgreen;
+$weak: orange;
+$moderate: yellow;
 $strong: green;
 
+/*
+Feedback
+ */
 $feedback: red;
 
-$input-border-color: #ccc;
-$login-submit-color: white;
+/*
+Button
+ */
+
+$info-button: orange;
 
 /*
 Spezifische Style Farben
  */
-$link-muted-text-color: #363636;
+$link-muted-text-color: $fourth-color;
 
 $navbar-dropdown-background-color: $second-color;
 $navbar-dropdown-hover-color: darkgrey;
@@ -30,8 +42,6 @@ $navbar-background-color: #343a40;
 
 $footer-text-color: #363636;
 
-/*
-Einstellungen
- */
-$feedback-color: red;
+
+
 

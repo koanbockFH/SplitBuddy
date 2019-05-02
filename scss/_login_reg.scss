@@ -1,18 +1,55 @@
 @import "base";
 
-/*input*/
-input[type=text],input[type=password],input[type=email], select  {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 5px 0;
-  display: inline-block;
-  border: 1px solid $input-border-color;
-  border-radius: 4px;
-  box-sizing: border-box;
+body {
+  @include breakpoint_Max($desktop) {
+    background-color: $third-color;
+  }
+}
+
+.display-1{
+  font-size: 56pt;
+  margin-botom: 80px;
+
+  @include breakpoint_Max($desktop) {
+    font-size: 40pt;
+  }
+
+}
+
+.sb-whiteBackground{
+  @include breakpoint_Max($desktop) {
+    margin-top: 15%;
+  }
+  @include breakpoint_Min($desktop) {
+    background-color: white;
+    opacity: 0.9;
+    box-shadow:  $box-shadow;
+    padding: 100px;
+    margin-top: 10%;
+  }
+}
+
+#loginServiceError, #registerServiceError{
+  margin-top: 20px;
 }
 
 
-.feedback {
-  font-family: $font-family;
-  color: $feedback;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

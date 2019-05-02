@@ -11,12 +11,15 @@
 html,
 body
 {
-  background-color: $main-color;
   font-family: $font-family;
   box-sizing: border-box;
   padding:0;
   margin:0;
   height: 100%;
+}
+
+body{
+  background-color: $main-color;
 }
 
 h1, h2, h3, p, .button {
@@ -48,7 +51,7 @@ h1, h2, h3 {
   height: 2.5rem;            /* Footer height */
   padding: .5rem 1rem;
   background-color: $second-color;
-  color: $footer-text-color !important;
+  color: $third-color !important;
 }
 
 /*

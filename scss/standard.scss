@@ -4,4 +4,12 @@
 {
   width: 5em;
   height: 5em;
+  color: $fifth-color;
+}
+
+body{
+  color: $fifth-color;
+  @include breakpoint_Max($phone){
+    background-color: $third-color;
+  }
 }
