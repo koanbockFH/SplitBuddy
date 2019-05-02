@@ -39,22 +39,21 @@ function addTeilnehmer(vornameId, nachnameId, geburtstagId, geschlechtId, emailI
     let listControl = $("#sb-teilnehmer-liste");
     listControl.removeClass('d-none');
 
-    let currentId = teilnehmerDaten.length;
-
     //create edit Button
-    var editbutton = $('<button class="btn btn-secondary btn-info sb-icon-btn" data-id="'+ currentId +'"><i class="fas fa-pencil-alt"></i></button>');
-    editbutton.click(function(){
+    var editbutton = $('<button class="btn btn-secondary btn-info sb-icon-btn"><i class="fas fa-pencil-alt"></i></button>');
+    editbutton.click(function(e){
+        let row = $(e.currentTarget).parents('tr');
         $("#teilnehmer-change").removeClass("d-none");
         $("#teilnehmer-add").addClass("d-none");
 
-        $("#teilnehmer-change").attr("data-id", this.dataset.id);
-        loadTeilnehmer(this.dataset.id, vornameId, nachnameId, geburtstagId,geschlechtId, emailId);
+        $("#teilnehmer-change").attr("data-id", row.index());
+        loadTeilnehmer(row.index(), vornameId, nachnameId, geburtstagId,geschlechtId, emailId);
     });
 
     //create loeschen Button
-    var deletebutton = $('<button class="btn btn-secondary btn-danger sb-icon-btn" data-id="'+ currentId +'"><i class="fas fa-trash"></i></button>');
-    deletebutton.click(function(){
-        deleteTeilnehmer(this.dataset.id);
+    var deletebutton = $('<button class="btn btn-secondary btn-danger sb-icon-btn"><i class="fas fa-trash"></i></button>');
+    deletebutton.click(function(e){
+        deleteTeilnehmer($(e.currentTarget).parents('tr').index());
     });
 
     //Create last Cell of Row and add the Button
@@ -64,7 +63,7 @@ function addTeilnehmer(vornameId, nachnameId, geburtstagId, geschlechtId, emailI
     deleteCell.append(deletebutton);
 
     //create row
-    var row = $('<tr data-id="'+ currentId +'">');
+    var row = $('<tr>');
     row.append($('<td>' + vornameControl.value + '</td>'))
         .append($('<td>' + nachnameControl.value + '</td>'))
         .append($(editCell))
@@ -105,21 +104,20 @@ function editTeilnehmer(id, vornameId, nachnameId, geburtstagId, geschlechtId, e
     let geschlechtControl = document.getElementById(geschlechtId);
     let emailControl = document.getElementById(emailId);
 
-    let row = $("#sb-teilnehmer-liste").find('tr[data-id='+ id +']');
+    let row = $("#sb-teilnehmer-liste").find('tbody').find('tr').eq(id);
 
     let cells = row.find("td");
     cells[0].textContent = vornameControl.value;
     cells[1].textContent = nachnameControl.value;
 
-    teilnehmerDaten.splice(id,1);
+    //Get Data from
+    let item = teilnehmerDaten[id];
 
-    teilnehmerDaten.push({
-        vorname: vornameControl.value,
-        nachname: nachnameControl.value,
-        geburtstag: geburtstagControl.value,
-        geschlecht: geschlechtControl.value,
-        email: emailControl.value,
-    });
+    item.vorname = vornameControl.value;
+    item.nachname = nachnameControl.value;
+    item.geburtstag = geburtstagControl.value;
+    item.geschlecht = geschlechtControl.value;
+    item.email = emailControl.value;
 
     $("#teilnehmer-add").removeClass("d-none");
     $("#teilnehmer-change").addClass("d-none");
@@ -131,7 +129,7 @@ function deleteTeilnehmer(id){
         return;
     }
 
-    let row = $('tr[data-id='+ id +']');
+    let row = $("#sb-teilnehmer-liste").find('tbody').find('tr').eq(id);
 
     row.remove();
     teilnehmerDaten.splice(id,1);
