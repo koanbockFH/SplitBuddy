@@ -270,7 +270,7 @@ public function divideByGroupCount($teilnehmerListe, Projekt $projekt)
     //Alle Teilnehmer - (Anzahl pro Gruppe * (GruppenAnzahl - 1)) = TeilnehmerAnzahl die bisher keiner Gruppe zugewiesen wurde
     $teilnehmerAnzahlLetzterGruppe = sizeof($teilnehmerListe) - ($teilnehmerAnzahlProGruppe * ($gruppenAnzahl - 1));
     $g = new Gruppe();
-    $g->gruppenname = "Gruppe " . $gruppenAnzahl; //letzte Gruppe
+    $g->gruppenname = "Gruppe " . $nummerLetzteGruppe; //letzte Gruppe
     $g->anzahl = $teilnehmerAnzahlLetzterGruppe;
     $projekt->addGruppe($g);
 
