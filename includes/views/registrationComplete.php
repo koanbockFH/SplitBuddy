@@ -3,6 +3,7 @@
 echo $this->header;
 
 ?>
+
     <div class="container mb-5 mt-5 justify-content-center">
 
         <h1 class="text-center mt-5">Registrierung Erfolgreich</h1>

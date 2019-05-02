@@ -1,16 +1,79 @@
 @import "base";
-@import "einstellungen";
+
+body {
+  @include breakpoint_Max($desktop) {
+    background-color: $third-color;
+  }
+}
+
+.sb-whiteBackground{
+  @include breakpoint_Max($desktop) {
+    margin-top: 10%;
+  }
+  @include breakpoint_Min($desktop) {
+    background-color: white;
+    opacity: 0.9;
+    box-shadow:  $box-shadow;
+    padding: 100px 100px 200px 100px;
+    margin: 50px;
+  }
+}
+
+#projectHeader{
+  font-size: 60pt;
+  margin-bottom: 100px;
+  @include breakpoint_Max($phone) {
+    font-size: 48pt;
+    margin-bottom: 50px;
+  }
+
+}
+
+.sb-h2-open{
+  font-size: 32pt;
+  margin-top: 35px;
+}
 
 .sb-card-error div:last-child
 {
   display: block !important;
 }
 
-//teilnehmer & Indiv. Gruppe
+/*
+Teilnehmer und individuelle Gruppe
+ */
+.table th, .table td {
+  vertical-align: inherit;
+}
+
 .sb-icon-btn{
   width: 44px;
 }
 
-.table th, .table td {
-  vertical-align: inherit;
+.btn-info{
+  background-color: $info-button;
+  border: $info-button;
+}
+
+.btn-primary, .text-muted{
+  margin-bottom: 20px;
+}
+
+/*
+Einstellungen
+ */
+.row-einstellungen{
+  margin-bottom: 20px;
+}
+
+#amount {
+  width: 100px;
+}
+
+.label-not-bold{
+  font-weight: normal;
+}
+
+legend{
+  font-weight: bold;
 }
