@@ -44,7 +44,7 @@ class ProjektService extends BaseService
 
 
         // Sortierung
-        $this->sortTeilnehmer($teilnehmerListe, $projekt);
+        $teilnehmerListe = $this->sortTeilnehmer($teilnehmerListe, $projekt);
 
         //Alle Daten vorbereitet, nun muss die Aufteilung gemacht werden
 
@@ -253,6 +253,7 @@ public function divideByGroupCount($teilnehmerListe, Projekt $projekt)
         $gruppenAnzahl = sizeof($teilnehmerListe) / $teilnehmerAnzahlProGruppe;
     }
 
+    $nummerLetzteGruppe=1;
     //erzeuge die Gruppen auf Basis der eingabedaten - die letzte Gruppe wir für Rundungsfehler später hinzugefügt
     for($i = 1; $i<$gruppenAnzahl; $i++)
     {
@@ -261,6 +262,7 @@ public function divideByGroupCount($teilnehmerListe, Projekt $projekt)
         $g->anzahl = $teilnehmerAnzahlProGruppe;
 
         $projekt->addGruppe($g);
+        $nummerLetzteGruppe++;
     }
 
     //es kann sein das keine gleichmäßigkeit möglich ist z.b. 7 teilnehmer auf 2 gruppen (3,4) oder 7 auf 3 (3,3,1) usw.
